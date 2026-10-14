@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Backdrop Overlay for Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Slide-Out Sidebar Navigation Drawer -->
+    <aside class="sidebar-drawer" id="sidebar-drawer" aria-label="Main Navigation Drawer">
+        <!-- Drawer Header with User Profile Greeting -->
+        <div class="sidebar-header">
+            <div class="sidebar-user" id="sidebar-user-btn" role="button" tabindex="0">
+                <div class="sidebar-avatar" id="sidebar-avatar">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <h4 id="sidebar-greeting">Hello, Guest</h4>
+                    <a href="#" id="sidebar-auth-link">Login / Register</a>
+                </div>
+            </div>
+            <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Category Switcher Tabs -->
+        <div class="sidebar-tabs">
+            <button class="sidebar-tab active">MEN</button>
+            <button class="sidebar-tab">WOMEN</button>
+            <button class="sidebar-tab">SNEAKERS</button>
+        </div>
+
+        <!-- Scrollable Navigation Groups -->
+        <div class="sidebar-content">
+            <!-- Shop By Category -->
+            <div class="sidebar-group">
+                <h5 class="sidebar-group-title">CATEGORIES</h5>
+                <ul class="sidebar-links">
+                    <li><a href="#"><i class="fa-solid fa-fire"></i> New Arrivals</a></li>
+                    <li><a href="#"><i class="fa-solid fa-shirt"></i> Topwear</a></li>
+                    <li><a href="#"><i class="fa-solid fa-vest-patches"></i> Bottomwear</a></li>
+                    <li><a href="#"><i class="fa-solid fa-shoe-prints"></i> Sneakers & Shoes</a></li>
+                    <li><a href="#"><i class="fa-solid fa-glasses"></i> Accessories</a></li>
+                    <li><a href="#"><i class="fa-solid fa-tag"></i> Trending Merch</a></li>
+                </ul>
+            </div>
+
+            <!-- Themes & Pop Culture -->
+            <div class="sidebar-group">
+                <h5 class="sidebar-group-title">THEMES & POP CULTURE</h5>
+                <ul class="sidebar-links">
+                    <li><a href="#">Marvel Universe</a></li>
+                    <li><a href="#">Spider-Man</a></li>
+                    <li><a href="#">Attack on Titan</a></li>
+                    <li><a href="#">Dragon Ball Z</a></li>
+                    <li><a href="#">DC Comics</a></li>
+                    <li><a href="#">Peanuts</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Assistance & Account -->
+            <div class="sidebar-group">
+                <h5 class="sidebar-group-title">NEED HELP?</h5>
+                <ul class="sidebar-links secondary">
+                    <li><a href="#"><i class="fa-solid fa-truck-fast"></i> Track Order</a></li>
+                    <li><a href="#"><i class="fa-solid fa-headset"></i> Contact Us</a></li>
+                    <li><a href="#"><i class="fa-solid fa-circle-question"></i> FAQs</a></li>
+                    <li><a href="#"><i class="fa-solid fa-gift" style="color: #e53935;"></i> Gift Vouchers</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="sidebar-footer">
+            <p class="sidebar-badge">HOMEGROWN INDIAN BRAND</p>
+            <div class="sidebar-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Backdrop Overlay for Wishlist Drawer -->
+    <div class="wishlist-overlay" id="wishlist-overlay"></div>
+
+    <!-- Slide-Out Wishlist Drawer -->
+    <aside class="wishlist-drawer" id="wishlist-drawer" aria-label="Wishlist Drawer">
+        <div class="wishlist-drawer-header">
+            <div class="wishlist-header-title">
+                <h3>My Wishlist</h3>
+                <span class="wishlist-items-count" id="wishlist-drawer-count">(0 items)</span>
+            </div>
+            <button class="wishlist-close-btn" id="wishlist-close-btn" aria-label="Close wishlist">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="wishlist-drawer-body" id="wishlist-drawer-body">
+            <!-- Dynamically populated or shows empty state -->
+        </div>
+
+        <div class="wishlist-drawer-footer" id="wishlist-drawer-footer">
+            <button class="wishlist-continue-btn" id="wishlist-continue-btn" onclick="closeWishlistDrawer()">Continue Shopping</button>
+        </div>
+    </aside>
+
+    <!-- Backdrop Overlay for Auth Modal -->
+    <div class="auth-overlay" id="auth-overlay"></div>
+
+    <!-- Login & Register Modal Dialog -->
+    <div class="auth-modal" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+        <button class="auth-close-btn" id="auth-close-btn" aria-label="Close authentication modal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Modal Top Header -->
+        <div class="auth-modal-header" id="auth-modal-header">
+            <div class="auth-brand-badge">M.STORE EXCLUSIVE</div>
+            <h3 class="auth-modal-title" id="auth-modal-title">Welcome to M.Store</h3>
+            <p class="auth-modal-subtitle">Log in or create an account for exclusive member discounts & tracking</p>
+            
+            <!-- Compulsory Login Notice Alert -->
+            <div class="auth-required-banner" id="auth-required-banner" style="display: none;">
+                <i class="fa-solid fa-lock"></i>
+                <span id="auth-required-text">Login or Register is compulsory to continue</span>
+            </div>
+
+            <div class="auth-tabs-nav" id="auth-tabs-nav">
+                <button type="button" class="auth-tab active" id="tab-btn-login" onclick="switchAuthTab('login')">
+                    LOGIN
+                </button>
+                <button type="button" class="auth-tab" id="tab-btn-register" onclick="switchAuthTab('register')">
+                    REGISTER
+                </button>
+            </div>
+        </div>
+
+        <div class="auth-modal-body">
+            <!-- 1. LOGIN FORM -->
+            <form class="auth-form-panel active" id="login-form-panel" onsubmit="handleLoginSubmit(event)">
+                <div class="auth-input-group">
+                    <label for="login-identifier">Email or Mobile Number</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-regular fa-envelope input-leading-icon"></i>
+                        <input type="text" id="login-identifier" placeholder="e.g. alex@example.com or 9876543210" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="auth-input-group">
+                    <div class="auth-label-between">
+                        <label for="login-password">Password</label>
+                        <a href="#" class="auth-forgot-link" onclick="handleForgotPassword(event)">Forgot Password?</a>
+                    </div>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-solid fa-lock input-leading-icon"></i>
+                        <input type="password" id="login-password" placeholder="Enter your password" required autocomplete="current-password">
+                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('login-password', this)" aria-label="Toggle password visibility">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="auth-options-row">
+                    <label class="auth-checkbox-label">
+                        <input type="checkbox" id="login-remember" checked>
+                        <span class="auth-custom-checkbox"></span>
+                        Remember me on this device
+                    </label>
+                </div>
+
+                <button type="submit" class="auth-primary-submit-btn">
+                    <span>LOGIN</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="auth-divider-line">
+                    <span>OR CONTINUE WITH</span>
+                </div>
+
+                <div class="auth-social-buttons">
+                    <button type="button" class="auth-social-btn google-btn" onclick="handleSocialAuth('Google')">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.56 0 2.98.54 4.09 1.58l3.07-3.07C17.3 1.77 14.83 1 12 1 7.43 1 3.51 3.58 1.58 7.34l3.74 2.9C6.21 7.22 8.84 5 12 5z"/><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58l3.71 2.88c2.16-1.99 3.71-4.94 3.71-8.7z"/><path fill="#FBBC05" d="M5.32 14.76c-.24-.72-.37-1.49-.37-2.26 0-.77.13-1.54.37-2.26L1.58 7.34C.58 9.38 0 11.64 0 12s.58 2.62 1.58 4.66l3.74-2.9z"/><path fill="#34A853" d="M12 23c3.24 0 5.95-1.08 7.93-2.91l-3.71-2.88c-1.07.72-2.45 1.16-4.22 1.16-3.16 0-5.79-2.22-6.68-5.24L1.58 16.03C3.51 19.79 7.43 23 12 23z"/></svg>
+                        <span>Google</span>
+                    </button>
+                    <button type="button" class="auth-social-btn facebook-btn" onclick="handleSocialAuth('Facebook')">
+                        <i class="fa-brands fa-facebook-f" style="color: #1877f2;"></i>
+                        <span>Facebook</span>
+                    </button>
+                </div>
+
+                <div class="auth-footer-prompt">
+                    <span>Don't have an account?</span>
+                    <button type="button" class="auth-inline-link" onclick="switchAuthTab('register')">Register Now</button>
+                </div>
+            </form>
+
+            <!-- 2. REGISTER FORM -->
+            <form class="auth-form-panel" id="register-form-panel" onsubmit="handleRegisterSubmit(event)">
+                <div class="auth-input-group">
+                    <label for="reg-fullname">Full Name</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-regular fa-user input-leading-icon"></i>
+                        <input type="text" id="reg-fullname" placeholder="e.g. Maaz Vhora" required autocomplete="name">
+                    </div>
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="reg-email">Email Address</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-regular fa-envelope input-leading-icon"></i>
+                        <input type="email" id="reg-email" placeholder="e.g. maaz@example.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="reg-phone">Phone Number</label>
+                    <div class="auth-phone-wrapper">
+                        <span class="auth-phone-code">+91</span>
+                        <input type="tel" id="reg-phone" placeholder="98765 43210" pattern="[0-9]{10}" maxlength="10" required autocomplete="tel">
+                    </div>
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="reg-password">Password</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-solid fa-lock input-leading-icon"></i>
+                        <input type="password" id="reg-password" placeholder="Create password (min 6 characters)" minlength="6" required autocomplete="new-password">
+                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('reg-password', this)" aria-label="Toggle password visibility">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="auth-options-row">
+                    <label class="auth-checkbox-label">
+                        <input type="checkbox" id="reg-agree" required checked>
+                        <span class="auth-custom-checkbox"></span>
+                        I agree to the <a href="#" class="auth-terms-link" onclick="event.preventDefault()">Terms & Conditions</a> and <a href="#" class="auth-terms-link" onclick="event.preventDefault()">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="auth-primary-submit-btn">
+                    <span>CREATE ACCOUNT</span>
+                    <i class="fa-solid fa-sparkles"></i>
+                </button>
+
+                <div class="auth-footer-prompt">
+                    <span>Already have an account?</span>
+                    <button type="button" class="auth-inline-link" onclick="switchAuthTab('login')">Login here</button>
+                </div>
+            </form>
+
+            <!-- 3. LOGGED IN ACCOUNT DASHBOARD (When user is authenticated) -->
+            <div class="auth-logged-in-view" id="auth-logged-in-view" style="display: none;">
+                <div class="user-profile-header-card">
+                    <div class="user-avatar-badge" id="user-avatar-badge">M</div>
+                    <div class="user-avatar-info">
+                        <h4 id="user-display-name">Guest User</h4>
+                        <p id="user-display-email">user@example.com</p>
+                        <span class="user-vip-tag"><i class="fa-solid fa-crown"></i> M.Store Member</span>
+                    </div>
+                </div>
+
+                <div class="user-quick-links">
+                    <a href="#" class="user-quick-item" onclick="showToast('Your orders are up to date! 📦', 'info'); return false;">
+                        <i class="fa-solid fa-box"></i>
+                        <div class="link-text">
+                            <strong>My Orders</strong>
+                            <span>Track, return & view orders</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                    </a>
+                    <a href="#" class="user-quick-item" onclick="closeAuthModal(); openWishlistDrawer(); return false;">
+                        <i class="fa-solid fa-heart" style="color: #e53935;"></i>
+                        <div class="link-text">
+                            <strong>My Wishlist</strong>
+                            <span>Saved items & favorites</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                    </a>
+                    <a href="#" class="user-quick-item" onclick="showToast('Address book feature coming soon! 🏠', 'info'); return false;">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="link-text">
+                            <strong>Saved Addresses</strong>
+                            <span>Manage delivery addresses</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                    </a>
+                </div>
+
+                <button type="button" class="auth-logout-btn" onclick="handleLogout()">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>LOGOUT</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-left">
+            <i class="fa-solid fa-bars menu-icon" id="menu-toggle" role="button" aria-label="Open navigation menu" tabindex="0"></i>
+            <ul class="nav-links">
+                <li><a href="#" class="active">MEN</a></li>
+                <li><a href="#">WOMEN</a></li>
+                <li><a href="#">SNEAKERS</a></li>
+            </ul>
+        </div>
+        <div class="logo">M.Store</div>
+        <div class="nav-right">
+            <div class="search-bar">
+                <i class="fa-solid fa-microphone"></i>
+                <input type="text" placeholder="What are you looking for?">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="nav-icons">
+                <div class="user-nav-btn" id="auth-toggle" role="button" aria-label="Account Login or Register" title="Account" tabindex="0">
+                    <i class="fa-regular fa-user" id="auth-nav-icon"></i>
+                    <span class="user-status-dot" id="user-status-dot"></span>
+                </div>
+                <div class="wishlist-nav-btn" id="wishlist-toggle" role="button" aria-label="View Wishlist" title="Wishlist" tabindex="0">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-badge" id="wishlist-badge">0</span>
+                </div>
+                <div class="cart-nav-btn" id="cart-toggle" role="button" aria-label="View Shopping Bag" title="Bag" tabindex="0">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero-container">
+        <!-- Left Slider Banner -->
+        <div class="hero-slider">
+            <button class="slider-btn prev-btn" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="slide active">
+                <img id="banner-img" src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80" alt="Hero Banner">
+            </div>
+        </div>
+
+        <!-- Right Product Grid -->
+        <div class="hero-right">
+            <div class="explore-header" id="explore-header">EXPLORE SHIRTS</div>
+            <div class="shirts-grid">
+                <div class="shirt-card">
+                    <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=400&q=80" alt="Shirt 1">
+                </div>
+                <div class="shirt-card">
+                    <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=400&q=80" alt="Shirt 2">
+                </div>
+                <div class="shirt-card">
+                    <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=400&q=80" alt="Shirt 3">
+                    <button class="next-arrow" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="tagline-banner" id="tagline-banner">LINEN | PRINTED | EMBROIDERED</div>
+        </div>
+    </div>
+
+    <!-- Pagination Dots -->
+    <div class="pagination-dots">
+        <span class="dot active" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+    </div>
+
+    <!-- Trust Badges Bar -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <i class="fa-solid fa-percent"></i>
+            <div class="trust-text">
+                <h4>10% Cashback</h4>
+                <p>on all App orders</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="fa-solid fa-rotate-left"></i>
+            <div class="trust-text">
+                <h4>30 days Easy Returns</h4>
+                <p>& Exchanges</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div class="trust-text">
+                <h4>Free &</h4>
+                <p>Fast Shipping</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW IN Collection Section -->
+    <section class="new-in-section">
+        <div class="section-title">NEW IN</div>
+        <div class="hotwheels-banner">
+            <button class="banner-arrow banner-prev" onclick="moveNewInSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="banner-content">
+                <img id="new-in-img" src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Home_Page_HW.jpg?w=1500&dpr=2" alt="New In Banner">
+            </div>
+            <button class="banner-arrow banner-next" onclick="moveNewInSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- NEW ARRIVALS Section -->
+    <section class="new-arrivals-section">
+        <h2 class="arrivals-title">NEW ARRIVALS</h2>
+        <div class="arrivals-container">
+            <button class="arrivals-nav-btn arrivals-prev-btn" onclick="slideArrivals(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="arrivals-track-wrapper">
+                <div class="arrivals-track">
+                    <!-- Card 1 -->
+                    <div class="arrival-card">
+                        <div class="arrival-img-box">
+                            <img src="images/new_arrivals_1.jpg" alt="Easy Pants: Taupe Grey">
+                            <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                            </button>
+                        </div>
+                        <div class="arrival-info">
+                            <h4 class="arrival-name">Easy Pants: Taupe Grey</h4>
+                            <p class="arrival-category">Men Cotton Pants</p>
+                            <p class="arrival-price">₹ 1699</p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="arrival-card">
+                        <div class="arrival-img-box">
+                            <img src="images/new_arrivals_2.jpg" alt="TSS Originals: Night Shadow">
+                            <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                            </button>
+                        </div>
+                        <div class="arrival-info">
+                            <h4 class="arrival-name">TSS Originals: Night Shadow</h4>
+                            <p class="arrival-category">Shirts</p>
+                            <p class="arrival-price">₹ 1599</p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="arrival-card">
+                        <div class="arrival-img-box">
+                            <img src="images/new_arrivals_3.jpg" alt="TSS Originals: Blue Fire">
+                            <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                            </button>
+                        </div>
+                        <div class="arrival-info">
+                            <h4 class="arrival-name">TSS Originals: Blue Fire</h4>
+                            <p class="arrival-category">Men Winter Wear</p>
+                            <p class="arrival-price">₹ 1599</p>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div class="arrival-card">
+                        <div class="arrival-img-box">
+                            <img src="images/new_arrivals_4.jpg" alt="Doctor Sleeve: Grape Mist">
+                            <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                            </button>
+                        </div>
+                        <div class="arrival-info">
+                            <h4 class="arrival-name">Doctor Sleeve: Grape Mist</h4>
+                            <p class="arrival-category">T-Shirts</p>
+                            <p class="arrival-price">₹ 1199</p>
+                        </div>
+                    </div>
+                    <!-- Card 5 -->
+                    <div class="arrival-card">
+                        <div class="arrival-img-box">
+                            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80" alt="TSS Originals: Forest Mist">
+                            <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                            </button>
+                        </div>
+                        <div class="arrival-info">
+                            <h4 class="arrival-name">TSS Originals: Forest Mist</h4>
+                            <p class="arrival-category">T-Shirts</p>
+                            <p class="arrival-price">₹ 1199</p>
+                        </div>
+                    </div>
+                    <!-- Card 6 -->
+                    <div class="arrival-card">
+                        <div class="arrival-img-box">
+                            <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=400&q=80" alt="Cargo Pants: Olive Drab">
+                            <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                            </button>
+                        </div>
+                        <div class="arrival-info">
+                            <h4 class="arrival-name">Cargo Pants: Olive Drab</h4>
+                            <p class="arrival-category">Men Cotton Pants</p>
+                            <p class="arrival-price">₹ 1799</p>
+                        </div>
+                    </div>
+                    <!-- Card 7 -->
+                    <div class="arrival-card">
+                        <div class="arrival-img-box">
+                            <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=400&q=80" alt="Cuban Collar: Sand Dune">
+                            <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                            </button>
+                        </div>
+                        <div class="arrival-info">
+                            <h4 class="arrival-name">Cuban Collar: Sand Dune</h4>
+                            <p class="arrival-category">Shirts</p>
+                            <p class="arrival-price">₹ 1499</p>
+                        </div>
+                    </div>
+                    <!-- Card 8 -->
+                    <div class="arrival-card">
+                        <div class="arrival-img-box">
+                            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=400&q=80" alt="Fleece Hoodie: Heather Slate">
+                            <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                            </button>
+                        </div>
+                        <div class="arrival-info">
+                            <h4 class="arrival-name">Fleece Hoodie: Heather Slate</h4>
+                            <p class="arrival-category">Men Winter Wear</p>
+                            <p class="arrival-price">₹ 1899</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="arrivals-nav-btn arrivals-next-btn" onclick="slideArrivals(1)"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- TOPWEAR Categories Section -->
+    <section class="topwear-section">
+        <h2 class="topwear-title">TOPWEAR</h2>
+        <div class="topwear-grid">
+            <a href="#" class="topwear-card">
+                <div class="topwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/all_top_wear.jpg?w=360&dpr=2" alt="All Topwear">
+                </div>
+            </a>
+            <a href="#" class="topwear-card">
+                <div class="topwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/T-shirts.jpg?w=360&dpr=2" alt="T-Shirts">
+                </div>
+            </a>
+            <a href="#" class="topwear-card">
+                <div class="topwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Shirts_HuY0YJr.jpg?w=360&dpr=2" alt="Shirts">
+                </div>
+            </a>
+            <a href="#" class="topwear-card">
+                <div class="topwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Polos_heVPdoo.jpg?w=360&dpr=2" alt="Polos">
+                </div>
+            </a>
+            <a href="#" class="topwear-card">
+                <div class="topwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Linen.jpg?w=360&dpr=2" alt="Linen">
+                </div>
+            </a>
+            <a href="#" class="topwear-card">
+                <div class="topwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Outerwear.jpg?w=360&dpr=2" alt="Outerwear">
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- BOTTOMWEAR Categories Section -->
+    <section class="bottomwear-section">
+        <h2 class="bottomwear-title">BOTTOMWEAR</h2>
+        <div class="bottomwear-grid">
+            <a href="#" class="bottomwear-card">
+                <div class="bottomwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Mens_tile_copy_2_copy_62Zho3D.jpg?w=360&dpr=2" alt="All Bottomwear">
+                </div>
+            </a>
+            <a href="#" class="bottomwear-card">
+                <div class="bottomwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Jeans_tile_copy_2_copy.jpg?w=360&dpr=2" alt="Jeans">
+                </div>
+            </a>
+            <a href="#" class="bottomwear-card">
+                <div class="bottomwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/3_Mens_tile_copy_2_copy.jpg?w=360&dpr=2" alt="Pants">
+                </div>
+            </a>
+            <a href="#" class="bottomwear-card">
+                <div class="bottomwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Joggers_nNt3oDJ.jpg?w=360&dpr=2" alt="Joggers">
+                </div>
+            </a>
+            <a href="#" class="bottomwear-card">
+                <div class="bottomwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Shorts.jpg?w=360&dpr=2" alt="Shorts">
+                </div>
+            </a>
+            <a href="#" class="bottomwear-card">
+                <div class="bottomwear-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Airlight.jpg?w=360&dpr=2" alt="Airlight">
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ACCESSORIES Categories Section -->
+    <section class="accessories-section">
+        <h2 class="accessories-title">ACCESSORIES</h2>
+        <div class="accessories-grid">
+            <a href="#" class="accessories-card">
+                <div class="accessories-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Tile-3.jpg?w=360&dpr=2" alt="All Sneakers">
+                </div>
+            </a>
+            <a href="#" class="accessories-card">
+                <div class="accessories-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Tile-2.jpg?w=360&dpr=2" alt="All Accessories">
+                </div>
+            </a>
+            <a href="#" class="accessories-card">
+                <div class="accessories-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Tile-1.jpg?w=360&dpr=2" alt="Backpacks">
+                </div>
+            </a>
+            <a href="#" class="accessories-card">
+                <div class="accessories-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/category-tile-perfume.jpg?w=360&dpr=2" alt="Perfumes">
+                </div>
+            </a>
+            <a href="#" class="accessories-card">
+                <div class="accessories-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Mens-tile-copy-2.jpg?w=360&dpr=2" alt="Caps">
+                </div>
+            </a>
+            <a href="#" class="accessories-card">
+                <div class="accessories-img-box">
+                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/2_PYYQYU2.jpg?w=360&dpr=2" alt="Socks">
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- TRENDING PRODUCTS & FILTERS Section -->
+    <section class="trending-section">
+        <div class="trending-container">
+            <!-- Filter Pills Bar -->
+            <div class="filter-pills-bar">
+                <button class="filter-pill active" data-category="trending">Trending</button>
+                <button class="filter-pill" data-category="marvel">Marvel</button>
+                <button class="filter-pill" data-category="pants">Pants</button>
+                <button class="filter-pill" data-category="polos">Polos</button>
+                <button class="filter-pill" data-category="merch">Merch</button>
+                <button class="filter-pill" data-category="weekday-edit">Weekday Edit</button>
+                <button class="filter-pill" data-category="backpack">Backpack</button>
+                <button class="filter-pill" data-category="culture-code">Culture Code</button>
+            </div>
+
+            <!-- 4-Column Products Grid -->
+            <div class="trending-products-grid">
+                <!-- Product 1 -->
+                <div class="trending-card" data-categories="trending merch culture-code">
+                    <div class="trending-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1791371657_6901059.jpg?w=360&dpr=2" alt="Attack On Titan: The Last Attack">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                            <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                        </button>
+                    </div>
+                    <div class="trending-info">
+                        <h4 class="trending-name">Attack On Titan: The Last Attack</h4>
+                        <p class="trending-cat">Men Relaxed Shirts</p>
+                        <p class="trending-price">₹ 1499</p>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="trending-card" data-categories="trending marvel merch">
+                    <div class="trending-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1789134712_4789350.jpg?w=360&dpr=2" alt="Ghost Rider: Fire Skull">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                            <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                        </button>
+                    </div>
+                    <div class="trending-info">
+                        <h4 class="trending-name">Ghost Rider: Fire Skull</h4>
+                        <p class="trending-cat">Oversized T-Shirts</p>
+                        <p class="trending-price">₹ 1199</p>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="trending-card" data-categories="trending marvel merch">
+                    <div class="trending-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1783081914_3435976.jpg?w=360&dpr=2" alt="Spider-Man: Rise Of The Spider">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                            <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                        </button>
+                    </div>
+                    <div class="trending-info">
+                        <h4 class="trending-name">Spider-Man: Rise Of The Spider</h4>
+                        <p class="trending-cat">Oversized T-Shirts</p>
+                        <p class="trending-price">₹ 1699</p>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="trending-card" data-categories="trending merch backpack culture-code">
+                    <div class="trending-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1787589871_3537946.jpg?w=360&dpr=2" alt="DC: Justice League">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                            <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                        </button>
+                    </div>
+                    <div class="trending-info">
+                        <h4 class="trending-name">DC: Justice League</h4>
+                        <p class="trending-cat">Playing Cards</p>
+                        <p class="trending-price">₹ 899</p>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="trending-card" data-categories="trending polos weekday-edit">
+                    <div class="trending-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1772867066_1636022.jpg?w=360&dpr=2" alt="Colourblock: Cocoa">
+                        <button class="wishlist-btn rounded-bg" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                            <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                        </button>
+                    </div>
+                    <div class="trending-info">
+                        <h4 class="trending-name">Colourblock: Cocoa</h4>
+                        <p class="trending-cat">Oversized Polos</p>
+                        <p class="trending-price">₹ 1499</p>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="trending-card" data-categories="trending merch culture-code">
+                    <div class="trending-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1786515306_8325362.jpg?w=360&dpr=2" alt="Dragon Ball Z: Goku">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                            <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                        </button>
+                    </div>
+                    <div class="trending-info">
+                        <h4 class="trending-name">Dragon Ball Z: Goku</h4>
+                        <p class="trending-cat">Oversized Jerseys</p>
+                        <p class="trending-price">₹ 1499</p>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="trending-card" data-categories="trending marvel pants">
+                    <div class="trending-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1784964208_3534964.jpg?w=360&dpr=2" alt="Spider-Man: Hyper Web">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                            <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                        </button>
+                    </div>
+                    <div class="trending-info">
+                        <h4 class="trending-name">Spider-Man: Hyper Web</h4>
+                        <p class="trending-cat">Men Oversized Joggers</p>
+                        <p class="trending-price">₹ 2099</p>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="trending-card" data-categories="trending merch weekday-edit">
+                    <div class="trending-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1761736618_6567601.jpg?w=360&dpr=2" alt="Peanuts: The Good Life">
+                        <button class="wishlist-btn rounded-bg" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <button class="quick-buy-btn" aria-label="Buy Now" onclick="buyProduct(event, this)">
+                            <i class="fa-solid fa-bag-shopping"></i> BUY NOW
+                        </button>
+                    </div>
+                    <div class="trending-info">
+                        <h4 class="trending-name">Peanuts: The Good Life</h4>
+                        <p class="trending-cat">Cotton Linen Shirts</p>
+                        <p class="trending-price">₹ 1699</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOMEGROWN INDIAN BRAND Banner Section -->
+    <section class="homegrown-banner-section">
+        <h3 class="homegrown-text">HOMEGROWN INDIAN BRAND</h3>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Column 1: Need Help -->
+            <div class="footer-col">
+                <h4 class="footer-title">NEED HELP</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">My Account</a></li>
+                </ul>
+                <div class="footer-trust-list">
+                    <a href="#" class="footer-trust-item">
+                        <span class="footer-icon-circle"><i class="fa-solid fa-indian-rupee-sign"></i></span>
+                        <span>COD Available</span>
+                    </a>
+                    <a href="#" class="footer-trust-item">
+                        <span class="footer-icon-circle"><i class="fa-solid fa-arrows-rotate"></i></span>
+                        <span>30 Days Easy Returns & Exchanges</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 2: Company -->
+            <div class="footer-col">
+                <h4 class="footer-title">COMPANY</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Investor Relation</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Gift Vouchers</a></li>
+                    <li><a href="#">Community Initiatives</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: More Info -->
+            <div class="footer-col">
+                <h4 class="footer-title">MORE INFO</h4>
+                <ul class="footer-links">
+                    <li><a href="#">T&C</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Get Notified</a></li>
+                    <li><a href="#">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Store Near Me -->
+            <div class="footer-col">
+                <h4 class="footer-title">STORE NEAR ME</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Mumbai</a></li>
+                    <li><a href="#">Pune</a></li>
+                    <li><a href="#">Bangalore</a></li>
+                    <li><a href="#">Ahmedabad</a></li>
+                    <li><a href="#" class="highlight-blue">View More</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-notification" id="toast-notification" aria-live="polite"></div>
+
+    <!-- External JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
