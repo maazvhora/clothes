@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce Showcase</title>
+    <title>VHORA CLOTHING | Luxury Indian Fashion &amp; Apparel</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,6 +20,15 @@
 
     <!-- Slide-Out Sidebar Navigation Drawer -->
     <aside class="sidebar-drawer" id="sidebar-drawer" aria-label="Main Navigation Drawer">
+        <!-- Brand Identity Banner in Sidebar -->
+        <div class="sidebar-brand-top">
+            <img src="images/vhora_crest.png" alt="Vhora Crest" class="sidebar-crest-icon">
+            <div class="sidebar-brand-text">
+                <span class="sidebar-brand-name">VHORA</span>
+                <span class="sidebar-brand-sub">CLOTHING</span>
+            </div>
+        </div>
+
         <!-- Drawer Header with User Profile Greeting -->
         <div class="sidebar-header">
             <div class="sidebar-user" id="sidebar-user-btn" role="button" tabindex="0">
@@ -32,9 +47,10 @@
 
         <!-- Category Switcher Tabs -->
         <div class="sidebar-tabs">
-            <button class="sidebar-tab active">MEN</button>
-            <button class="sidebar-tab">WOMEN</button>
-            <button class="sidebar-tab">SNEAKERS</button>
+            <button class="sidebar-tab active" data-gender="men" onclick="switchSidebarGender('men')">MEN</button>
+            <button class="sidebar-tab" data-gender="women" onclick="switchSidebarGender('women')">WOMEN</button>
+            <button class="sidebar-tab" data-gender="sneakers" onclick="switchSidebarGender('sneakers')">SNEAKERS</button>
+            <button class="sidebar-tab" data-gender="perfumes" onclick="switchSidebarGender('perfumes')">PERFUMES</button>
         </div>
 
         <!-- Scrollable Navigation Groups -->
@@ -43,12 +59,14 @@
             <div class="sidebar-group">
                 <h5 class="sidebar-group-title">CATEGORIES</h5>
                 <ul class="sidebar-links">
-                    <li><a href="#"><i class="fa-solid fa-fire"></i> New Arrivals</a></li>
-                    <li><a href="#"><i class="fa-solid fa-shirt"></i> Topwear</a></li>
-                    <li><a href="#"><i class="fa-solid fa-vest-patches"></i> Bottomwear</a></li>
-                    <li><a href="#"><i class="fa-solid fa-shoe-prints"></i> Sneakers & Shoes</a></li>
-                    <li><a href="#"><i class="fa-solid fa-glasses"></i> Accessories</a></li>
-                    <li><a href="#"><i class="fa-solid fa-tag"></i> Trending Merch</a></li>
+                    <li><a href="index.html#new-arrivals-section" onclick="closeSidebar();"><i class="fa-solid fa-fire"></i> New Arrivals</a></li>
+                    <li><a href="index.html#topwear-section" onclick="closeSidebar();"><i class="fa-solid fa-shirt"></i> Topwear</a></li>
+                    <li><a href="index.html#bottomwear-section" onclick="closeSidebar();"><i class="fa-solid fa-vest-patches"></i> Bottomwear</a></li>
+                    <li><a href="sneakers.html" onclick="closeSidebar();"><i class="fa-solid fa-shoe-prints"></i> Sneakers & Shoes</a></li>
+                    <li><a href="perfumes.html" onclick="closeSidebar();"><i class="fa-solid fa-spray-can-sparkles"></i> Haute Parfumerie</a></li>
+                    <li><a href="index.html#accessories-section" onclick="closeSidebar();"><i class="fa-solid fa-glasses"></i> Accessories</a></li>
+                    <li><a href="women.html" onclick="closeSidebar();"><i class="fa-solid fa-sparkles"></i> Women's Edit</a></li>
+                    <li><a href="index.html#trending-section" onclick="closeSidebar();"><i class="fa-solid fa-tag"></i> Trending Merch</a></li>
                 </ul>
             </div>
 
@@ -69,7 +87,7 @@
             <div class="sidebar-group">
                 <h5 class="sidebar-group-title">NEED HELP?</h5>
                 <ul class="sidebar-links secondary">
-                    <li><a href="#"><i class="fa-solid fa-truck-fast"></i> Track Order</a></li>
+                    <li><a href="#" onclick="closeSidebar(); openOrdersDrawer(); return false;"><i class="fa-solid fa-boxes-packing"></i> My Orders & Tracking</a></li>
                     <li><a href="#"><i class="fa-solid fa-headset"></i> Contact Us</a></li>
                     <li><a href="#"><i class="fa-solid fa-circle-question"></i> FAQs</a></li>
                     <li><a href="#"><i class="fa-solid fa-gift" style="color: #e53935;"></i> Gift Vouchers</a></li>
@@ -113,6 +131,144 @@
         </div>
     </aside>
 
+    <!-- Backdrop Overlay for Bag Drawer -->
+    <div class="cart-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
+
+    <!-- Slide-Out Shopping Bag Drawer -->
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Bag Drawer">
+        <!-- Bag Header -->
+        <div class="cart-drawer-header">
+            <div class="cart-header-title">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <h3>Shopping Bag</h3>
+                <span class="cart-items-count" id="cart-drawer-count">(0 items)</span>
+            </div>
+            <button class="cart-close-btn" id="cart-close-btn" onclick="closeCartDrawer()" aria-label="Close shopping bag">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Free Delivery Progress Bar -->
+        <div class="cart-shipping-bar" id="cart-shipping-bar">
+            <div class="shipping-bar-text" id="shipping-bar-text">
+                <i class="fa-solid fa-truck-fast"></i>
+                <span id="shipping-threshold-msg">Add <strong>₹999</strong> more for <strong>FREE DELIVERY</strong>!</span>
+            </div>
+            <div class="shipping-progress-track">
+                <div class="shipping-progress-fill" id="shipping-progress-fill" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- Bag Items Body -->
+        <div class="cart-drawer-body" id="cart-drawer-body">
+            <!-- Dynamically populated or shows empty state -->
+        </div>
+
+        <!-- Bag Summary & Checkout Footer -->
+        <div class="cart-drawer-footer" id="cart-drawer-footer">
+            <!-- Promo Code Input -->
+            <div class="cart-promo-box">
+                <div class="promo-input-wrap">
+                    <i class="fa-solid fa-tag"></i>
+                    <input type="text" id="cart-promo-input" placeholder="Coupon Code (e.g. MSTORE10)" autocomplete="off">
+                    <button type="button" id="cart-apply-promo-btn" onclick="applyPromoCode()">APPLY</button>
+                </div>
+                <div class="promo-message" id="promo-message" style="display: none;"></div>
+            </div>
+
+            <!-- Price Breakdown Summary -->
+            <div class="cart-summary-breakdown">
+                <div class="summary-row">
+                    <span>Total MRP</span>
+                    <span id="summary-total-mrp">₹ 0</span>
+                </div>
+                <div class="summary-row discount-row">
+                    <span>Bag Savings</span>
+                    <span id="summary-savings">- ₹ 0</span>
+                </div>
+                <div class="summary-row coupon-row" id="coupon-discount-row" style="display: none;">
+                    <span>Coupon Discount (10% OFF)</span>
+                    <span id="summary-coupon-discount">- ₹ 0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping Fee</span>
+                    <span id="summary-shipping" class="shipping-free-text">FREE</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-row grand-total-row">
+                    <span>Total Amount</span>
+                    <span id="summary-grand-total">₹ 0</span>
+                </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <button class="cart-checkout-btn" id="cart-checkout-btn" onclick="proceedToCheckout()">
+                <span>PROCEED TO CHECKOUT</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <!-- Safe payment badge -->
+            <div class="cart-trust-badges">
+                <span><i class="fa-solid fa-shield-halved"></i> 100% Safe & Secure Checkout • COD Available</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Backdrop Overlay for Orders Drawer -->
+    <div class="orders-overlay" id="orders-overlay" onclick="closeOrdersDrawer()"></div>
+
+    <!-- Slide-Out My Orders Drawer -->
+    <aside class="orders-drawer" id="orders-drawer" aria-label="My Orders Drawer">
+        <!-- Orders Header -->
+        <div class="orders-drawer-header">
+            <div class="orders-header-title">
+                <i class="fa-solid fa-boxes-packing"></i>
+                <h3>My Orders</h3>
+                <span class="orders-items-count" id="orders-drawer-count">(0 orders)</span>
+            </div>
+            <button class="orders-close-btn" id="orders-close-btn" onclick="closeOrdersDrawer()" aria-label="Close my orders">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Filter / Status Pills -->
+        <div class="orders-filter-bar">
+            <button type="button" class="orders-filter-pill active" onclick="filterOrders('all', this)">All Orders</button>
+            <button type="button" class="orders-filter-pill" onclick="filterOrders('active', this)">In Transit</button>
+            <button type="button" class="orders-filter-pill" onclick="filterOrders('delivered', this)">Delivered</button>
+            <button type="button" class="orders-filter-pill" onclick="filterOrders('cancelled', this)">Cancelled</button>
+        </div>
+
+        <!-- Orders Body (dynamically populated) -->
+        <div class="orders-drawer-body" id="orders-drawer-body">
+            <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Orders Footer / Need Help -->
+        <div class="orders-drawer-footer">
+            <div class="orders-footer-help">
+                <i class="fa-solid fa-headset"></i>
+                <div>
+                    <strong>Need Help with an Order?</strong>
+                    <span>24/7 dedicated concierge assistance & easy returns</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Backdrop Overlay for Invoice Receipt Modal -->
+    <div class="invoice-overlay" id="invoice-overlay" onclick="closeInvoiceModal()"></div>
+
+    <!-- Invoice Receipt Modal Dialog -->
+    <div class="invoice-modal" id="invoice-modal" role="dialog" aria-modal="true" aria-label="Order Invoice">
+        <button class="invoice-modal-close-btn" onclick="closeInvoiceModal()" aria-label="Close invoice">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="invoice-modal-content" id="invoice-modal-content">
+            <!-- Populated dynamically via JS -->
+        </div>
+    </div>
+
     <!-- Backdrop Overlay for Auth Modal -->
     <div class="auth-overlay" id="auth-overlay"></div>
 
@@ -124,8 +280,11 @@
 
         <!-- Modal Top Header -->
         <div class="auth-modal-header" id="auth-modal-header">
-            <div class="auth-brand-badge">M.STORE EXCLUSIVE</div>
-            <h3 class="auth-modal-title" id="auth-modal-title">Welcome to M.Store</h3>
+            <div class="auth-crest-wrap">
+                <img src="images/vhora_crest.png" alt="Vhora Crest" class="auth-modal-crest">
+            </div>
+            <div class="auth-brand-badge"><i class="fa-solid fa-crown"></i> VHORA EXCLUSIVE</div>
+            <h3 class="auth-modal-title" id="auth-modal-title">Welcome to Vhora Clothing</h3>
             <p class="auth-modal-subtitle">Log in or create an account for exclusive member discounts & tracking</p>
             
             <!-- Compulsory Login Notice Alert -->
@@ -266,16 +425,16 @@
                     <div class="user-avatar-info">
                         <h4 id="user-display-name">Guest User</h4>
                         <p id="user-display-email">user@example.com</p>
-                        <span class="user-vip-tag"><i class="fa-solid fa-crown"></i> M.Store Member</span>
+                        <span class="user-vip-tag"><i class="fa-solid fa-crown"></i> Vhora VIP Member</span>
                     </div>
                 </div>
 
                 <div class="user-quick-links">
-                    <a href="#" class="user-quick-item" onclick="showToast('Your orders are up to date! 📦', 'info'); return false;">
+                    <a href="#" class="user-quick-item" onclick="closeAuthModal(); openOrdersDrawer(); return false;">
                         <i class="fa-solid fa-box"></i>
                         <div class="link-text">
                             <strong>My Orders</strong>
-                            <span>Track, return & view orders</span>
+                            <span id="user-orders-summary-text">Track, return & view orders</span>
                         </div>
                         <i class="fa-solid fa-chevron-right chevron-icon"></i>
                     </a>
@@ -310,22 +469,51 @@
         <div class="nav-left">
             <i class="fa-solid fa-bars menu-icon" id="menu-toggle" role="button" aria-label="Open navigation menu" tabindex="0"></i>
             <ul class="nav-links">
-                <li><a href="#" class="active">MEN</a></li>
-                <li><a href="#">WOMEN</a></li>
-                <li><a href="#">SNEAKERS</a></li>
+                <li><a href="index.html" class="active" id="nav-item-men" onclick="switchHeaderNav('men'); return false;">MEN</a></li>
+                <li><a href="women.html" id="nav-item-women" onclick="switchHeaderNav('women'); return false;">WOMEN</a></li>
+                <li><a href="sneakers.html" id="nav-item-sneakers" onclick="switchHeaderNav('sneakers'); return false;">SNEAKERS</a></li>
+                <li><a href="perfumes.html" id="nav-item-perfumes" onclick="switchHeaderNav('perfumes'); return false;">PERFUMES</a></li>
             </ul>
         </div>
-        <div class="logo">M.Store</div>
+        <a href="index.html" class="brand-logo" aria-label="Vhora Clothing Home">
+            <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="brand-crest-icon">
+            <div class="brand-text-block">
+                <span class="brand-title">VHORA</span>
+                <span class="brand-subtitle">CLOTHING</span>
+            </div>
+        </a>
         <div class="nav-right">
-            <div class="search-bar">
-                <i class="fa-solid fa-microphone"></i>
-                <input type="text" placeholder="What are you looking for?">
-                <i class="fa-solid fa-magnifying-glass"></i>
+            <!-- Backdrop Overlay for Search Click-Away -->
+            <div class="search-overlay" id="search-overlay" onclick="closeSearchDropdown()"></div>
+
+            <div class="search-bar" id="search-bar-container">
+                <button type="button" class="search-mic-btn" id="search-mic-btn" onclick="startVoiceSearch()" aria-label="Search with voice" title="Voice Search">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+                <input type="text" id="site-search-input" placeholder="Search shirts, pants, hoodies, merch..." autocomplete="off">
+                <button type="button" class="search-clear-btn" id="search-clear-btn" onclick="clearSearchInput()" aria-label="Clear search" title="Clear">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <button type="button" class="search-submit-btn" id="search-submit-btn" onclick="executeSearch()" aria-label="Search" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <!-- Interactive Live Search Dropdown Panel -->
+                <div class="search-dropdown" id="search-dropdown">
+                    <!-- Populated dynamically via JS -->
+                </div>
             </div>
             <div class="nav-icons">
+                <div class="mobile-search-btn" id="mobile-search-toggle" onclick="toggleMobileSearch()" role="button" aria-label="Search" title="Search" tabindex="0">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
                 <div class="user-nav-btn" id="auth-toggle" role="button" aria-label="Account Login or Register" title="Account" tabindex="0">
                     <i class="fa-regular fa-user" id="auth-nav-icon"></i>
                     <span class="user-status-dot" id="user-status-dot"></span>
+                </div>
+                <div class="orders-nav-btn" id="orders-toggle" role="button" aria-label="My Orders" title="My Orders" tabindex="0">
+                    <i class="fa-solid fa-box-open"></i>
+                    <span class="orders-badge" id="orders-badge">0</span>
                 </div>
                 <div class="wishlist-nav-btn" id="wishlist-toggle" role="button" aria-label="View Wishlist" title="Wishlist" tabindex="0">
                     <i class="fa-regular fa-heart"></i>
@@ -565,113 +753,1600 @@
     </section>
 
     <!-- TOPWEAR Categories Section -->
-    <section class="topwear-section">
-        <h2 class="topwear-title">TOPWEAR</h2>
-        <div class="topwear-grid">
-            <a href="#" class="topwear-card">
-                <div class="topwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/all_top_wear.jpg?w=360&dpr=2" alt="All Topwear">
+    <section class="topwear-section" id="topwear-section">
+        <div class="category-section-container">
+            <div class="category-section-header">
+                <span class="category-kicker"><i class="fa-solid fa-shirt"></i> ESSENTIAL TOPS & LAYERS</span>
+                <h2 class="topwear-title">TOPWEAR</h2>
+                <p class="category-subtitle">From breathable heavyweight graphic tees and crisp Cuban linen to cozy fleece outerwear.</p>
+                
+                <!-- Category Filter Pills Bar for Topwear -->
+                <div class="category-filter-bar" id="topwear-filter-bar">
+                    <button type="button" class="category-filter-pill active" onclick="filterTopwearSection('all', this)">All Topwear (8)</button>
+                    <button type="button" class="category-filter-pill" onclick="filterTopwearSection('t-shirts', this)">T-Shirts</button>
+                    <button type="button" class="category-filter-pill" onclick="filterTopwearSection('shirts', this)">Shirts</button>
+                    <button type="button" class="category-filter-pill" onclick="filterTopwearSection('polos', this)">Polos & Jerseys</button>
+                    <button type="button" class="category-filter-pill" onclick="filterTopwearSection('outerwear', this)">Hoodies & Outerwear</button>
                 </div>
-            </a>
-            <a href="#" class="topwear-card">
-                <div class="topwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/T-shirts.jpg?w=360&dpr=2" alt="T-Shirts">
+            </div>
+
+            <!-- Topwear Visual Showcase Grid (Clickable) -->
+            <div class="topwear-grid">
+                <div class="topwear-card" onclick="filterTopwearSection('all', document.querySelectorAll('#topwear-filter-bar .category-filter-pill')[0])">
+                    <div class="topwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/all_top_wear.jpg?w=360&dpr=2" alt="All Topwear">
+                        <div class="category-tile-overlay"><span>EXPLORE ALL</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="topwear-card">
-                <div class="topwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Shirts_HuY0YJr.jpg?w=360&dpr=2" alt="Shirts">
+                <div class="topwear-card" onclick="filterTopwearSection('t-shirts', document.querySelectorAll('#topwear-filter-bar .category-filter-pill')[1])">
+                    <div class="topwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/T-shirts.jpg?w=360&dpr=2" alt="T-Shirts">
+                        <div class="category-tile-overlay"><span>T-SHIRTS</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="topwear-card">
-                <div class="topwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Polos_heVPdoo.jpg?w=360&dpr=2" alt="Polos">
+                <div class="topwear-card" onclick="filterTopwearSection('shirts', document.querySelectorAll('#topwear-filter-bar .category-filter-pill')[2])">
+                    <div class="topwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Shirts_HuY0YJr.jpg?w=360&dpr=2" alt="Shirts">
+                        <div class="category-tile-overlay"><span>SHIRTS</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="topwear-card">
-                <div class="topwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Linen.jpg?w=360&dpr=2" alt="Linen">
+                <div class="topwear-card" onclick="filterTopwearSection('polos', document.querySelectorAll('#topwear-filter-bar .category-filter-pill')[3])">
+                    <div class="topwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Polos_heVPdoo.jpg?w=360&dpr=2" alt="Polos">
+                        <div class="category-tile-overlay"><span>POLOS</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="topwear-card">
-                <div class="topwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Outerwear.jpg?w=360&dpr=2" alt="Outerwear">
+                <div class="topwear-card" onclick="filterTopwearSection('shirts', document.querySelectorAll('#topwear-filter-bar .category-filter-pill')[2])">
+                    <div class="topwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Linen.jpg?w=360&dpr=2" alt="Linen">
+                        <div class="category-tile-overlay"><span>LINEN SHIRTS</span></div>
+                    </div>
                 </div>
-            </a>
+                <div class="topwear-card" onclick="filterTopwearSection('outerwear', document.querySelectorAll('#topwear-filter-bar .category-filter-pill')[4])">
+                    <div class="topwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Outerwear.jpg?w=360&dpr=2" alt="Outerwear">
+                        <div class="category-tile-overlay"><span>OUTERWEAR</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Topwear Products Grid -->
+            <div class="topwear-products-grid cat-products-grid" id="topwear-products-grid">
+                <!-- Product 1: Shirt -->
+                <div class="cat-product-card" data-category="shirts" data-product-id="tss-originals-night-shadow">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="images/new_arrivals_2.jpg" alt="TSS Originals: Night Shadow" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">ORIGINALS</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XS')">XS</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'S')">S</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'M')">M</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'L')">L</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XL')">XL</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XXL')">XXL</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Shirts</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">TSS Originals: Night Shadow</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1599</span>
+                            <span class="cat-product-mrp">₹ 2299</span>
+                            <span class="cat-product-discount">30% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: T-Shirt -->
+                <div class="cat-product-card" data-category="t-shirts" data-product-id="doctor-sleeve-grape-mist">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="images/new_arrivals_4.jpg" alt="Doctor Sleeve: Grape Mist" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">BESTSELLER</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XS')">XS</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'S')">S</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'M')">M</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'L')">L</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XL')">XL</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XXL')">XXL</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">T-Shirts</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Doctor Sleeve: Grape Mist</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1199</span>
+                            <span class="cat-product-mrp">₹ 1699</span>
+                            <span class="cat-product-discount">29% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Linen Shirt -->
+                <div class="cat-product-card" data-category="shirts" data-product-id="cuban-collar-sand-dune">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80" alt="Cuban Collar: Sand Dune" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">PREMIUM LINEN</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XS')">XS</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'S')">S</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'M')">M</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'L')">L</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XL')">XL</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XXL')">XXL</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Shirts</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Cuban Collar: Sand Dune</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1499</span>
+                            <span class="cat-product-mrp">₹ 2099</span>
+                            <span class="cat-product-discount">28% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Relaxed Merch Shirt -->
+                <div class="cat-product-card" data-category="shirts" data-product-id="attack-on-titan-the-last-attack">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1791371657_6901059.jpg?w=360&dpr=2" alt="Attack On Titan: The Last Attack" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">OFFICIAL MERCH</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XS')">XS</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'S')">S</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'M')">M</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'L')">L</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XL')">XL</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XXL')">XXL</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Shirts</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Attack On Titan: The Last Attack</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1499</span>
+                            <span class="cat-product-mrp">₹ 1999</span>
+                            <span class="cat-product-discount">25% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: Graphic T-Shirt -->
+                <div class="cat-product-card" data-category="t-shirts" data-product-id="ghost-rider-fire-skull">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1789134712_4789350.jpg?w=360&dpr=2" alt="Ghost Rider: Fire Skull" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">OVERSIZED</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XS')">XS</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'S')">S</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'M')">M</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'L')">L</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XL')">XL</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XXL')">XXL</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">T-Shirts</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Ghost Rider: Fire Skull</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1199</span>
+                            <span class="cat-product-mrp">₹ 1599</span>
+                            <span class="cat-product-discount">25% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Polo -->
+                <div class="cat-product-card" data-category="polos" data-product-id="spider-man-web-head">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1772867066_1636022.jpg?w=360&dpr=2" alt="Spider-Man: Web Head" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">POLO COLLAR</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XS')">XS</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'S')">S</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'M')">M</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'L')">L</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XL')">XL</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XXL')">XXL</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Polos</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Spider-Man: Web Head</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1399</span>
+                            <span class="cat-product-mrp">₹ 1899</span>
+                            <span class="cat-product-discount">26% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7: Jersey -->
+                <div class="cat-product-card" data-category="polos" data-product-id="naruto-nine-tails">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1786515306_8325362.jpg?w=360&dpr=2" alt="Naruto: Nine Tails" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">STREET JERSEY</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XS')">XS</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'S')">S</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'M')">M</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'L')">L</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XL')">XL</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XXL')">XXL</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Jerseys</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Naruto: Nine Tails</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1499</span>
+                            <span class="cat-product-mrp">₹ 1999</span>
+                            <span class="cat-product-discount">25% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8: Hoodie / Outerwear -->
+                <div class="cat-product-card" data-category="outerwear" data-product-id="batman-gotham-knight">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80" alt="Batman: Gotham Knight Fleece Hoodie" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">WINTERWEAR</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XS')">XS</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'S')">S</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'M')">M</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'L')">L</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XL')">XL</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, 'XXL')">XXL</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Hoodies</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Batman: Gotham Knight Fleece Hoodie</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 2199</span>
+                            <span class="cat-product-mrp">₹ 2999</span>
+                            <span class="cat-product-discount">26% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- BOTTOMWEAR Categories Section -->
-    <section class="bottomwear-section">
-        <h2 class="bottomwear-title">BOTTOMWEAR</h2>
-        <div class="bottomwear-grid">
-            <a href="#" class="bottomwear-card">
-                <div class="bottomwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Mens_tile_copy_2_copy_62Zho3D.jpg?w=360&dpr=2" alt="All Bottomwear">
+    <section class="bottomwear-section" id="bottomwear-section">
+        <div class="category-section-container">
+            <div class="category-section-header">
+                <span class="category-kicker"><i class="fa-solid fa-vest-patches"></i> BOTTOMS & FIT</span>
+                <h2 class="bottomwear-title">BOTTOMWEAR</h2>
+                <p class="category-subtitle">Engineered cargos, relaxed joggers, classic straight denims, and all-weather comfort pants.</p>
+                
+                <!-- Category Filter Pills Bar for Bottomwear -->
+                <div class="category-filter-bar" id="bottomwear-filter-bar">
+                    <button type="button" class="category-filter-pill active" onclick="filterBottomwearSection('all', this)">All Bottomwear (6)</button>
+                    <button type="button" class="category-filter-pill" onclick="filterBottomwearSection('cargo', this)">Cargo & Pants</button>
+                    <button type="button" class="category-filter-pill" onclick="filterBottomwearSection('joggers', this)">Joggers</button>
+                    <button type="button" class="category-filter-pill" onclick="filterBottomwearSection('jeans', this)">Jeans & Denims</button>
                 </div>
-            </a>
-            <a href="#" class="bottomwear-card">
-                <div class="bottomwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Jeans_tile_copy_2_copy.jpg?w=360&dpr=2" alt="Jeans">
+            </div>
+
+            <!-- Bottomwear Visual Showcase Grid (Clickable) -->
+            <div class="bottomwear-grid">
+                <div class="bottomwear-card" onclick="filterBottomwearSection('all', document.querySelectorAll('#bottomwear-filter-bar .category-filter-pill')[0])">
+                    <div class="bottomwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Mens_tile_copy_2_copy_62Zho3D.jpg?w=360&dpr=2" alt="All Bottomwear">
+                        <div class="category-tile-overlay"><span>ALL BOTTOMS</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="bottomwear-card">
-                <div class="bottomwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/3_Mens_tile_copy_2_copy.jpg?w=360&dpr=2" alt="Pants">
+                <div class="bottomwear-card" onclick="filterBottomwearSection('jeans', document.querySelectorAll('#bottomwear-filter-bar .category-filter-pill')[3])">
+                    <div class="bottomwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Jeans_tile_copy_2_copy.jpg?w=360&dpr=2" alt="Jeans">
+                        <div class="category-tile-overlay"><span>JEANS</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="bottomwear-card">
-                <div class="bottomwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Joggers_nNt3oDJ.jpg?w=360&dpr=2" alt="Joggers">
+                <div class="bottomwear-card" onclick="filterBottomwearSection('cargo', document.querySelectorAll('#bottomwear-filter-bar .category-filter-pill')[1])">
+                    <div class="bottomwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/3_Mens_tile_copy_2_copy.jpg?w=360&dpr=2" alt="Pants">
+                        <div class="category-tile-overlay"><span>PANTS</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="bottomwear-card">
-                <div class="bottomwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Shorts.jpg?w=360&dpr=2" alt="Shorts">
+                <div class="bottomwear-card" onclick="filterBottomwearSection('joggers', document.querySelectorAll('#bottomwear-filter-bar .category-filter-pill')[2])">
+                    <div class="bottomwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Joggers_nNt3oDJ.jpg?w=360&dpr=2" alt="Joggers">
+                        <div class="category-tile-overlay"><span>JOGGERS</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="bottomwear-card">
-                <div class="bottomwear-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Airlight.jpg?w=360&dpr=2" alt="Airlight">
+                <div class="bottomwear-card" onclick="filterBottomwearSection('cargo', document.querySelectorAll('#bottomwear-filter-bar .category-filter-pill')[1])">
+                    <div class="bottomwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Shorts.jpg?w=360&dpr=2" alt="Shorts">
+                        <div class="category-tile-overlay"><span>SHORTS</span></div>
+                    </div>
                 </div>
-            </a>
+                <div class="bottomwear-card" onclick="filterBottomwearSection('cargo', document.querySelectorAll('#bottomwear-filter-bar .category-filter-pill')[1])">
+                    <div class="bottomwear-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Airlight.jpg?w=360&dpr=2" alt="Airlight">
+                        <div class="category-tile-overlay"><span>AIRLIGHT</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottomwear Products Grid -->
+            <div class="bottomwear-products-grid cat-products-grid" id="bottomwear-products-grid">
+                <!-- Product 1: Easy Pants -->
+                <div class="cat-product-card" data-category="cargo" data-product-id="easy-pants-taupe-grey">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="images/new_arrivals_1.jpg" alt="Easy Pants: Taupe Grey" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">RELAXED FIT</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '28')">28</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '30')">30</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '32')">32</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '34')">34</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '36')">36</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Cotton Pants</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Easy Pants: Taupe Grey</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1699</span>
+                            <span class="cat-product-mrp">₹ 2499</span>
+                            <span class="cat-product-discount">32% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Olive Cargo -->
+                <div class="cat-product-card" data-category="cargo" data-product-id="cargo-pants-olive-drab">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80" alt="Cargo Pants: Olive Drab" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">HEAVY COTTON</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '28')">28</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '30')">30</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '32')">32</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '34')">34</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '36')">36</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Cargo Pants</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Cargo Pants: Olive Drab</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1799</span>
+                            <span class="cat-product-mrp">₹ 2599</span>
+                            <span class="cat-product-discount">30% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Terra Cargo -->
+                <div class="cat-product-card" data-category="cargo" data-product-id="tss-originals-terra-cargo">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1517445312882-bc9910d016b7?auto=format&fit=crop&w=600&q=80" alt="TSS Originals: Terra Cargo" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">TACTICAL</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '28')">28</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '30')">30</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '32')">32</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '34')">34</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '36')">36</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Pants</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">TSS Originals: Terra Cargo</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1999</span>
+                            <span class="cat-product-mrp">₹ 2899</span>
+                            <span class="cat-product-discount">31% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Spider-Man Joggers -->
+                <div class="cat-product-card" data-category="joggers" data-product-id="spider-man-hyper-web">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1784964208_3534964.jpg?w=360&dpr=2" alt="Spider-Man: Hyper Web" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">SUPER COMFORT</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '28')">28</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '30')">30</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '32')">32</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '34')">34</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '36')">36</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Joggers</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Spider-Man: Hyper Web Oversized Joggers</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 2099</span>
+                            <span class="cat-product-mrp">₹ 2999</span>
+                            <span class="cat-product-discount">30% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: Hogwarts Joggers -->
+                <div class="cat-product-card" data-category="joggers" data-product-id="harry-potter-hogwarts-alumni">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1552902865-b72c031ac5ea?auto=format&fit=crop&w=600&q=80" alt="Harry Potter: Hogwarts Alumni" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">FLEECE LINED</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '28')">28</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '30')">30</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '32')">32</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '34')">34</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '36')">36</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Joggers</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Harry Potter: Hogwarts Alumni Joggers</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1599</span>
+                            <span class="cat-product-mrp">₹ 2199</span>
+                            <span class="cat-product-discount">27% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Relaxed Jeans -->
+                <div class="cat-product-card" data-category="jeans" data-product-id="vintage-washed-relaxed-jeans">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80" alt="Vintage Washed Relaxed Jeans" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">STRAIGHT FIT</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '28')">28</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '30')">30</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '32')">32</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '34')">34</button>
+                            <button type="button" class="cat-product-size-pill" onclick="selectCatCardSize(event, this, '36')">36</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Jeans & Denims</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Vintage Washed Relaxed Jeans: Classic Indigo</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 2199</span>
+                            <span class="cat-product-mrp">₹ 3199</span>
+                            <span class="cat-product-discount">31% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- ACCESSORIES Categories Section -->
-    <section class="accessories-section">
-        <h2 class="accessories-title">ACCESSORIES</h2>
-        <div class="accessories-grid">
-            <a href="#" class="accessories-card">
-                <div class="accessories-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Tile-3.jpg?w=360&dpr=2" alt="All Sneakers">
+    <section class="accessories-section" id="accessories-section">
+        <div class="category-section-container">
+            <div class="category-section-header">
+                <span class="category-kicker"><i class="fa-solid fa-glasses"></i> ACCESSORIES & GEAR</span>
+                <h2 class="accessories-title">ACCESSORIES</h2>
+                <p class="category-subtitle">Urban utility backpacks, collectible playing cards, stainless bottles, and everyday lifestyle gear.</p>
+                
+                <!-- Category Filter Pills Bar for Accessories -->
+                <div class="category-filter-bar" id="accessories-filter-bar">
+                    <button type="button" class="category-filter-pill active" onclick="filterAccessoriesSection('all', this)">All Accessories (6)</button>
+                    <button type="button" class="category-filter-pill" onclick="filterAccessoriesSection('backpacks', this)">Backpacks & Bags</button>
+                    <button type="button" class="category-filter-pill" onclick="filterAccessoriesSection('collectibles', this)">Collectibles & Cards</button>
+                    <button type="button" class="category-filter-pill" onclick="filterAccessoriesSection('lifestyle', this)">Lifestyle & Gear</button>
                 </div>
-            </a>
-            <a href="#" class="accessories-card">
-                <div class="accessories-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Tile-2.jpg?w=360&dpr=2" alt="All Accessories">
+            </div>
+
+            <!-- Accessories Visual Showcase Grid (Clickable) -->
+            <div class="accessories-grid">
+                <div class="accessories-card" onclick="switchHeaderNav('sneakers')">
+                    <div class="accessories-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Tile-3.jpg?w=360&dpr=2" alt="All Sneakers">
+                        <div class="category-tile-overlay"><span>SNEAKERS VAULT 👟</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="accessories-card">
-                <div class="accessories-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Tile-1.jpg?w=360&dpr=2" alt="Backpacks">
+                <div class="accessories-card" onclick="filterAccessoriesSection('all', document.querySelectorAll('#accessories-filter-bar .category-filter-pill')[0])">
+                    <div class="accessories-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Tile-2.jpg?w=360&dpr=2" alt="All Accessories">
+                        <div class="category-tile-overlay"><span>ALL GEAR</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="accessories-card">
-                <div class="accessories-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/category-tile-perfume.jpg?w=360&dpr=2" alt="Perfumes">
+                <div class="accessories-card" onclick="filterAccessoriesSection('backpacks', document.querySelectorAll('#accessories-filter-bar .category-filter-pill')[1])">
+                    <div class="accessories-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Tile-1.jpg?w=360&dpr=2" alt="Backpacks">
+                        <div class="category-tile-overlay"><span>BACKPACKS</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="accessories-card">
-                <div class="accessories-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Mens-tile-copy-2.jpg?w=360&dpr=2" alt="Caps">
+                <div class="accessories-card" onclick="filterAccessoriesSection('lifestyle', document.querySelectorAll('#accessories-filter-bar .category-filter-pill')[3])">
+                    <div class="accessories-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/category-tile-perfume.jpg?w=360&dpr=2" alt="Perfumes">
+                        <div class="category-tile-overlay"><span>PERFUMES</span></div>
+                    </div>
                 </div>
-            </a>
-            <a href="#" class="accessories-card">
-                <div class="accessories-img-box">
-                    <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/2_PYYQYU2.jpg?w=360&dpr=2" alt="Socks">
+                <div class="accessories-card" onclick="filterAccessoriesSection('lifestyle', document.querySelectorAll('#accessories-filter-bar .category-filter-pill')[3])">
+                    <div class="accessories-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/Mens-tile-copy-2.jpg?w=360&dpr=2" alt="Caps">
+                        <div class="category-tile-overlay"><span>CAPS</span></div>
+                    </div>
                 </div>
-            </a>
+                <div class="accessories-card" onclick="filterAccessoriesSection('lifestyle', document.querySelectorAll('#accessories-filter-bar .category-filter-pill')[3])">
+                    <div class="accessories-img-box">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/storage/mobile-cms-media-prod/banner-images/2_PYYQYU2.jpg?w=360&dpr=2" alt="Socks">
+                        <div class="category-tile-overlay"><span>SOCKS</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accessories Products Grid -->
+            <div class="accessories-products-grid cat-products-grid" id="accessories-products-grid">
+                <!-- Product 1: Backpack -->
+                <div class="cat-product-card" data-category="backpacks" data-product-id="urban-commuter-utility-backpack">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" alt="Urban Commuter Utility Backpack" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">WATER RESISTANT</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill active" onclick="selectCatCardSize(event, this, 'Free Size')">Free Size</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Backpacks</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Urban Commuter Utility Backpack: Stealth Black</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 2499</span>
+                            <span class="cat-product-mrp">₹ 3999</span>
+                            <span class="cat-product-discount">37% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Playing Cards -->
+                <div class="cat-product-card" data-category="collectibles" data-product-id="dc-justice-league">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1787589871_3537946.jpg?w=360&dpr=2" alt="DC: Justice League" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">LIMITED EDITION</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill active" onclick="selectCatCardSize(event, this, 'Free Size')">Free Size</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Playing Cards</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">DC: Justice League Collectible Playing Cards</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 899</span>
+                            <span class="cat-product-mrp">₹ 1299</span>
+                            <span class="cat-product-discount">30% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Stainless Bottle -->
+                <div class="cat-product-card" data-category="lifestyle" data-product-id="marvel-infinity-gauntlet">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80" alt="Marvel: Infinity Gauntlet Bottle" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">HOT & COLD 24H</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill active" onclick="selectCatCardSize(event, this, 'Free Size')">Free Size</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Drinkware</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Marvel: Infinity Gauntlet Insulated Steel Bottle</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1299</span>
+                            <span class="cat-product-mrp">₹ 1799</span>
+                            <span class="cat-product-discount">27% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Wallet -->
+                <div class="cat-product-card" data-category="lifestyle" data-product-id="vintage-leather-bi-fold-wallet">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80" alt="Vintage Leather Wallet" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">GENUINE LEATHER</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill active" onclick="selectCatCardSize(event, this, 'Free Size')">Free Size</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Wallets</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Vintage Leather Bi-Fold Wallet: Tan Brown</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 1199</span>
+                            <span class="cat-product-mrp">₹ 1699</span>
+                            <span class="cat-product-discount">29% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5: Baseball Cap -->
+                <div class="cat-product-card" data-category="lifestyle" data-product-id="heritage-structured-baseball-cap">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80" alt="Heritage Baseball Cap" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">COTTON TWILL</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill active" onclick="selectCatCardSize(event, this, 'Free Size')">Free Size</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Caps & Hats</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Heritage Structured Baseball Cap: Navy & Gold</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 799</span>
+                            <span class="cat-product-mrp">₹ 1199</span>
+                            <span class="cat-product-discount">33% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6: Keyring & Pin Set -->
+                <div class="cat-product-card" data-category="collectibles" data-product-id="rick-and-morty-portal-hop">
+                    <div class="cat-product-img-box" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">
+                        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80" alt="Rick & Morty: Portal Hop Keyring" class="cat-product-img" loading="lazy">
+                        <span class="cat-product-badge">OFFICIAL MERCH</span>
+                        <button type="button" class="cat-product-wishlist-btn" aria-label="Add to Wishlist" onclick="toggleWishlist(event, this)">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="cat-product-sizes" onclick="event.stopPropagation()">
+                            <button type="button" class="cat-product-size-pill active" onclick="selectCatCardSize(event, this, 'Free Size')">Free Size</button>
+                        </div>
+                    </div>
+                    <div class="cat-product-info">
+                        <span class="cat-product-cat">Keychains & Pins</span>
+                        <h4 class="cat-product-name" onclick="openProductModalFromCard(this.closest('.cat-product-card'))">Rick & Morty: Portal Hop Keyring & Pin Set</h4>
+                        <div class="cat-product-price-row">
+                            <span class="cat-product-price">₹ 499</span>
+                            <span class="cat-product-mrp">₹ 799</span>
+                            <span class="cat-product-discount">37% OFF</span>
+                        </div>
+                        <div class="cat-product-actions">
+                            <button type="button" class="cat-product-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WOMEN'S COLLECTION SECTION -->
+    <section class="women-section" id="women-section">
+        <div class="women-container">
+            <div class="women-header-wrap">
+                <span class="women-kicker"><i class="fa-solid fa-sparkles"></i> THE WOMEN'S EDIT</span>
+                <h2 class="women-main-title">WOMEN'S COLLECTION</h2>
+                <p class="women-subtitle">Elevated silhouettes, luxury co-ords, flowy dresses, and contemporary streetwear tailored for effortless elegance.</p>
+                
+                <!-- Category Filter Pills Bar for Women -->
+                <div class="women-filter-bar" id="women-filter-bar">
+                    <button type="button" class="women-pill active" onclick="filterWomenSection('all', this)">All (10)</button>
+                    <button type="button" class="women-pill" onclick="filterWomenSection('dresses', this)">Dresses & Co-Ords</button>
+                    <button type="button" class="women-pill" onclick="filterWomenSection('tops', this)">Tops & Tees</button>
+                    <button type="button" class="women-pill" onclick="filterWomenSection('bottomwear', this)">Pants & Cargo</button>
+                    <button type="button" class="women-pill" onclick="filterWomenSection('winterwear', this)">Winterwear</button>
+                    <button type="button" class="women-pill" onclick="filterWomenSection('accessories', this)">Bags & Accessories</button>
+                </div>
+            </div>
+
+            <!-- Visual Category Showcase Tiles -->
+            <div class="women-categories-grid">
+                <div class="women-cat-card" onclick="filterWomenSection('dresses', document.querySelectorAll('.women-pill')[1])">
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80" alt="Dresses & Co-Ords">
+                    <div class="women-cat-overlay">
+                        <span class="women-cat-tag">COLLECTION</span>
+                        <h4>Dresses & Co-Ords</h4>
+                        <span class="women-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="women-cat-card" onclick="filterWomenSection('tops', document.querySelectorAll('.women-pill')[2])">
+                    <img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?auto=format&fit=crop&w=600&q=80" alt="Tops & Cropped Tees">
+                    <div class="women-cat-overlay">
+                        <span class="women-cat-tag">COLLECTION</span>
+                        <h4>Tops & Tees</h4>
+                        <span class="women-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="women-cat-card" onclick="filterWomenSection('bottomwear', document.querySelectorAll('.women-pill')[3])">
+                    <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=600&q=80" alt="Cargo & Bottomwear">
+                    <div class="women-cat-overlay">
+                        <span class="women-cat-tag">COLLECTION</span>
+                        <h4>Pants & Skirts</h4>
+                        <span class="women-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="women-cat-card" onclick="filterWomenSection('accessories', document.querySelectorAll('.women-pill')[5])">
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80" alt="Bags & Accessories">
+                    <div class="women-cat-overlay">
+                        <span class="women-cat-tag">COLLECTION</span>
+                        <h4>Bags & Handbags</h4>
+                        <span class="women-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Women's Product Cards Grid -->
+            <div class="women-products-grid" id="women-products-grid">
+                <!-- Card 1 -->
+                <div class="women-card" data-product-id="satin-slip-maxi-dress-emerald-rose" data-category="dresses" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('satin-slip-maxi-dress-emerald-rose')">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80" alt="Satin Slip Maxi Dress: Emerald Rose" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge rose">NEW LUXE</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XS')">XS</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'S')">S</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'M')">M</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'L')">L</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XL')">XL</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Dresses</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('satin-slip-maxi-dress-emerald-rose')">Satin Slip Maxi Dress: Emerald Rose</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 2499</span>
+                            <span class="women-card-mrp">₹ 3499</span>
+                            <span class="women-card-discount">28% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="women-card" data-product-id="relaxed-linen-blazer-trouser-coord-beige-sand" data-category="dresses" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('relaxed-linen-blazer-trouser-coord-beige-sand')">
+                        <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=600&q=80" alt="Relaxed Linen Blazer & Trouser Co-ord: Beige Sand" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge">HOT SELLER</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XS')">XS</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'S')">S</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'M')">M</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'L')">L</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XL')">XL</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Co-Ords</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('relaxed-linen-blazer-trouser-coord-beige-sand')">Relaxed Linen Blazer & Trouser Co-ord: Beige Sand</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 2899</span>
+                            <span class="women-card-mrp">₹ 3999</span>
+                            <span class="women-card-discount">27% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="women-card" data-product-id="floral-midi-sundress-blossom-whisper" data-category="dresses" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('floral-midi-sundress-blossom-whisper')">
+                        <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600&q=80" alt="Floral Midi Sundress: Blossom Whisper" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge rose">SUMMER EDIT</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XS')">XS</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'S')">S</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'M')">M</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'L')">L</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XL')">XL</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Dresses</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('floral-midi-sundress-blossom-whisper')">Floral Midi Sundress: Blossom Whisper</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 1899</span>
+                            <span class="women-card-mrp">₹ 2699</span>
+                            <span class="women-card-discount">30% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="women-card" data-product-id="high-rise-wide-leg-cargo-olive-slate" data-category="bottomwear" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('high-rise-wide-leg-cargo-olive-slate')">
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=600&q=80" alt="High-Rise Wide Leg Cargo: Olive Slate" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge">TRENDING</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, '26')">26</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, '28')">28</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, '30')">30</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, '32')">32</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, '34')">34</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Pants & Cargo</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('high-rise-wide-leg-cargo-olive-slate')">High-Rise Wide Leg Cargo: Olive Slate</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 1799</span>
+                            <span class="women-card-mrp">₹ 2599</span>
+                            <span class="women-card-discount">31% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="women-card" data-product-id="oversized-boyfriend-graphic-tee-tokyo-drift" data-category="tops" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('oversized-boyfriend-graphic-tee-tokyo-drift')">
+                        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Oversized Boyfriend Graphic Tee: Tokyo Drift" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge">OVERSIZED</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XS')">XS</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'S')">S</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'M')">M</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'L')">L</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XL')">XL</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Oversized T-Shirts</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('oversized-boyfriend-graphic-tee-tokyo-drift')">Oversized Boyfriend Graphic Tee: Tokyo Drift</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 1199</span>
+                            <span class="women-card-mrp">₹ 1799</span>
+                            <span class="women-card-discount">33% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="women-card" data-product-id="vintage-ribbed-crop-top-ivory-mist" data-category="tops" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('vintage-ribbed-crop-top-ivory-mist')">
+                        <img src="https://images.unsplash.com/photo-1503342394128-c104d54dba01?auto=format&fit=crop&w=600&q=80" alt="Vintage Ribbed Crop Top: Ivory Mist" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge rose">TOP PICK</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XS')">XS</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'S')">S</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'M')">M</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'L')">L</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XL')">XL</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Tops</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('vintage-ribbed-crop-top-ivory-mist')">Vintage Ribbed Crop Top: Ivory Mist</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 899</span>
+                            <span class="women-card-mrp">₹ 1399</span>
+                            <span class="women-card-discount">35% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="women-card" data-product-id="cropped-knit-cardigan-powder-blue" data-category="winterwear" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('cropped-knit-cardigan-powder-blue')">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80" alt="Cropped Knit Cardigan: Powder Blue" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge">COZY KNIT</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XS')">XS</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'S')">S</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'M')">M</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'L')">L</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XL')">XL</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Winterwear</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('cropped-knit-cardigan-powder-blue')">Cropped Knit Cardigan: Powder Blue</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 1699</span>
+                            <span class="women-card-mrp">₹ 2499</span>
+                            <span class="women-card-discount">32% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="women-card" data-product-id="pleated-tennis-mini-skirt-pure-white" data-category="bottomwear" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('pleated-tennis-mini-skirt-pure-white')">
+                        <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=600&q=80" alt="Pleated Tennis Mini Skirt: Pure White" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge rose">VIRAL</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XS')">XS</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'S')">S</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'M')">M</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'L')">L</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XL')">XL</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Skirts</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('pleated-tennis-mini-skirt-pure-white')">Pleated Tennis Mini Skirt: Pure White</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 1299</span>
+                            <span class="women-card-mrp">₹ 1899</span>
+                            <span class="women-card-discount">31% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="women-card" data-product-id="vegan-leather-slouchy-shoulder-bag-caramel" data-category="accessories" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('vegan-leather-slouchy-shoulder-bag-caramel')">
+                        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80" alt="Vegan Leather Slouchy Shoulder Bag: Caramel" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge">LEATHER</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill active" onclick="selectWomenCardSize(event, this, 'Free Size')">Free Size</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Handbags & Accessories</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('vegan-leather-slouchy-shoulder-bag-caramel')">Vegan Leather Slouchy Shoulder Bag: Caramel</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 1599</span>
+                            <span class="women-card-mrp">₹ 2299</span>
+                            <span class="women-card-discount">30% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="women-card" data-product-id="oversized-fleece-hoodie-blush-sorbet" data-category="winterwear" data-selected-size="">
+                    <div class="women-card-img-box" onclick="selectSearchResult('oversized-fleece-hoodie-blush-sorbet')">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Oversized Fleece Hoodie: Blush Sorbet" class="women-card-img" loading="lazy">
+                        <span class="women-card-badge rose">WINTER EDIT</span>
+                        <button type="button" class="women-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="women-card-sizes" onclick="event.stopPropagation()">
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XS')">XS</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'S')">S</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'M')">M</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'L')">L</span>
+                            <span class="women-card-size-pill" onclick="selectWomenCardSize(event, this, 'XL')">XL</span>
+                        </div>
+                    </div>
+                    <div class="women-card-info">
+                        <span class="women-card-cat">Women Winterwear</span>
+                        <h3 class="women-card-name" onclick="selectSearchResult('oversized-fleece-hoodie-blush-sorbet')">Oversized Fleece Hoodie: Blush Sorbet</h3>
+                        <div class="women-card-price-row">
+                            <span class="women-card-price">₹ 1999</span>
+                            <span class="women-card-mrp">₹ 2799</span>
+                            <span class="women-card-discount">29% OFF</span>
+                        </div>
+                        <div class="women-card-actions">
+                            <button type="button" class="women-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SNEAKERS & FOOTWEAR VAULT SECTION -->
+    <section class="sneakers-section" id="sneakers-section">
+        <div class="sneakers-container">
+            <div class="sneakers-header-wrap">
+                <span class="sneakers-kicker"><i class="fa-solid fa-shoe-prints"></i> SNEAKER LAB • LIMITED DROPS</span>
+                <h2 class="sneakers-main-title">SNEAKERS & KICKS VAULT</h2>
+                <p class="sneakers-subtitle">Chunky silhouettes, retro basketball high-tops, minimalist court runners, and woven vintage leather luxury kicks crafted for street-style royalty.</p>
+                
+                <!-- Category Filter Pills Bar for Sneakers -->
+                <div class="sneakers-filter-bar" id="sneakers-filter-bar">
+                    <button type="button" class="sneakers-pill active" onclick="filterSneakersSection('all', this)">All Kicks (10)</button>
+                    <button type="button" class="sneakers-pill" onclick="filterSneakersSection('chunky', this)">Chunky & Runners</button>
+                    <button type="button" class="sneakers-pill" onclick="filterSneakersSection('hightop', this)">High-Tops & Retro</button>
+                    <button type="button" class="sneakers-pill" onclick="filterSneakersSection('court', this)">Court & Minimal</button>
+                    <button type="button" class="sneakers-pill" onclick="filterSneakersSection('slipon', this)">Slides & Mules</button>
+                </div>
+            </div>
+
+            <!-- Visual Category Showcase Tiles for Sneakers -->
+            <div class="sneakers-categories-grid">
+                <div class="sneakers-cat-card" onclick="filterSneakersSection('chunky', document.querySelectorAll('.sneakers-pill')[1])">
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80" alt="Chunky Runners">
+                    <div class="sneakers-cat-overlay">
+                        <span class="sneakers-cat-tag">VAULT DROP</span>
+                        <h4>Chunky Runners</h4>
+                        <span class="sneakers-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="sneakers-cat-card" onclick="filterSneakersSection('hightop', document.querySelectorAll('.sneakers-pill')[2])">
+                    <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80" alt="High-Tops & Retro">
+                    <div class="sneakers-cat-overlay">
+                        <span class="sneakers-cat-tag">VAULT DROP</span>
+                        <h4>High-Tops & Retro</h4>
+                        <span class="sneakers-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="sneakers-cat-card" onclick="filterSneakersSection('court', document.querySelectorAll('.sneakers-pill')[3])">
+                    <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=600&q=80" alt="Court & Minimal">
+                    <div class="sneakers-cat-overlay">
+                        <span class="sneakers-cat-tag">VAULT DROP</span>
+                        <h4>Court & Minimal</h4>
+                        <span class="sneakers-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="sneakers-cat-card" onclick="filterSneakersSection('slipon', document.querySelectorAll('.sneakers-pill')[4])">
+                    <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=600&q=80" alt="Slides & Mules">
+                    <div class="sneakers-cat-overlay">
+                        <span class="sneakers-cat-tag">VAULT DROP</span>
+                        <h4>Slides & Mules</h4>
+                        <span class="sneakers-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Sneakers Product Cards Grid -->
+            <div class="sneakers-products-grid" id="sneakers-products-grid">
+                <!-- Card 1 -->
+                <div class="sneaker-card" data-product-id="apex-chunky-runner-ghost-bone" data-category="chunky" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('apex-chunky-runner-ghost-bone')">
+                        <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80" alt="Apex Chunky Runner: Ghost Bone" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge">BESTSELLER</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 11')">UK 11</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">Chunky Sneakers</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('apex-chunky-runner-ghost-bone')">Apex Chunky Runner: Ghost Bone</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 2999</span>
+                            <span class="sneaker-card-mrp">₹ 4499</span>
+                            <span class="sneaker-card-discount">33% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="sneaker-card" data-product-id="retro-high-top-crimson-royal" data-category="hightop" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('retro-high-top-crimson-royal')">
+                        <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80" alt="Retro High-Top: Crimson Royal" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge red">LIMITED DROP</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 11')">UK 11</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">High-Top Sneakers</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('retro-high-top-crimson-royal')">Retro High-Top: Crimson Royal</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 3499</span>
+                            <span class="sneaker-card-mrp">₹ 4999</span>
+                            <span class="sneaker-card-discount">30% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="sneaker-card" data-product-id="pastel-chunky-cloud-sneaker-lavender-sky" data-category="chunky" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('pastel-chunky-cloud-sneaker-lavender-sky')">
+                        <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80" alt="Pastel Chunky Cloud Sneaker: Lavender Sky" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge teal">TRENDING</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 6')">UK 6</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">Cloud Runners</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('pastel-chunky-cloud-sneaker-lavender-sky')">Pastel Chunky Cloud Sneaker: Lavender Sky</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 2799</span>
+                            <span class="sneaker-card-mrp">₹ 3999</span>
+                            <span class="sneaker-card-discount">30% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="sneaker-card" data-product-id="classic-retro-low-court-forest-ochre" data-category="court" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('classic-retro-low-court-forest-ochre')">
+                        <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80" alt="Classic Retro Low Court: Forest Ochre" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge">ORIGINALS</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 11')">UK 11</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">Retro Court Shoes</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('classic-retro-low-court-forest-ochre')">Classic Retro Low Court: Forest Ochre</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 2499</span>
+                            <span class="sneaker-card-mrp">₹ 3699</span>
+                            <span class="sneaker-card-discount">32% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="sneaker-card" data-product-id="street-skate-canvas-high-monochrome-black" data-category="hightop" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('street-skate-canvas-high-monochrome-black')">
+                        <img src="https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=600&q=80" alt="Street Skate Canvas High: Monochrome Black" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge">SKATE EDIT</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 11')">UK 11</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">Canvas High-Tops</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('street-skate-canvas-high-monochrome-black')">Street Skate Canvas High: Monochrome Black</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 2199</span>
+                            <span class="sneaker-card-mrp">₹ 3199</span>
+                            <span class="sneaker-card-discount">31% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="sneaker-card" data-product-id="air-velocity-dynamic-runner-solar-orange" data-category="chunky" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('air-velocity-dynamic-runner-solar-orange')">
+                        <img src="https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=600&q=80" alt="Air Velocity Dynamic Runner: Solar Orange" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge red">VELOCITY AIR</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 11')">UK 11</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">Performance Runners</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('air-velocity-dynamic-runner-solar-orange')">Air Velocity Dynamic Runner: Solar Orange</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 3299</span>
+                            <span class="sneaker-card-mrp">₹ 4799</span>
+                            <span class="sneaker-card-discount">31% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="sneaker-card" data-product-id="minimalist-leather-court-sneaker-triple-white" data-category="court" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('minimalist-leather-court-sneaker-triple-white')">
+                        <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=600&q=80" alt="Minimalist Leather Court Sneaker: Triple White" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge">MINIMALIST</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 11')">UK 11</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">Leather Court Kicks</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('minimalist-leather-court-sneaker-triple-white')">Minimalist Leather Court Sneaker: Triple White</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 2699</span>
+                            <span class="sneaker-card-mrp">₹ 3899</span>
+                            <span class="sneaker-card-discount">31% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="sneaker-card" data-product-id="woven-vintage-leather-low-espresso-tan" data-category="court" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('woven-vintage-leather-low-espresso-tan')">
+                        <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80" alt="Woven Vintage Leather Low: Espresso Tan" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge">LUXURY WEAVE</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 11')">UK 11</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">Heritage Leather</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('woven-vintage-leather-low-espresso-tan')">Woven Vintage Leather Low: Espresso Tan</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 2899</span>
+                            <span class="sneaker-card-mrp">₹ 4199</span>
+                            <span class="sneaker-card-discount">31% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="sneaker-card" data-product-id="retro-basketball-mid-midnight-teal" data-category="hightop" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('retro-basketball-mid-midnight-teal')">
+                        <img src="https://images.unsplash.com/photo-1512374382149-233c42b6a83b?auto=format&fit=crop&w=600&q=80" alt="Retro Basketball Mid: Midnight Teal" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge teal">HOOPS VAULT</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 11')">UK 11</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">Mid-Top Hoops</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('retro-basketball-mid-midnight-teal')">Retro Basketball Mid: Midnight Teal</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 3199</span>
+                            <span class="sneaker-card-mrp">₹ 4599</span>
+                            <span class="sneaker-card-discount">30% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="sneaker-card" data-product-id="urban-comfort-mule-slide-sand-dune" data-category="slipon" data-selected-size="">
+                    <div class="sneaker-card-img-box" onclick="selectSearchResult('urban-comfort-mule-slide-sand-dune')">
+                        <img src="https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=600&q=80" alt="Urban Comfort Mule Slide: Sand Dune" class="sneaker-card-img" loading="lazy">
+                        <span class="sneaker-card-badge">EASY SLIDE</span>
+                        <button type="button" class="sneaker-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="sneaker-card-sizes" onclick="event.stopPropagation()">
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 6')">UK 6</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 7')">UK 7</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 8')">UK 8</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 9')">UK 9</span>
+                            <span class="sneaker-card-size-pill" onclick="selectSneakerCardSize(event, this, 'UK 10')">UK 10</span>
+                        </div>
+                    </div>
+                    <div class="sneaker-card-info">
+                        <span class="sneaker-card-cat">Slides & Mules</span>
+                        <h3 class="sneaker-card-name" onclick="selectSearchResult('urban-comfort-mule-slide-sand-dune')">Urban Comfort Mule Slide: Sand Dune</h3>
+                        <div class="sneaker-card-price-row">
+                            <span class="sneaker-card-price">₹ 1799</span>
+                            <span class="sneaker-card-mrp">₹ 2599</span>
+                            <span class="sneaker-card-discount">31% OFF</span>
+                        </div>
+                        <div class="sneaker-card-actions">
+                            <button type="button" class="sneaker-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Search Results Section -->
+    <section class="search-results-section" id="search-results-section" style="display: none;">
+        <div class="search-results-container">
+            <div class="search-results-header">
+                <div class="search-results-title-group">
+                    <span class="search-results-kicker"><i class="fa-solid fa-magnifying-glass"></i> STORE SEARCH</span>
+                    <h2 class="search-results-title" id="search-results-title">Results for "<span id="search-query-display"></span>"</h2>
+                    <span class="search-results-count" id="search-results-count">0 products found</span>
+                </div>
+                <div class="search-results-actions">
+                    <div class="search-filter-tags" id="search-filter-tags">
+                        <button type="button" class="search-tag-pill active" onclick="filterSearchResults('all', this)">All</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('shirts', this)">Shirts</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('pants', this)">Pants</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('t-shirts', this)">T-Shirts</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('hoodies', this)">Winterwear</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('sneakers', this)">Sneakers</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('accessories', this)">Accessories</button>
+                    </div>
+                    <button type="button" class="search-clear-section-btn" onclick="clearAndCloseSearch()">
+                        <i class="fa-solid fa-xmark"></i> Clear Search
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Dynamic Results Grid -->
+            <div class="search-results-grid" id="search-results-grid">
+                <!-- Dynamically rendered via JS -->
+            </div>
         </div>
     </section>
 
@@ -681,6 +2356,8 @@
             <!-- Filter Pills Bar -->
             <div class="filter-pills-bar">
                 <button class="filter-pill active" data-category="trending">Trending</button>
+                <button class="filter-pill" data-category="sneakers" onclick="switchHeaderNav('sneakers')">Sneakers 👟</button>
+                <button class="filter-pill" data-category="women" onclick="switchHeaderNav('women')">Women's Edit 🌸</button>
                 <button class="filter-pill" data-category="marvel">Marvel</button>
                 <button class="filter-pill" data-category="pants">Pants</button>
                 <button class="filter-pill" data-category="polos">Polos</button>
@@ -839,9 +2516,48 @@
         </div>
     </section>
 
+    <!-- Cross-Category Exploration Showcase -->
+    <section class="cross-nav-banner-section">
+        <div class="cross-nav-container cols-3">
+            <a href="women.html" class="cross-nav-card">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="The Women's Edit">
+                <div class="cross-nav-overlay"></div>
+                <div class="cross-nav-text">
+                    <span class="cross-nav-tag">NEW COLLECTION</span>
+                    <h3 class="cross-nav-title">The Women's Edit</h3>
+                    <span class="cross-nav-link">Shop Women's Fashion <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="sneakers.html" class="cross-nav-card">
+                <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80" alt="Sneakers & Kicks Vault">
+                <div class="cross-nav-overlay"></div>
+                <div class="cross-nav-text">
+                    <span class="cross-nav-tag">LIMITED ARCHIVE DROPS</span>
+                    <h3 class="cross-nav-title">Sneakers & Kicks Vault</h3>
+                    <span class="cross-nav-link">Explore Street Kicks <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="perfumes.html" class="cross-nav-card">
+                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=80" alt="Haute Parfumerie">
+                <div class="cross-nav-overlay"></div>
+                <div class="cross-nav-text">
+                    <span class="cross-nav-tag">PURE EXTRAITS</span>
+                    <h3 class="cross-nav-title">Haute Parfumerie</h3>
+                    <span class="cross-nav-link">Explore Fragrances <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
     <!-- HOMEGROWN INDIAN BRAND Banner Section -->
     <section class="homegrown-banner-section">
-        <h3 class="homegrown-text">HOMEGROWN INDIAN BRAND</h3>
+        <div class="homegrown-banner-inner">
+            <img src="images/vhora_crest.png" alt="Vhora Crest" class="homegrown-crest">
+            <div class="homegrown-text-wrap">
+                <span class="homegrown-pre">PRIDE OF HERITAGE</span>
+                <h3 class="homegrown-text">VHORA CLOTHING • HOMEGROWN INDIAN BRAND</h3>
+            </div>
+        </div>
     </section>
 
     <!-- Footer Section -->
@@ -852,7 +2568,8 @@
                 <h4 class="footer-title">NEED HELP</h4>
                 <ul class="footer-links">
                     <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#" onclick="openOrdersDrawer(); return false;">Track Order</a></li>
+                    <li><a href="#" onclick="openOrdersDrawer(); return false;">My Orders</a></li>
                     <li><a href="#">Returns & Refunds</a></li>
                     <li><a href="#">FAQs</a></li>
                     <li><a href="#">My Account</a></li>
@@ -905,7 +2622,141 @@
                 </ul>
             </div>
         </div>
+
+        <!-- Footer Bottom Branding & Copyright -->
+        <div class="footer-bottom-branding">
+            <div class="footer-brand-wrap">
+                <div class="footer-brand-lockup">
+                    <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="footer-crest-img">
+                    <div class="footer-brand-text">
+                        <span class="footer-brand-name">VHORA</span>
+                        <span class="footer-brand-sub">CLOTHING</span>
+                    </div>
+                </div>
+                <p class="footer-tagline">Luxury Indian Fashion &amp; Apparel • Gold &amp; White Heritage Edition</p>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 VHORA CLOTHING. All Rights Reserved. Crafted with pride in India.</p>
+            </div>
+        </div>
     </footer>
+
+    <!-- Product Details & Size Selection Modal -->
+    <div class="product-modal-overlay" id="product-modal-overlay" onclick="closeProductModal()"></div>
+    <div class="product-modal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
+        <button class="product-modal-close" id="product-modal-close" onclick="closeProductModal()" aria-label="Close modal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="product-modal-content">
+            <!-- Left Side: Product Showcase Image -->
+            <div class="product-modal-media">
+                <div class="product-modal-img-container">
+                    <img id="modal-product-img" src="" alt="Product Image">
+                    <span class="product-modal-badge" id="modal-product-badge">BESTSELLER</span>
+                </div>
+            </div>
+
+            <!-- Right Side: Details & Size Selection -->
+            <div class="product-modal-details">
+                <div class="product-modal-header">
+                    <span class="product-modal-brand"><i class="fa-solid fa-certificate"></i> VHORA OFFICIAL</span>
+                    <h2 class="product-modal-title" id="modal-product-title">Product Name</h2>
+                    <p class="product-modal-category" id="modal-product-category">Category</p>
+                    <div class="product-modal-rating">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <span class="rating-text">4.8 (2,430+ Reviews)</span>
+                    </div>
+                    <div class="product-modal-pricing">
+                        <span class="product-modal-price" id="modal-product-price">₹ 1499</span>
+                        <span class="product-modal-mrp" id="modal-product-mrp">₹ 2299</span>
+                        <span class="product-modal-discount" id="modal-product-discount">35% OFF</span>
+                    </div>
+                    <p class="product-modal-taxes">Inclusive of all taxes • Free Shipping available</p>
+                </div>
+
+                <!-- SIZE SELECTION SECTION -->
+                <div class="product-modal-size-section" id="product-modal-size-section">
+                    <div class="size-section-header">
+                        <div class="size-section-title-wrap">
+                            <span class="size-section-label"><i class="fa-solid fa-shirt"></i> SELECT SIZE</span>
+                            <span class="size-selected-badge" id="modal-selected-size-text">None selected</span>
+                        </div>
+                        <button type="button" class="size-guide-toggle-btn" id="size-guide-toggle-btn" onclick="toggleSizeGuide()">
+                            <i class="fa-solid fa-ruler-horizontal"></i> Size Chart
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Size Buttons Grid -->
+                    <div class="size-pills-grid" id="modal-size-pills-grid"></div>
+
+                    <!-- Stock alert / Helper text -->
+                    <div class="size-stock-status" id="modal-size-stock-status">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span id="modal-size-stock-text">Please select a size to proceed</span>
+                    </div>
+
+                    <!-- Collapsible Size Guide Table -->
+                    <div class="size-guide-drawer" id="size-guide-drawer" style="display: none;">
+                        <h5 class="size-guide-title">Standard Sizing Guide (Inches)</h5>
+                        <table class="size-guide-table">
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Chest / Waist</th>
+                                    <th>Length</th>
+                                    <th>Fit</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modal-size-guide-body">
+                                <tr><td><strong>S</strong></td><td>38"</td><td>27.5"</td><td>Regular</td></tr>
+                                <tr><td><strong>M</strong></td><td>40"</td><td>28.5"</td><td>Regular</td></tr>
+                                <tr><td><strong>L</strong></td><td>42"</td><td>29.5"</td><td>Relaxed</td></tr>
+                                <tr><td><strong>XL</strong></td><td>44"</td><td>30.5"</td><td>Relaxed</td></tr>
+                                <tr><td><strong>XXL</strong></td><td>46"</td><td>31.5"</td><td>Oversized</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quantity & Actions -->
+                <div class="product-modal-actions">
+                    <div class="quantity-selector">
+                        <button type="button" class="qty-btn" onclick="changeModalQty(-1)" aria-label="Decrease quantity">−</button>
+                        <span class="qty-display" id="modal-qty-display">1</span>
+                        <button type="button" class="qty-btn" onclick="changeModalQty(1)" aria-label="Increase quantity">+</button>
+                    </div>
+                    <button type="button" class="modal-buy-now-btn" id="modal-buy-now-btn" onclick="buyModalProduct()">
+                        <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                    </button>
+                    <button type="button" class="modal-wishlist-icon-btn" id="modal-wishlist-icon-btn" onclick="wishlistModalProduct()" aria-label="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+
+                <!-- Trust Perks -->
+                <div class="product-modal-perks">
+                    <div class="perk-item">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Fast 2-3 Day Delivery</span>
+                    </div>
+                    <div class="perk-item">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <span>15-Day Size Exchanges</span>
+                    </div>
+                    <div class="perk-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>100% Genuine Apparel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Toast Notification Container -->
     <div class="toast-notification" id="toast-notification" aria-live="polite"></div>

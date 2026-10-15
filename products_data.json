@@ -1,0 +1,650 @@
+[
+  {
+    "id": "easy-pants-taupe-grey",
+    "name": "Easy Pants: Taupe Grey",
+    "category": "Men Cotton Pants",
+    "price": "\u20b9 1699",
+    "image": "images/new_arrivals_1.jpg",
+    "tags": [
+      "arrivals",
+      "new",
+      "clothing"
+    ]
+  },
+  {
+    "id": "tss-originals-night-shadow",
+    "name": "TSS Originals: Night Shadow",
+    "category": "Shirts",
+    "price": "\u20b9 1599",
+    "image": "images/new_arrivals_2.jpg",
+    "tags": [
+      "arrivals",
+      "new",
+      "clothing"
+    ]
+  },
+  {
+    "id": "tss-originals-blue-fire",
+    "name": "TSS Originals: Blue Fire",
+    "category": "Men Winter Wear",
+    "price": "\u20b9 1599",
+    "image": "images/new_arrivals_3.jpg",
+    "tags": [
+      "arrivals",
+      "new",
+      "clothing"
+    ]
+  },
+  {
+    "id": "doctor-sleeve-grape-mist",
+    "name": "Doctor Sleeve: Grape Mist",
+    "category": "T-Shirts",
+    "price": "\u20b9 1199",
+    "image": "images/new_arrivals_4.jpg",
+    "tags": [
+      "arrivals",
+      "new",
+      "clothing"
+    ]
+  },
+  {
+    "id": "tss-originals-forest-mist",
+    "name": "TSS Originals: Forest Mist",
+    "category": "T-Shirts",
+    "price": "\u20b9 1199",
+    "image": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=400&q=80",
+    "tags": [
+      "arrivals",
+      "new",
+      "clothing"
+    ]
+  },
+  {
+    "id": "cargo-pants-olive-drab",
+    "name": "Cargo Pants: Olive Drab",
+    "category": "Men Cotton Pants",
+    "price": "\u20b9 1799",
+    "image": "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=400&q=80",
+    "tags": [
+      "arrivals",
+      "new",
+      "clothing"
+    ]
+  },
+  {
+    "id": "cuban-collar-sand-dune",
+    "name": "Cuban Collar: Sand Dune",
+    "category": "Shirts",
+    "price": "\u20b9 1499",
+    "image": "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=400&q=80",
+    "tags": [
+      "arrivals",
+      "new",
+      "clothing"
+    ]
+  },
+  {
+    "id": "fleece-hoodie-heather-slate",
+    "name": "Fleece Hoodie: Heather Slate",
+    "category": "Men Winter Wear",
+    "price": "\u20b9 1899",
+    "image": "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=400&q=80",
+    "tags": [
+      "arrivals",
+      "new",
+      "clothing"
+    ]
+  },
+  {
+    "id": "attack-on-titan-the-last-attack",
+    "name": "Attack On Titan: The Last Attack",
+    "category": "Men Relaxed Shirts",
+    "price": "\u20b9 1499",
+    "image": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1791371657_6901059.jpg?w=360&dpr=2",
+    "tags": [
+      "trending",
+      "merch",
+      "culture-code",
+      "trending"
+    ]
+  },
+  {
+    "id": "ghost-rider-fire-skull",
+    "name": "Ghost Rider: Fire Skull",
+    "category": "Oversized T-Shirts",
+    "price": "\u20b9 1199",
+    "image": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1789134712_4789350.jpg?w=360&dpr=2",
+    "tags": [
+      "trending",
+      "marvel",
+      "merch",
+      "trending"
+    ]
+  },
+  {
+    "id": "spider-man-rise-of-the-spider",
+    "name": "Spider-Man: Rise Of The Spider",
+    "category": "Oversized T-Shirts",
+    "price": "\u20b9 1699",
+    "image": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1783081914_3435976.jpg?w=360&dpr=2",
+    "tags": [
+      "trending",
+      "marvel",
+      "merch",
+      "trending"
+    ]
+  },
+  {
+    "id": "dc-justice-league",
+    "name": "DC: Justice League",
+    "category": "Playing Cards",
+    "price": "\u20b9 899",
+    "image": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1787589871_3537946.jpg?w=360&dpr=2",
+    "tags": [
+      "trending",
+      "merch",
+      "backpack",
+      "culture-code",
+      "trending"
+    ]
+  },
+  {
+    "id": "colourblock-cocoa",
+    "name": "Colourblock: Cocoa",
+    "category": "Oversized Polos",
+    "price": "\u20b9 1499",
+    "image": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1772867066_1636022.jpg?w=360&dpr=2",
+    "tags": [
+      "trending",
+      "polos",
+      "weekday-edit",
+      "trending"
+    ]
+  },
+  {
+    "id": "dragon-ball-z-goku",
+    "name": "Dragon Ball Z: Goku",
+    "category": "Oversized Jerseys",
+    "price": "\u20b9 1499",
+    "image": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1786515306_8325362.jpg?w=360&dpr=2",
+    "tags": [
+      "trending",
+      "merch",
+      "culture-code",
+      "trending"
+    ]
+  },
+  {
+    "id": "spider-man-hyper-web",
+    "name": "Spider-Man: Hyper Web",
+    "category": "Men Oversized Joggers",
+    "price": "\u20b9 2099",
+    "image": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1784964208_3534964.jpg?w=360&dpr=2",
+    "tags": [
+      "trending",
+      "marvel",
+      "pants",
+      "trending"
+    ]
+  },
+  {
+    "id": "peanuts-the-good-life",
+    "name": "Peanuts: The Good Life",
+    "category": "Cotton Linen Shirts",
+    "price": "\u20b9 1699",
+    "image": "https://prod-img.thesouledstore.com/public/theSoul/uploads/catalog/product/1761736618_6567601.jpg?w=360&dpr=2",
+    "tags": [
+      "trending",
+      "merch",
+      "weekday-edit",
+      "trending"
+    ]
+  },
+  {
+    "id": "printed-resort-casual-shirt",
+    "name": "Printed Resort Casual Shirt",
+    "category": "Shirts",
+    "price": "\u20b9 1499",
+    "image": "images/product_trending_1.jpg",
+    "tags": [
+      "shirts",
+      "topwear",
+      "printed",
+      "resort"
+    ]
+  },
+  {
+    "id": "vintage-corduroy-overshirt",
+    "name": "Vintage Corduroy Overshirt",
+    "category": "Shirts",
+    "price": "\u20b9 1799",
+    "image": "images/product_trending_2.jpg",
+    "tags": [
+      "shirts",
+      "corduroy",
+      "overshirt",
+      "topwear"
+    ]
+  },
+  {
+    "id": "streetwear-heavyweight-hoodie",
+    "name": "Streetwear Heavyweight Hoodie",
+    "category": "Hoodies & Sweatshirts",
+    "price": "\u20b9 1999",
+    "image": "images/product_trending_3.jpg",
+    "tags": [
+      "hoodie",
+      "sweatshirt",
+      "winterwear",
+      "topwear"
+    ]
+  },
+  {
+    "id": "tailored-relaxed-fit-chinos",
+    "name": "Tailored Relaxed Fit Chinos",
+    "category": "Pants",
+    "price": "\u20b9 1599",
+    "image": "images/bottomwear_1.jpg",
+    "tags": [
+      "pants",
+      "chinos",
+      "bottomwear",
+      "trousers"
+    ]
+  },
+  {
+    "id": "utility-cargo-jogger-pants",
+    "name": "Utility Cargo Jogger Pants",
+    "category": "Pants",
+    "price": "\u20b9 1899",
+    "image": "images/bottomwear_2.jpg",
+    "tags": [
+      "pants",
+      "cargo",
+      "joggers",
+      "bottomwear"
+    ]
+  },
+  {
+    "id": "vintage-leather-crossbody-bag",
+    "name": "Vintage Leather Crossbody Bag",
+    "category": "Accessories",
+    "price": "\u20b9 1299",
+    "image": "images/accessories_1.jpg",
+    "tags": [
+      "accessories",
+      "bags",
+      "crossbody",
+      "leather"
+    ]
+  },
+  {
+    "id": "retro-polarized-sunglasses",
+    "name": "Retro Polarized Sunglasses",
+    "category": "Accessories",
+    "price": "\u20b9 899",
+    "image": "images/accessories_2.jpg",
+    "tags": [
+      "accessories",
+      "sunglasses",
+      "eyewear",
+      "retro"
+    ]
+  },
+  {
+    "id": "premium-woven-leather-sneakers",
+    "name": "Premium Woven Leather Sneakers",
+    "category": "Sneakers",
+    "price": "\u20b9 2499",
+    "image": "images/accessories_4.jpg",
+    "tags": [
+      "sneakers",
+      "shoes",
+      "footwear",
+      "leather"
+    ]
+  },
+  {
+    "id": "satin-slip-maxi-dress-emerald-rose",
+    "name": "Satin Slip Maxi Dress: Emerald Rose",
+    "category": "Women Dresses",
+    "price": "₹ 2499",
+    "image": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "dresses",
+      "maxi",
+      "satin",
+      "evening",
+      "party"
+    ]
+  },
+  {
+    "id": "relaxed-linen-blazer-trouser-coord-beige-sand",
+    "name": "Relaxed Linen Blazer & Trouser Co-ord: Beige Sand",
+    "category": "Women Co-Ords",
+    "price": "₹ 2899",
+    "image": "https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "co-ord",
+      "blazer",
+      "linen",
+      "suit",
+      "formal",
+      "beige"
+    ]
+  },
+  {
+    "id": "floral-midi-sundress-blossom-whisper",
+    "name": "Floral Midi Sundress: Blossom Whisper",
+    "category": "Women Dresses",
+    "price": "₹ 1899",
+    "image": "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "dresses",
+      "floral",
+      "midi",
+      "summer",
+      "vacation"
+    ]
+  },
+  {
+    "id": "high-rise-wide-leg-cargo-olive-slate",
+    "name": "High-Rise Wide Leg Cargo: Olive Slate",
+    "category": "Women Pants & Cargo",
+    "price": "₹ 1799",
+    "image": "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "pants",
+      "cargo",
+      "wide leg",
+      "high rise",
+      "bottomwear"
+    ]
+  },
+  {
+    "id": "oversized-boyfriend-graphic-tee-tokyo-drift",
+    "name": "Oversized Boyfriend Graphic Tee: Tokyo Drift",
+    "category": "Women Oversized T-Shirts",
+    "price": "₹ 1199",
+    "image": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "t-shirts",
+      "oversized",
+      "graphic",
+      "streetwear",
+      "tees"
+    ]
+  },
+  {
+    "id": "vintage-ribbed-crop-top-ivory-mist",
+    "name": "Vintage Ribbed Crop Top: Ivory Mist",
+    "category": "Women Tops",
+    "price": "₹ 899",
+    "image": "https://images.unsplash.com/photo-1503342394128-c104d54dba01?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "tops",
+      "crop top",
+      "ribbed",
+      "summer",
+      "ivory"
+    ]
+  },
+  {
+    "id": "cropped-knit-cardigan-powder-blue",
+    "name": "Cropped Knit Cardigan: Powder Blue",
+    "category": "Women Winterwear",
+    "price": "₹ 1699",
+    "image": "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "winterwear",
+      "cardigan",
+      "knitwear",
+      "sweater",
+      "blue"
+    ]
+  },
+  {
+    "id": "pleated-tennis-mini-skirt-pure-white",
+    "name": "Pleated Tennis Mini Skirt: Pure White",
+    "category": "Women Skirts",
+    "price": "₹ 1299",
+    "image": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "skirts",
+      "pleated",
+      "tennis",
+      "mini",
+      "white"
+    ]
+  },
+  {
+    "id": "vegan-leather-slouchy-shoulder-bag-caramel",
+    "name": "Vegan Leather Slouchy Shoulder Bag: Caramel",
+    "category": "Women Handbags & Accessories",
+    "price": "₹ 1599",
+    "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "accessories",
+      "bags",
+      "shoulder bag",
+      "leather",
+      "tote"
+    ]
+  },
+  {
+    "id": "oversized-fleece-hoodie-blush-sorbet",
+    "name": "Oversized Fleece Hoodie: Blush Sorbet",
+    "category": "Women Winterwear",
+    "price": "₹ 1999",
+    "image": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80",
+    "tags": [
+      "women",
+      "winterwear",
+      "hoodie",
+      "fleece",
+      "oversized",
+      "blush"
+    ]
+  },
+  {
+    "id": "apex-chunky-runner-ghost-bone",
+    "name": "Apex Chunky Runner: Ghost Bone",
+    "category": "Sneakers",
+    "price": "₹ 2999",
+    "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "chunky", "runner", "bone", "kicks", "footwear"]
+  },
+  {
+    "id": "retro-high-top-crimson-royal",
+    "name": "Retro High-Top: Crimson Royal",
+    "category": "Sneakers",
+    "price": "₹ 3499",
+    "image": "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "hightop", "high-top", "crimson", "basketball", "streetwear"]
+  },
+  {
+    "id": "pastel-chunky-cloud-sneaker-lavender-sky",
+    "name": "Pastel Chunky Cloud Sneaker: Lavender Sky",
+    "category": "Sneakers",
+    "price": "₹ 2799",
+    "image": "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "pastel", "chunky", "women", "cloud", "footwear"]
+  },
+  {
+    "id": "classic-retro-low-court-forest-ochre",
+    "name": "Classic Retro Low Court: Forest Ochre",
+    "category": "Sneakers",
+    "price": "₹ 2499",
+    "image": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "court", "retro", "low", "classic", "leather"]
+  },
+  {
+    "id": "street-skate-canvas-high-monochrome-black",
+    "name": "Street Skate Canvas High: Monochrome Black",
+    "category": "Sneakers",
+    "price": "₹ 2199",
+    "image": "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "canvas", "skate", "hightop", "black", "footwear"]
+  },
+  {
+    "id": "air-velocity-dynamic-runner-solar-orange",
+    "name": "Air Velocity Dynamic Runner: Solar Orange",
+    "category": "Sneakers",
+    "price": "₹ 3299",
+    "image": "https://images.unsplash.com/photo-1579338559194-a162d19bf842?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "runner", "velocity", "orange", "sport", "athletic"]
+  },
+  {
+    "id": "minimalist-leather-court-sneaker-triple-white",
+    "name": "Minimalist Leather Court Sneaker: Triple White",
+    "category": "Sneakers",
+    "price": "₹ 2699",
+    "image": "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "court", "white", "minimalist", "leather", "clean"]
+  },
+  {
+    "id": "woven-vintage-leather-low-espresso-tan",
+    "name": "Woven Vintage Leather Low: Espresso Tan",
+    "category": "Sneakers",
+    "price": "₹ 2899",
+    "image": "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "woven", "leather", "tan", "luxury", "footwear"]
+  },
+  {
+    "id": "retro-basketball-mid-midnight-teal",
+    "name": "Retro Basketball Mid: Midnight Teal",
+    "category": "Sneakers",
+    "price": "₹ 3199",
+    "image": "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "basketball", "mid", "teal", "streetwear", "retro"]
+  },
+  {
+    "id": "urban-comfort-mule-slide-sand-dune",
+    "name": "Urban Comfort Mule Slide: Sand Dune",
+    "category": "Sneakers",
+    "price": "₹ 1799",
+    "image": "https://images.unsplash.com/photo-1514989940723-e8e51635b782?auto=format&fit=crop&w=600&q=80",
+    "tags": ["sneakers", "shoes", "slides", "mules", "sand", "slipon", "casual"]
+  },
+  {
+    "id": "urban-commuter-utility-backpack",
+    "name": "Urban Commuter Utility Backpack: Stealth Black",
+    "category": "Accessories",
+    "price": "₹ 2499",
+    "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80",
+    "tags": ["accessories", "backpacks", "bags", "utility", "black", "travel"]
+  },
+  {
+    "id": "marvel-infinity-gauntlet",
+    "name": "Marvel: Infinity Gauntlet Insulated Steel Bottle",
+    "category": "Accessories",
+    "price": "₹ 1299",
+    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=600&q=80",
+    "tags": ["accessories", "merch", "bottle", "steel", "marvel", "gold"]
+  },
+  {
+    "id": "vintage-leather-bi-fold-wallet",
+    "name": "Vintage Leather Bi-Fold Wallet: Tan Brown",
+    "category": "Accessories",
+    "price": "₹ 1199",
+    "image": "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=600&q=80",
+    "tags": ["accessories", "wallets", "leather", "bifold", "brown"]
+  },
+  {
+    "id": "heritage-structured-baseball-cap",
+    "name": "Heritage Structured Baseball Cap: Navy & Gold",
+    "category": "Accessories",
+    "price": "₹ 799",
+    "image": "https://images.unsplash.com/photo-1588850561407-ed78c282e89b?auto=format&fit=crop&w=600&q=80",
+    "tags": ["accessories", "caps", "hats", "navy", "headwear"]
+  },
+  {
+    "id": "rick-and-morty-portal-hop",
+    "name": "Rick & Morty: Portal Hop Keyring & Pin Set",
+    "category": "Accessories",
+    "price": "₹ 499",
+    "image": "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80",
+    "tags": ["accessories", "merch", "keychains", "pins", "rick and morty"]
+  },
+  {
+    "id": "vintage-washed-relaxed-jeans",
+    "name": "Vintage Washed Relaxed Jeans: Classic Indigo",
+    "category": "Pants",
+    "price": "₹ 2199",
+    "image": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80",
+    "tags": ["bottomwear", "jeans", "denim", "indigo", "pants"]
+  },
+  {
+    "id": "vhora-royale-oud-al-sultan",
+    "name": "Vhora Royale: Oud Al-Sultan Extrait de Parfum",
+    "category": "Perfumes",
+    "price": "₹ 3899",
+    "image": "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80",
+    "tags": ["perfume", "fragrance", "oud", "oriental", "amber", "extrait", "scent", "luxury"]
+  },
+  {
+    "id": "sante-blanche-velvet-vanilla",
+    "name": "Santé Blanche: Velvet Vanilla & Smoked Birch",
+    "category": "Perfumes",
+    "price": "₹ 3299",
+    "image": "https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=600&q=80",
+    "tags": ["perfume", "fragrance", "vanilla", "gourmand", "tonka", "birch", "parfum"]
+  },
+  {
+    "id": "nocturne-noir-tuscan-leather",
+    "name": "Nocturne Noir: Italian Bergamot & Tuscan Leather",
+    "category": "Perfumes",
+    "price": "₹ 3699",
+    "image": "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80",
+    "tags": ["perfume", "fragrance", "leather", "bergamot", "woody", "black", "extrait"]
+  },
+  {
+    "id": "aqua-celestia-sicilian-lemon",
+    "name": "Aqua Celestia: Sicilian Lemon & Mineral Sea Salt",
+    "category": "Perfumes",
+    "price": "₹ 2899",
+    "image": "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80",
+    "tags": ["perfume", "fragrance", "fresh", "aquatic", "citrus", "lemon", "summer"]
+  },
+  {
+    "id": "fleur-imperiale-turkish-rose",
+    "name": "Fleur Impériale: Turkish Rose & Cashmere Musk",
+    "category": "Perfumes",
+    "price": "₹ 3499",
+    "image": "https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80",
+    "tags": ["perfume", "fragrance", "rose", "floral", "musk", "cashmere", "extrait"]
+  },
+  {
+    "id": "tobacco-rouge-cuban-cacao",
+    "name": "Tobacco Rouge: Sweet Honey, Cuban Tobacco & Cacao",
+    "category": "Perfumes",
+    "price": "₹ 3599",
+    "image": "https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80",
+    "tags": ["perfume", "fragrance", "tobacco", "honey", "cacao", "warm", "woody"]
+  },
+  {
+    "id": "soleil-dor-golden-neroli",
+    "name": "Soleil D'Or: Golden Neroli & Orange Blossom",
+    "category": "Perfumes",
+    "price": "₹ 2999",
+    "image": "https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80",
+    "tags": ["perfume", "fragrance", "neroli", "citrus", "floral", "fresh", "solar"]
+  },
+  {
+    "id": "ambre-mystique-mysore-sandalwood",
+    "name": "Ambre Mystique: Labdanum, Benzoin & Mysore Sandalwood",
+    "category": "Perfumes",
+    "price": "₹ 3999",
+    "image": "https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80",
+    "tags": ["perfume", "fragrance", "amber", "sandalwood", "benzoin", "oud", "extrait"]
+  }
+]

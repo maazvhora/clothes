@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haute Parfumerie &amp; Luxury Extraits | VHORA CLOTHING - Artisanal Fragrances</title>
+    <meta name="description" content="Immerse yourself in Vhora Haute Parfumerie. Extrait de Parfum, Cambodian Agarwood Oud, Smoked Birch &amp; Vanilla, and rare artisanal fragrances with 16+ hours sillage.">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Backdrop Overlay for Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Slide-Out Sidebar Navigation Drawer -->
+    <aside class="sidebar-drawer" id="sidebar-drawer" aria-label="Main Navigation Drawer">
+        <!-- Brand Identity Banner in Sidebar -->
+        <div class="sidebar-brand-top">
+            <img src="images/vhora_crest.png" alt="Vhora Crest" class="sidebar-crest-icon">
+            <div class="sidebar-brand-text">
+                <span class="sidebar-brand-name">VHORA</span>
+                <span class="sidebar-brand-sub">CLOTHING</span>
+            </div>
+        </div>
+
+        <!-- Drawer Header with User Profile Greeting -->
+        <div class="sidebar-header">
+            <div class="sidebar-user" id="sidebar-user-btn" role="button" tabindex="0">
+                <div class="sidebar-avatar" id="sidebar-avatar">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <div class="sidebar-user-info">
+                    <h4 id="sidebar-greeting">Hello, Guest</h4>
+                    <a href="#" id="sidebar-auth-link">Login / Register</a>
+                </div>
+            </div>
+            <button class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Category Switcher Tabs -->
+        <div class="sidebar-tabs">
+            <button class="sidebar-tab" data-gender="men" onclick="switchSidebarGender('men')">MEN</button>
+            <button class="sidebar-tab" data-gender="women" onclick="switchSidebarGender('women')">WOMEN</button>
+            <button class="sidebar-tab" data-gender="sneakers" onclick="switchSidebarGender('sneakers')">SNEAKERS</button>
+            <button class="sidebar-tab active" data-gender="perfumes" onclick="switchSidebarGender('perfumes')">PERFUMES</button>
+        </div>
+
+        <!-- Scrollable Navigation Groups -->
+        <div class="sidebar-content">
+            <!-- Shop By Category -->
+            <div class="sidebar-group">
+                <h5 class="sidebar-group-title">CATEGORIES</h5>
+                <ul class="sidebar-links">
+                    <li><a href="index.html#new-arrivals-section" onclick="closeSidebar();"><i class="fa-solid fa-fire"></i> New Arrivals</a></li>
+                    <li><a href="index.html#topwear-section" onclick="closeSidebar();"><i class="fa-solid fa-shirt"></i> Topwear</a></li>
+                    <li><a href="index.html#bottomwear-section" onclick="closeSidebar();"><i class="fa-solid fa-vest-patches"></i> Bottomwear</a></li>
+                    <li><a href="sneakers.html" onclick="closeSidebar();"><i class="fa-solid fa-shoe-prints"></i> Sneakers & Shoes</a></li>
+                    <li><a href="perfumes.html" onclick="closeSidebar();"><i class="fa-solid fa-spray-can-sparkles"></i> Haute Parfumerie</a></li>
+                    <li><a href="index.html#accessories-section" onclick="closeSidebar();"><i class="fa-solid fa-glasses"></i> Accessories</a></li>
+                    <li><a href="women.html" onclick="closeSidebar();"><i class="fa-solid fa-sparkles"></i> Women's Edit</a></li>
+                    <li><a href="index.html#trending-section" onclick="closeSidebar();"><i class="fa-solid fa-tag"></i> Trending Merch</a></li>
+                </ul>
+            </div>
+
+            <!-- Themes & Pop Culture -->
+            <div class="sidebar-group">
+                <h5 class="sidebar-group-title">THEMES & POP CULTURE</h5>
+                <ul class="sidebar-links">
+                    <li><a href="#">Marvel Universe</a></li>
+                    <li><a href="#">Spider-Man</a></li>
+                    <li><a href="#">Attack on Titan</a></li>
+                    <li><a href="#">Dragon Ball Z</a></li>
+                    <li><a href="#">DC Comics</a></li>
+                    <li><a href="#">Peanuts</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Assistance & Account -->
+            <div class="sidebar-group">
+                <h5 class="sidebar-group-title">NEED HELP?</h5>
+                <ul class="sidebar-links secondary">
+                    <li><a href="#" onclick="closeSidebar(); openOrdersDrawer(); return false;"><i class="fa-solid fa-boxes-packing"></i> My Orders & Tracking</a></li>
+                    <li><a href="#"><i class="fa-solid fa-headset"></i> Contact Us</a></li>
+                    <li><a href="#"><i class="fa-solid fa-circle-question"></i> FAQs</a></li>
+                    <li><a href="#"><i class="fa-solid fa-gift" style="color: #e53935;"></i> Gift Vouchers</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="sidebar-footer">
+            <p class="sidebar-badge">HOMEGROWN INDIAN BRAND</p>
+            <div class="sidebar-socials">
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Backdrop Overlay for Wishlist Drawer -->
+    <div class="wishlist-overlay" id="wishlist-overlay"></div>
+
+    <!-- Slide-Out Wishlist Drawer -->
+    <aside class="wishlist-drawer" id="wishlist-drawer" aria-label="Wishlist Drawer">
+        <div class="wishlist-drawer-header">
+            <div class="wishlist-header-title">
+                <h3>My Wishlist</h3>
+                <span class="wishlist-items-count" id="wishlist-drawer-count">(0 items)</span>
+            </div>
+            <button class="wishlist-close-btn" id="wishlist-close-btn" aria-label="Close wishlist">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="wishlist-drawer-body" id="wishlist-drawer-body">
+            <!-- Dynamically populated or shows empty state -->
+        </div>
+
+        <div class="wishlist-drawer-footer" id="wishlist-drawer-footer">
+            <button class="wishlist-continue-btn" id="wishlist-continue-btn" onclick="closeWishlistDrawer()">Continue Shopping</button>
+        </div>
+    </aside>
+
+    <!-- Backdrop Overlay for Bag Drawer -->
+    <div class="cart-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
+
+    <!-- Slide-Out Shopping Bag Drawer -->
+    <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping Bag Drawer">
+        <!-- Bag Header -->
+        <div class="cart-drawer-header">
+            <div class="cart-header-title">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <h3>Shopping Bag</h3>
+                <span class="cart-items-count" id="cart-drawer-count">(0 items)</span>
+            </div>
+            <button class="cart-close-btn" id="cart-close-btn" onclick="closeCartDrawer()" aria-label="Close shopping bag">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Free Delivery Progress Bar -->
+        <div class="cart-shipping-bar" id="cart-shipping-bar">
+            <div class="shipping-bar-text" id="shipping-bar-text">
+                <i class="fa-solid fa-truck-fast"></i>
+                <span id="shipping-threshold-msg">Add <strong>₹999</strong> more for <strong>FREE DELIVERY</strong>!</span>
+            </div>
+            <div class="shipping-progress-track">
+                <div class="shipping-progress-fill" id="shipping-progress-fill" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- Bag Items Body -->
+        <div class="cart-drawer-body" id="cart-drawer-body">
+            <!-- Dynamically populated or shows empty state -->
+        </div>
+
+        <!-- Bag Summary & Checkout Footer -->
+        <div class="cart-drawer-footer" id="cart-drawer-footer">
+            <!-- Promo Code Input -->
+            <div class="cart-promo-box">
+                <div class="promo-input-wrap">
+                    <i class="fa-solid fa-tag"></i>
+                    <input type="text" id="cart-promo-input" placeholder="Coupon Code (e.g. MSTORE10)" autocomplete="off">
+                    <button type="button" id="cart-apply-promo-btn" onclick="applyPromoCode()">APPLY</button>
+                </div>
+                <div class="promo-message" id="promo-message" style="display: none;"></div>
+            </div>
+
+            <!-- Price Breakdown Summary -->
+            <div class="cart-summary-breakdown">
+                <div class="summary-row">
+                    <span>Total MRP</span>
+                    <span id="summary-total-mrp">₹ 0</span>
+                </div>
+                <div class="summary-row discount-row">
+                    <span>Bag Savings</span>
+                    <span id="summary-savings">- ₹ 0</span>
+                </div>
+                <div class="summary-row coupon-row" id="coupon-discount-row" style="display: none;">
+                    <span>Coupon Discount (10% OFF)</span>
+                    <span id="summary-coupon-discount">- ₹ 0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping Fee</span>
+                    <span id="summary-shipping" class="shipping-free-text">FREE</span>
+                </div>
+                <div class="summary-divider"></div>
+                <div class="summary-row grand-total-row">
+                    <span>Total Amount</span>
+                    <span id="summary-grand-total">₹ 0</span>
+                </div>
+            </div>
+
+            <!-- Checkout Button -->
+            <button class="cart-checkout-btn" id="cart-checkout-btn" onclick="proceedToCheckout()">
+                <span>PROCEED TO CHECKOUT</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+            <!-- Safe payment badge -->
+            <div class="cart-trust-badges">
+                <span><i class="fa-solid fa-shield-halved"></i> 100% Safe & Secure Checkout • COD Available</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Backdrop Overlay for Orders Drawer -->
+    <div class="orders-overlay" id="orders-overlay" onclick="closeOrdersDrawer()"></div>
+
+    <!-- Slide-Out My Orders Drawer -->
+    <aside class="orders-drawer" id="orders-drawer" aria-label="My Orders Drawer">
+        <!-- Orders Header -->
+        <div class="orders-drawer-header">
+            <div class="orders-header-title">
+                <i class="fa-solid fa-boxes-packing"></i>
+                <h3>My Orders</h3>
+                <span class="orders-items-count" id="orders-drawer-count">(0 orders)</span>
+            </div>
+            <button class="orders-close-btn" id="orders-close-btn" onclick="closeOrdersDrawer()" aria-label="Close my orders">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Filter / Status Pills -->
+        <div class="orders-filter-bar">
+            <button type="button" class="orders-filter-pill active" onclick="filterOrders('all', this)">All Orders</button>
+            <button type="button" class="orders-filter-pill" onclick="filterOrders('active', this)">In Transit</button>
+            <button type="button" class="orders-filter-pill" onclick="filterOrders('delivered', this)">Delivered</button>
+            <button type="button" class="orders-filter-pill" onclick="filterOrders('cancelled', this)">Cancelled</button>
+        </div>
+
+        <!-- Orders Body (dynamically populated) -->
+        <div class="orders-drawer-body" id="orders-drawer-body">
+            <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- Orders Footer / Need Help -->
+        <div class="orders-drawer-footer">
+            <div class="orders-footer-help">
+                <i class="fa-solid fa-headset"></i>
+                <div>
+                    <strong>Need Help with an Order?</strong>
+                    <span>24/7 dedicated concierge assistance & easy returns</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Backdrop Overlay for Invoice Receipt Modal -->
+    <div class="invoice-overlay" id="invoice-overlay" onclick="closeInvoiceModal()"></div>
+
+    <!-- Invoice Receipt Modal Dialog -->
+    <div class="invoice-modal" id="invoice-modal" role="dialog" aria-modal="true" aria-label="Order Invoice">
+        <button class="invoice-modal-close-btn" onclick="closeInvoiceModal()" aria-label="Close invoice">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="invoice-modal-content" id="invoice-modal-content">
+            <!-- Populated dynamically via JS -->
+        </div>
+    </div>
+
+    <!-- Backdrop Overlay for Auth Modal -->
+    <div class="auth-overlay" id="auth-overlay"></div>
+
+    <!-- Login & Register Modal Dialog -->
+    <div class="auth-modal" id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+        <button class="auth-close-btn" id="auth-close-btn" aria-label="Close authentication modal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Modal Top Header -->
+        <div class="auth-modal-header" id="auth-modal-header">
+            <div class="auth-crest-wrap">
+                <img src="images/vhora_crest.png" alt="Vhora Crest" class="auth-modal-crest">
+            </div>
+            <div class="auth-brand-badge"><i class="fa-solid fa-crown"></i> VHORA EXCLUSIVE</div>
+            <h3 class="auth-modal-title" id="auth-modal-title">Welcome to Vhora Clothing</h3>
+            <p class="auth-modal-subtitle">Log in or create an account for exclusive member discounts & tracking</p>
+            
+            <!-- Compulsory Login Notice Alert -->
+            <div class="auth-required-banner" id="auth-required-banner" style="display: none;">
+                <i class="fa-solid fa-lock"></i>
+                <span id="auth-required-text">Login or Register is compulsory to continue</span>
+            </div>
+
+            <div class="auth-tabs-nav" id="auth-tabs-nav">
+                <button type="button" class="auth-tab active" id="tab-btn-login" onclick="switchAuthTab('login')">
+                    LOGIN
+                </button>
+                <button type="button" class="auth-tab" id="tab-btn-register" onclick="switchAuthTab('register')">
+                    REGISTER
+                </button>
+            </div>
+        </div>
+
+        <div class="auth-modal-body">
+            <!-- 1. LOGIN FORM -->
+            <form class="auth-form-panel active" id="login-form-panel" onsubmit="handleLoginSubmit(event)">
+                <div class="auth-input-group">
+                    <label for="login-identifier">Email or Mobile Number</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-regular fa-envelope input-leading-icon"></i>
+                        <input type="text" id="login-identifier" placeholder="e.g. alex@example.com or 9876543210" required autocomplete="username">
+                    </div>
+                </div>
+
+                <div class="auth-input-group">
+                    <div class="auth-label-between">
+                        <label for="login-password">Password</label>
+                        <a href="#" class="auth-forgot-link" onclick="handleForgotPassword(event)">Forgot Password?</a>
+                    </div>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-solid fa-lock input-leading-icon"></i>
+                        <input type="password" id="login-password" placeholder="Enter your password" required autocomplete="current-password">
+                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('login-password', this)" aria-label="Toggle password visibility">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="auth-options-row">
+                    <label class="auth-checkbox-label">
+                        <input type="checkbox" id="login-remember" checked>
+                        <span class="auth-custom-checkbox"></span>
+                        Remember me on this device
+                    </label>
+                </div>
+
+                <button type="submit" class="auth-primary-submit-btn">
+                    <span>LOGIN</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="auth-divider-line">
+                    <span>OR CONTINUE WITH</span>
+                </div>
+
+                <div class="auth-social-buttons">
+                    <button type="button" class="auth-social-btn google-btn" onclick="handleSocialAuth('Google')">
+                        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 5c1.56 0 2.98.54 4.09 1.58l3.07-3.07C17.3 1.77 14.83 1 12 1 7.43 1 3.51 3.58 1.58 7.34l3.74 2.9C6.21 7.22 8.84 5 12 5z"/><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58l3.71 2.88c2.16-1.99 3.71-4.94 3.71-8.7z"/><path fill="#FBBC05" d="M5.32 14.76c-.24-.72-.37-1.49-.37-2.26 0-.77.13-1.54.37-2.26L1.58 7.34C.58 9.38 0 11.64 0 12s.58 2.62 1.58 4.66l3.74-2.9z"/><path fill="#34A853" d="M12 23c3.24 0 5.95-1.08 7.93-2.91l-3.71-2.88c-1.07.72-2.45 1.16-4.22 1.16-3.16 0-5.79-2.22-6.68-5.24L1.58 16.03C3.51 19.79 7.43 23 12 23z"/></svg>
+                        <span>Google</span>
+                    </button>
+                    <button type="button" class="auth-social-btn facebook-btn" onclick="handleSocialAuth('Facebook')">
+                        <i class="fa-brands fa-facebook-f" style="color: #1877f2;"></i>
+                        <span>Facebook</span>
+                    </button>
+                </div>
+
+                <div class="auth-footer-prompt">
+                    <span>Don't have an account?</span>
+                    <button type="button" class="auth-inline-link" onclick="switchAuthTab('register')">Register Now</button>
+                </div>
+            </form>
+
+            <!-- 2. REGISTER FORM -->
+            <form class="auth-form-panel" id="register-form-panel" onsubmit="handleRegisterSubmit(event)">
+                <div class="auth-input-group">
+                    <label for="reg-fullname">Full Name</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-regular fa-user input-leading-icon"></i>
+                        <input type="text" id="reg-fullname" placeholder="e.g. Maaz Vhora" required autocomplete="name">
+                    </div>
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="reg-email">Email Address</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-regular fa-envelope input-leading-icon"></i>
+                        <input type="email" id="reg-email" placeholder="e.g. maaz@example.com" required autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="reg-phone">Phone Number</label>
+                    <div class="auth-phone-wrapper">
+                        <span class="auth-phone-code">+91</span>
+                        <input type="tel" id="reg-phone" placeholder="98765 43210" pattern="[0-9]{10}" maxlength="10" required autocomplete="tel">
+                    </div>
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="reg-password">Password</label>
+                    <div class="auth-input-wrapper">
+                        <i class="fa-solid fa-lock input-leading-icon"></i>
+                        <input type="password" id="reg-password" placeholder="Create password (min 6 characters)" minlength="6" required autocomplete="new-password">
+                        <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('reg-password', this)" aria-label="Toggle password visibility">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="auth-options-row">
+                    <label class="auth-checkbox-label">
+                        <input type="checkbox" id="reg-agree" required checked>
+                        <span class="auth-custom-checkbox"></span>
+                        I agree to the <a href="#" class="auth-terms-link" onclick="event.preventDefault()">Terms & Conditions</a> and <a href="#" class="auth-terms-link" onclick="event.preventDefault()">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="auth-primary-submit-btn">
+                    <span>CREATE ACCOUNT</span>
+                    <i class="fa-solid fa-sparkles"></i>
+                </button>
+
+                <div class="auth-footer-prompt">
+                    <span>Already have an account?</span>
+                    <button type="button" class="auth-inline-link" onclick="switchAuthTab('login')">Login here</button>
+                </div>
+            </form>
+
+            <!-- 3. LOGGED IN ACCOUNT DASHBOARD (When user is authenticated) -->
+            <div class="auth-logged-in-view" id="auth-logged-in-view" style="display: none;">
+                <div class="user-profile-header-card">
+                    <div class="user-avatar-badge" id="user-avatar-badge">M</div>
+                    <div class="user-avatar-info">
+                        <h4 id="user-display-name">Guest User</h4>
+                        <p id="user-display-email">user@example.com</p>
+                        <span class="user-vip-tag"><i class="fa-solid fa-crown"></i> Vhora VIP Member</span>
+                    </div>
+                </div>
+
+                <div class="user-quick-links">
+                    <a href="#" class="user-quick-item" onclick="closeAuthModal(); openOrdersDrawer(); return false;">
+                        <i class="fa-solid fa-box"></i>
+                        <div class="link-text">
+                            <strong>My Orders</strong>
+                            <span id="user-orders-summary-text">Track, return & view orders</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                    </a>
+                    <a href="#" class="user-quick-item" onclick="closeAuthModal(); openWishlistDrawer(); return false;">
+                        <i class="fa-solid fa-heart" style="color: #e53935;"></i>
+                        <div class="link-text">
+                            <strong>My Wishlist</strong>
+                            <span>Saved items & favorites</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                    </a>
+                    <a href="#" class="user-quick-item" onclick="showToast('Address book feature coming soon! 🏠', 'info'); return false;">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="link-text">
+                            <strong>Saved Addresses</strong>
+                            <span>Manage delivery addresses</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right chevron-icon"></i>
+                    </a>
+                </div>
+
+                <button type="button" class="auth-logout-btn" onclick="handleLogout()">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>LOGOUT</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="nav-left">
+            <i class="fa-solid fa-bars menu-icon" id="menu-toggle" role="button" aria-label="Open navigation menu" tabindex="0"></i>
+            <ul class="nav-links">
+                <li><a href="index.html" id="nav-item-men" onclick="switchHeaderNav('men'); return false;">MEN</a></li>
+                <li><a href="women.html" id="nav-item-women" onclick="switchHeaderNav('women'); return false;">WOMEN</a></li>
+                <li><a href="sneakers.html" id="nav-item-sneakers" onclick="switchHeaderNav('sneakers'); return false;">SNEAKERS</a></li>
+                <li><a href="perfumes.html" class="active" id="nav-item-perfumes" onclick="switchHeaderNav('perfumes'); return false;">PERFUMES</a></li>
+            </ul>
+        </div>
+        <a href="index.html" class="brand-logo" aria-label="Vhora Clothing Home">
+            <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="brand-crest-icon">
+            <div class="brand-text-block">
+                <span class="brand-title">VHORA</span>
+                <span class="brand-subtitle">CLOTHING</span>
+            </div>
+        </a>
+        <div class="nav-right">
+            <!-- Backdrop Overlay for Search Click-Away -->
+            <div class="search-overlay" id="search-overlay" onclick="closeSearchDropdown()"></div>
+
+            <div class="search-bar" id="search-bar-container">
+                <button type="button" class="search-mic-btn" id="search-mic-btn" onclick="startVoiceSearch()" aria-label="Search with voice" title="Voice Search">
+                    <i class="fa-solid fa-microphone"></i>
+                </button>
+                <input type="text" id="site-search-input" placeholder="Search shirts, pants, hoodies, merch..." autocomplete="off">
+                <button type="button" class="search-clear-btn" id="search-clear-btn" onclick="clearSearchInput()" aria-label="Clear search" title="Clear">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <button type="button" class="search-submit-btn" id="search-submit-btn" onclick="executeSearch()" aria-label="Search" title="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <!-- Interactive Live Search Dropdown Panel -->
+                <div class="search-dropdown" id="search-dropdown">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+            <div class="nav-icons">
+                <div class="mobile-search-btn" id="mobile-search-toggle" onclick="toggleMobileSearch()" role="button" aria-label="Search" title="Search" tabindex="0">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="user-nav-btn" id="auth-toggle" role="button" aria-label="Account Login or Register" title="Account" tabindex="0">
+                    <i class="fa-regular fa-user" id="auth-nav-icon"></i>
+                    <span class="user-status-dot" id="user-status-dot"></span>
+                </div>
+                <div class="orders-nav-btn" id="orders-toggle" role="button" aria-label="My Orders" title="My Orders" tabindex="0">
+                    <i class="fa-solid fa-box-open"></i>
+                    <span class="orders-badge" id="orders-badge">0</span>
+                </div>
+                <div class="wishlist-nav-btn" id="wishlist-toggle" role="button" aria-label="View Wishlist" title="Wishlist" tabindex="0">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-badge" id="wishlist-badge">0</span>
+                </div>
+                <div class="cart-nav-btn" id="cart-toggle" role="button" aria-label="View Shopping Bag" title="Bag" tabindex="0">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <!-- Dedicated Perfumes Hero Banner -->
+    <section class="page-hero-banner perfume-hero-theme">
+        <div class="page-hero-container">
+            <div class="page-hero-content">
+                <span class="page-hero-kicker amber"><i class="fa-solid fa-spray-can-sparkles"></i> HAUTE PARFUMERIE • PURE EXTRAITS</span>
+                <h1 class="page-hero-title white">ALCHEMY OF SCENT: THE EXTRAIT COLLECTION</h1>
+                <p class="page-hero-subtitle muted">Hand-poured artisanal concentrations of pure Cambodian agarwood, Madagascar bourbon vanilla, Tuscan leather, and Damascus rose. Formulated with 28% oil concentration for an indelible 16+ hour sillage.</p>
+                <div class="page-hero-actions">
+                    <button type="button" class="page-hero-btn primary-gold" onclick="filterPerfumesSection('oud', document.querySelectorAll('.perfume-pill')[1]); document.getElementById('perfumes-section').scrollIntoView({behavior:'smooth'});">
+                        Explore Oud Al-Sultan <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <button type="button" class="page-hero-btn outline" onclick="document.getElementById('perfumes-section').scrollIntoView({behavior:'smooth'});">
+                        View All Fragrances
+                    </button>
+                </div>
+            </div>
+            <div class="page-hero-media">
+                <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=1200&q=80" alt="Vhora Haute Parfumerie Bottle">
+            </div>
+        </div>
+    </section>
+    <!-- Trust Badges Bar for Perfumes -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <i class="fa-solid fa-award" style="color: #d4af37;"></i>
+            <div class="trust-text">
+                <h4>Pure Extraits</h4>
+                <p>28% Oil Concentration</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="fa-solid fa-clock" style="color: #d4af37;"></i>
+            <div class="trust-text">
+                <h4>16+ Hours Sillage</h4>
+                <p>Beast Mode Longevity</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="fa-solid fa-gift" style="color: #d4af37;"></i>
+            <div class="trust-text">
+                <h4>Free Sample Vial</h4>
+                <p>with Every Bottle Order</p>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="fa-solid fa-truck-fast" style="color: #d4af37;"></i>
+            <div class="trust-text">
+                <h4>Insured Fragrance Courier</h4>
+                <p>Zero Breakage Guarantee</p>
+            </div>
+        </div>
+    </div>
+    <!-- VHORA HAUTE PARFUMERIE SECTION -->
+    <section class="perfumes-section" id="perfumes-section">
+        <div class="perfumes-container">
+            <div class="perfumes-header-wrap">
+                <span class="perfumes-kicker"><i class="fa-solid fa-spray-can-sparkles"></i> VHORA ATELIER • EXTRAIT DE PARFUM</span>
+                <h2 class="perfumes-main-title">HAUTE PARFUMERIE COLLECTION</h2>
+                <p class="perfumes-subtitle">Crafted by master perfumers across Grasse and Mysore. Discover rare resinous ouds, velvet gourmand vanillas, sun-drenched coastal neroli, and smoked Tuscan leathers.</p>
+                
+                <!-- Category Filter Pills Bar for Perfumes -->
+                <div class="perfumes-filter-bar" id="perfumes-filter-bar">
+                    <button type="button" class="perfume-pill active" onclick="filterPerfumesSection('all', this)">All Fragrances (8)</button>
+                    <button type="button" class="perfume-pill" onclick="filterPerfumesSection('oud', this)">Oud &amp; Oriental</button>
+                    <button type="button" class="perfume-pill" onclick="filterPerfumesSection('woody', this)">Woody &amp; Smokey</button>
+                    <button type="button" class="perfume-pill" onclick="filterPerfumesSection('fresh', this)">Fresh &amp; Citrus</button>
+                    <button type="button" class="perfume-pill" onclick="filterPerfumesSection('floral', this)">Floral &amp; Gourmand</button>
+                </div>
+            </div>
+
+            <!-- Visual Category Showcase Tiles for Perfumes -->
+            <div class="perfumes-categories-grid">
+                <div class="perfumes-cat-card" onclick="filterPerfumesSection('oud', document.querySelectorAll('.perfume-pill')[1])">
+                    <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Oud & Oriental Extraits">
+                    <div class="perfumes-cat-overlay">
+                        <span class="perfumes-cat-tag">OLFACTORY FAMILY</span>
+                        <h4>Oud &amp; Oriental</h4>
+                        <span class="perfumes-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="perfumes-cat-card" onclick="filterPerfumesSection('woody', document.querySelectorAll('.perfume-pill')[2])">
+                    <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80" alt="Smokey Leather & Woods">
+                    <div class="perfumes-cat-overlay">
+                        <span class="perfumes-cat-tag">OLFACTORY FAMILY</span>
+                        <h4>Woody &amp; Leather</h4>
+                        <span class="perfumes-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="perfumes-cat-card" onclick="filterPerfumesSection('fresh', document.querySelectorAll('.perfume-pill')[3])">
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80" alt="Fresh Citrus & Aquatic">
+                    <div class="perfumes-cat-overlay">
+                        <span class="perfumes-cat-tag">OLFACTORY FAMILY</span>
+                        <h4>Fresh &amp; Aquatic</h4>
+                        <span class="perfumes-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+                <div class="perfumes-cat-card" onclick="filterPerfumesSection('floral', document.querySelectorAll('.perfume-pill')[4])">
+                    <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=600&q=80" alt="Floral & Velvet Gourmand">
+                    <div class="perfumes-cat-overlay">
+                        <span class="perfumes-cat-tag">OLFACTORY FAMILY</span>
+                        <h4>Gourmand &amp; Floral</h4>
+                        <span class="perfumes-cat-link">Explore <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Perfumes Product Cards Grid -->
+            <div class="perfumes-products-grid" id="perfumes-products-grid">
+                <!-- Card 1 -->
+                <div class="perfume-card" data-product-id="vhora-royale-oud-al-sultan" data-category="oud" data-selected-size="50ml">
+                    <div class="perfume-card-img-box" onclick="selectSearchResult('vhora-royale-oud-al-sultan')">
+                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Vhora Royale: Oud Al-Sultan Extrait" class="perfume-card-img" loading="lazy">
+                        <span class="perfume-card-badge">BESTSELLER</span>
+                        <button type="button" class="perfume-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="perfume-card-sizes" onclick="event.stopPropagation()">
+                            <span class="perfume-card-size-pill active" onclick="selectPerfumeCardSize(event, this, '50ml')">50ml</span>
+                            <span class="perfume-card-size-pill" onclick="selectPerfumeCardSize(event, this, '100ml')">100ml</span>
+                        </div>
+                    </div>
+                    <div class="perfume-card-info">
+                        <span class="perfume-card-concentration">Extrait de Parfum • 28% Oil</span>
+                        <h3 class="perfume-card-name" onclick="selectSearchResult('vhora-royale-oud-al-sultan')">Vhora Royale: Oud Al-Sultan</h3>
+                        <p class="perfume-card-notes-preview">Top: Saffron, Pink Pepper • Heart: Taif Rose • Base: Cambodian Agarwood, Smoked Amber</p>
+                        <div class="perfume-card-price-row">
+                            <span class="perfume-card-price">₹ 3899</span>
+                            <span class="perfume-card-mrp">₹ 5499</span>
+                            <span class="perfume-card-discount">29% OFF</span>
+                        </div>
+                        <div class="perfume-card-actions">
+                            <button type="button" class="perfume-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG • 50ml
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="perfume-card" data-product-id="sante-blanche-velvet-vanilla" data-category="floral" data-selected-size="50ml">
+                    <div class="perfume-card-img-box" onclick="selectSearchResult('sante-blanche-velvet-vanilla')">
+                        <img src="https://images.unsplash.com/photo-1547887537-6158d64c35b3?auto=format&fit=crop&w=600&q=80" alt="Santé Blanche: Velvet Vanilla" class="perfume-card-img" loading="lazy">
+                        <span class="perfume-card-badge">NEW LAUNCH</span>
+                        <button type="button" class="perfume-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="perfume-card-sizes" onclick="event.stopPropagation()">
+                            <span class="perfume-card-size-pill active" onclick="selectPerfumeCardSize(event, this, '50ml')">50ml</span>
+                            <span class="perfume-card-size-pill" onclick="selectPerfumeCardSize(event, this, '100ml')">100ml</span>
+                        </div>
+                    </div>
+                    <div class="perfume-card-info">
+                        <span class="perfume-card-concentration">Eau de Parfum • 22% Oil</span>
+                        <h3 class="perfume-card-name" onclick="selectSearchResult('sante-blanche-velvet-vanilla')">Santé Blanche: Velvet Vanilla</h3>
+                        <p class="perfume-card-notes-preview">Top: Cardamom, Almond • Heart: Bourbon Vanilla, Heliotrope • Base: Smoked Birch, Tonka</p>
+                        <div class="perfume-card-price-row">
+                            <span class="perfume-card-price">₹ 3299</span>
+                            <span class="perfume-card-mrp">₹ 4599</span>
+                            <span class="perfume-card-discount">28% OFF</span>
+                        </div>
+                        <div class="perfume-card-actions">
+                            <button type="button" class="perfume-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG • 50ml
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="perfume-card" data-product-id="nocturne-noir-tuscan-leather" data-category="woody" data-selected-size="50ml">
+                    <div class="perfume-card-img-box" onclick="selectSearchResult('nocturne-noir-tuscan-leather')">
+                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80" alt="Nocturne Noir: Tuscan Leather" class="perfume-card-img" loading="lazy">
+                        <span class="perfume-card-badge">SIGNATURE</span>
+                        <button type="button" class="perfume-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="perfume-card-sizes" onclick="event.stopPropagation()">
+                            <span class="perfume-card-size-pill active" onclick="selectPerfumeCardSize(event, this, '50ml')">50ml</span>
+                            <span class="perfume-card-size-pill" onclick="selectPerfumeCardSize(event, this, '100ml')">100ml</span>
+                        </div>
+                    </div>
+                    <div class="perfume-card-info">
+                        <span class="perfume-card-concentration">Extrait de Parfum • 26% Oil</span>
+                        <h3 class="perfume-card-name" onclick="selectSearchResult('nocturne-noir-tuscan-leather')">Nocturne Noir: Tuscan Leather</h3>
+                        <p class="perfume-card-notes-preview">Top: Italian Bergamot, Raspberry • Heart: Suede, Black Pepper • Base: Ambergris, Cedar</p>
+                        <div class="perfume-card-price-row">
+                            <span class="perfume-card-price">₹ 3699</span>
+                            <span class="perfume-card-mrp">₹ 5199</span>
+                            <span class="perfume-card-discount">29% OFF</span>
+                        </div>
+                        <div class="perfume-card-actions">
+                            <button type="button" class="perfume-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG • 50ml
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="perfume-card" data-product-id="aqua-celestia-sicilian-lemon" data-category="fresh" data-selected-size="50ml">
+                    <div class="perfume-card-img-box" onclick="selectSearchResult('aqua-celestia-sicilian-lemon')">
+                        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80" alt="Aqua Celestia: Sicilian Lemon" class="perfume-card-img" loading="lazy">
+                        <span class="perfume-card-badge">SUMMER EDIT</span>
+                        <button type="button" class="perfume-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="perfume-card-sizes" onclick="event.stopPropagation()">
+                            <span class="perfume-card-size-pill active" onclick="selectPerfumeCardSize(event, this, '50ml')">50ml</span>
+                            <span class="perfume-card-size-pill" onclick="selectPerfumeCardSize(event, this, '100ml')">100ml</span>
+                        </div>
+                    </div>
+                    <div class="perfume-card-info">
+                        <span class="perfume-card-concentration">Eau de Parfum • 20% Oil</span>
+                        <h3 class="perfume-card-name" onclick="selectSearchResult('aqua-celestia-sicilian-lemon')">Aqua Celestia: Sicilian Lemon</h3>
+                        <p class="perfume-card-notes-preview">Top: Primofiore Lemon, Mandarin • Heart: Sea Salt, Sage • Base: Sun-bleached Driftwood</p>
+                        <div class="perfume-card-price-row">
+                            <span class="perfume-card-price">₹ 2899</span>
+                            <span class="perfume-card-mrp">₹ 3999</span>
+                            <span class="perfume-card-discount">28% OFF</span>
+                        </div>
+                        <div class="perfume-card-actions">
+                            <button type="button" class="perfume-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG • 50ml
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="perfume-card" data-product-id="fleur-imperiale-turkish-rose" data-category="floral" data-selected-size="50ml">
+                    <div class="perfume-card-img-box" onclick="selectSearchResult('fleur-imperiale-turkish-rose')">
+                        <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?auto=format&fit=crop&w=600&q=80" alt="Fleur Impériale: Turkish Rose" class="perfume-card-img" loading="lazy">
+                        <span class="perfume-card-badge">EXCLUSIVE</span>
+                        <button type="button" class="perfume-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="perfume-card-sizes" onclick="event.stopPropagation()">
+                            <span class="perfume-card-size-pill active" onclick="selectPerfumeCardSize(event, this, '50ml')">50ml</span>
+                            <span class="perfume-card-size-pill" onclick="selectPerfumeCardSize(event, this, '100ml')">100ml</span>
+                        </div>
+                    </div>
+                    <div class="perfume-card-info">
+                        <span class="perfume-card-concentration">Extrait de Parfum • 27% Oil</span>
+                        <h3 class="perfume-card-name" onclick="selectSearchResult('fleur-imperiale-turkish-rose')">Fleur Impériale: Turkish Rose</h3>
+                        <p class="perfume-card-notes-preview">Top: Lychee, Peony • Heart: Turkish Damascena Rose • Base: Cashmere Wood, White Musk</p>
+                        <div class="perfume-card-price-row">
+                            <span class="perfume-card-price">₹ 3499</span>
+                            <span class="perfume-card-mrp">₹ 4999</span>
+                            <span class="perfume-card-discount">30% OFF</span>
+                        </div>
+                        <div class="perfume-card-actions">
+                            <button type="button" class="perfume-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG • 50ml
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="perfume-card" data-product-id="tobacco-rouge-cuban-cacao" data-category="woody" data-selected-size="50ml">
+                    <div class="perfume-card-img-box" onclick="selectSearchResult('tobacco-rouge-cuban-cacao')">
+                        <img src="https://images.unsplash.com/photo-1508746829417-e6f548d8d6ed?auto=format&fit=crop&w=600&q=80" alt="Tobacco Rouge: Cuban Cacao" class="perfume-card-img" loading="lazy">
+                        <span class="perfume-card-badge">HOT SELLER</span>
+                        <button type="button" class="perfume-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="perfume-card-sizes" onclick="event.stopPropagation()">
+                            <span class="perfume-card-size-pill active" onclick="selectPerfumeCardSize(event, this, '50ml')">50ml</span>
+                            <span class="perfume-card-size-pill" onclick="selectPerfumeCardSize(event, this, '100ml')">100ml</span>
+                        </div>
+                    </div>
+                    <div class="perfume-card-info">
+                        <span class="perfume-card-concentration">Eau de Parfum • 24% Oil</span>
+                        <h3 class="perfume-card-name" onclick="selectSearchResult('tobacco-rouge-cuban-cacao')">Tobacco Rouge: Cuban Cacao</h3>
+                        <p class="perfume-card-notes-preview">Top: Ginger, Sweet Honeycomb • Heart: Aged Tobacco Leaf, Cacao • Base: French Oak</p>
+                        <div class="perfume-card-price-row">
+                            <span class="perfume-card-price">₹ 3599</span>
+                            <span class="perfume-card-mrp">₹ 4999</span>
+                            <span class="perfume-card-discount">28% OFF</span>
+                        </div>
+                        <div class="perfume-card-actions">
+                            <button type="button" class="perfume-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG • 50ml
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="perfume-card" data-product-id="soleil-dor-golden-neroli" data-category="fresh" data-selected-size="50ml">
+                    <div class="perfume-card-img-box" onclick="selectSearchResult('soleil-dor-golden-neroli')">
+                        <img src="https://images.unsplash.com/photo-1615397349754-cfa2066a298e?auto=format&fit=crop&w=600&q=80" alt="Soleil D'Or: Golden Neroli" class="perfume-card-img" loading="lazy">
+                        <span class="perfume-card-badge">FRESH DROP</span>
+                        <button type="button" class="perfume-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="perfume-card-sizes" onclick="event.stopPropagation()">
+                            <span class="perfume-card-size-pill active" onclick="selectPerfumeCardSize(event, this, '50ml')">50ml</span>
+                            <span class="perfume-card-size-pill" onclick="selectPerfumeCardSize(event, this, '100ml')">100ml</span>
+                        </div>
+                    </div>
+                    <div class="perfume-card-info">
+                        <span class="perfume-card-concentration">Eau de Parfum • 21% Oil</span>
+                        <h3 class="perfume-card-name" onclick="selectSearchResult('soleil-dor-golden-neroli')">Soleil D'Or: Golden Neroli</h3>
+                        <p class="perfume-card-notes-preview">Top: Calabrian Bergamot, Petitgrain • Heart: Tunisian Neroli, Orange Flower • Base: Solar Cedar</p>
+                        <div class="perfume-card-price-row">
+                            <span class="perfume-card-price">₹ 2999</span>
+                            <span class="perfume-card-mrp">₹ 4199</span>
+                            <span class="perfume-card-discount">29% OFF</span>
+                        </div>
+                        <div class="perfume-card-actions">
+                            <button type="button" class="perfume-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG • 50ml
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="perfume-card" data-product-id="ambre-mystique-mysore-sandalwood" data-category="oud" data-selected-size="50ml">
+                    <div class="perfume-card-img-box" onclick="selectSearchResult('ambre-mystique-mysore-sandalwood')">
+                        <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80" alt="Ambre Mystique: Sandalwood" class="perfume-card-img" loading="lazy">
+                        <span class="perfume-card-badge">LIMITED MASTERPIECE</span>
+                        <button type="button" class="perfume-card-wishlist-btn" onclick="toggleWishlist(event, this)" aria-label="Add to Wishlist" title="Add to Wishlist">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                        <div class="perfume-card-sizes" onclick="event.stopPropagation()">
+                            <span class="perfume-card-size-pill active" onclick="selectPerfumeCardSize(event, this, '50ml')">50ml</span>
+                            <span class="perfume-card-size-pill" onclick="selectPerfumeCardSize(event, this, '100ml')">100ml</span>
+                        </div>
+                    </div>
+                    <div class="perfume-card-info">
+                        <span class="perfume-card-concentration">Extrait de Parfum • 30% Oil</span>
+                        <h3 class="perfume-card-name" onclick="selectSearchResult('ambre-mystique-mysore-sandalwood')">Ambre Mystique: Sandalwood</h3>
+                        <p class="perfume-card-notes-preview">Top: Labdanum, Incense • Heart: Golden Benzoin, Rose • Base: Mysore Sandalwood, Indonesian Patchouli</p>
+                        <div class="perfume-card-price-row">
+                            <span class="perfume-card-price">₹ 3999</span>
+                            <span class="perfume-card-mrp">₹ 5699</span>
+                            <span class="perfume-card-discount">30% OFF</span>
+                        </div>
+                        <div class="perfume-card-actions">
+                            <button type="button" class="perfume-card-buy-btn" onclick="buyProduct(event, this)">
+                                <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG • 50ml
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Scent Pyramid & Science Section -->
+    <section class="scent-pyramid-section">
+        <div class="scent-pyramid-container">
+            <div class="scent-pyramid-header">
+                <span class="perfumes-kicker"><i class="fa-solid fa-layer-group"></i> OLFACTORY SCIENCE</span>
+                <h2 class="scent-pyramid-title">THE ANATOMY OF VHORA EXTRAITS</h2>
+            </div>
+            <div class="scent-pyramid-grid">
+                <div class="scent-pyramid-card">
+                    <div class="scent-pyramid-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <span class="pyramid-time">TOP NOTES • 0 - 30 MINS</span>
+                    <h4>The Sparkling Opening</h4>
+                    <p>Volatile, luminous citrus and spicy essences that deliver an exhilarating first impression upon initial skin application.</p>
+                    <p class="scent-pyramid-ingredients">Bergamot, Pink Pepper, Neroli, Cardamom, Calamansi</p>
+                </div>
+                <div class="scent-pyramid-card">
+                    <div class="scent-pyramid-icon"><i class="fa-solid fa-fan"></i></div>
+                    <span class="pyramid-time">HEART NOTES • 2 - 6 HOURS</span>
+                    <h4>The Signature Soul</h4>
+                    <p>The rich floral, gourmand, and herbal core that blooms as body heat activates the luxurious heart essences.</p>
+                    <p class="scent-pyramid-ingredients">Taif Rose, Bourbon Vanilla, Heliotrope, Cacao, Sage</p>
+                </div>
+                <div class="scent-pyramid-card">
+                    <div class="scent-pyramid-icon"><i class="fa-solid fa-gem"></i></div>
+                    <span class="pyramid-time">BASE NOTES • 8 - 18+ HOURS</span>
+                    <h4>The Indelible Sillage</h4>
+                    <p>Heavy molecular weight resins, woods, and ambers that linger intimately on pulse points and fabrics until the next day.</p>
+                    <p class="scent-pyramid-ingredients">Cambodian Oud, Mysore Sandalwood, Tuscan Suede, Amber</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Interactive Search Results Section -->
+    <section class="search-results-section" id="search-results-section" style="display: none;">
+        <div class="search-results-container">
+            <div class="search-results-header">
+                <div class="search-results-title-group">
+                    <span class="search-results-kicker"><i class="fa-solid fa-magnifying-glass"></i> STORE SEARCH</span>
+                    <h2 class="search-results-title" id="search-results-title">Results for "<span id="search-query-display"></span>"</h2>
+                    <span class="search-results-count" id="search-results-count">0 products found</span>
+                </div>
+                <div class="search-results-actions">
+                    <div class="search-filter-tags" id="search-filter-tags">
+                        <button type="button" class="search-tag-pill active" onclick="filterSearchResults('all', this)">All</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('shirts', this)">Shirts</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('pants', this)">Pants</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('t-shirts', this)">T-Shirts</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('hoodies', this)">Winterwear</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('sneakers', this)">Sneakers</button>
+                        <button type="button" class="search-tag-pill" onclick="filterSearchResults('accessories', this)">Accessories</button>
+                    </div>
+                    <button type="button" class="search-clear-section-btn" onclick="clearAndCloseSearch()">
+                        <i class="fa-solid fa-xmark"></i> Clear Search
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Dynamic Results Grid -->
+            <div class="search-results-grid" id="search-results-grid">
+                <!-- Dynamically rendered via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cross-Category Exploration Showcase -->
+    <section class="cross-nav-banner-section dark">
+        <div class="cross-nav-container cols-3">
+            <a href="index.html" class="cross-nav-card">
+                <img src="https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?auto=format&fit=crop&w=800&q=80" alt="Men's Apparel">
+                <div class="cross-nav-overlay"></div>
+                <div class="cross-nav-text">
+                    <span class="cross-nav-tag">DISCOVER</span>
+                    <h3 class="cross-nav-title">Men's Streetwear &amp; Apparel</h3>
+                    <span class="cross-nav-link">Shop Men's Fits <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="women.html" class="cross-nav-card">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="The Women's Edit">
+                <div class="cross-nav-overlay"></div>
+                <div class="cross-nav-text">
+                    <span class="cross-nav-tag">NEW COLLECTION</span>
+                    <h3 class="cross-nav-title">The Women's Edit</h3>
+                    <span class="cross-nav-link">Shop Women's Fashion <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <a href="sneakers.html" class="cross-nav-card">
+                <img src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80" alt="Sneakers Vault">
+                <div class="cross-nav-overlay"></div>
+                <div class="cross-nav-text">
+                    <span class="cross-nav-tag">LIMITED DROPS</span>
+                    <h3 class="cross-nav-title">Sneakers Vault</h3>
+                    <span class="cross-nav-link">Explore Kicks <i class="fa-solid fa-arrow-right"></i></span>
+                </div>
+            </a>
+        </div>
+    </section>
+<!-- HOMEGROWN INDIAN BRAND Banner Section -->
+    <section class="homegrown-banner-section">
+        <div class="homegrown-banner-inner">
+            <img src="images/vhora_crest.png" alt="Vhora Crest" class="homegrown-crest">
+            <div class="homegrown-text-wrap">
+                <span class="homegrown-pre">PRIDE OF HERITAGE</span>
+                <h3 class="homegrown-text">VHORA CLOTHING • HOMEGROWN INDIAN BRAND</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <!-- Column 1: Need Help -->
+            <div class="footer-col">
+                <h4 class="footer-title">NEED HELP</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#" onclick="openOrdersDrawer(); return false;">Track Order</a></li>
+                    <li><a href="#" onclick="openOrdersDrawer(); return false;">My Orders</a></li>
+                    <li><a href="#">Returns & Refunds</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">My Account</a></li>
+                </ul>
+                <div class="footer-trust-list">
+                    <a href="#" class="footer-trust-item">
+                        <span class="footer-icon-circle"><i class="fa-solid fa-indian-rupee-sign"></i></span>
+                        <span>COD Available</span>
+                    </a>
+                    <a href="#" class="footer-trust-item">
+                        <span class="footer-icon-circle"><i class="fa-solid fa-arrows-rotate"></i></span>
+                        <span>30 Days Easy Returns & Exchanges</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Column 2: Company -->
+            <div class="footer-col">
+                <h4 class="footer-title">COMPANY</h4>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Investor Relation</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Gift Vouchers</a></li>
+                    <li><a href="#">Community Initiatives</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: More Info -->
+            <div class="footer-col">
+                <h4 class="footer-title">MORE INFO</h4>
+                <ul class="footer-links">
+                    <li><a href="#">T&C</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Get Notified</a></li>
+                    <li><a href="#">Blogs</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 4: Store Near Me -->
+            <div class="footer-col">
+                <h4 class="footer-title">STORE NEAR ME</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Mumbai</a></li>
+                    <li><a href="#">Pune</a></li>
+                    <li><a href="#">Bangalore</a></li>
+                    <li><a href="#">Ahmedabad</a></li>
+                    <li><a href="#" class="highlight-blue">View More</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Branding & Copyright -->
+        <div class="footer-bottom-branding">
+            <div class="footer-brand-wrap">
+                <div class="footer-brand-lockup">
+                    <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="footer-crest-img">
+                    <div class="footer-brand-text">
+                        <span class="footer-brand-name">VHORA</span>
+                        <span class="footer-brand-sub">CLOTHING</span>
+                    </div>
+                </div>
+                <p class="footer-tagline">Luxury Indian Fashion &amp; Apparel • Gold &amp; White Heritage Edition</p>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 VHORA CLOTHING. All Rights Reserved. Crafted with pride in India.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Details & Size Selection Modal -->
+    <div class="product-modal-overlay" id="product-modal-overlay" onclick="closeProductModal()"></div>
+    <div class="product-modal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-product-title">
+        <button class="product-modal-close" id="product-modal-close" onclick="closeProductModal()" aria-label="Close modal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="product-modal-content">
+            <!-- Left Side: Product Showcase Image -->
+            <div class="product-modal-media">
+                <div class="product-modal-img-container">
+                    <img id="modal-product-img" src="" alt="Product Image">
+                    <span class="product-modal-badge" id="modal-product-badge">BESTSELLER</span>
+                </div>
+            </div>
+
+            <!-- Right Side: Details & Size Selection -->
+            <div class="product-modal-details">
+                <div class="product-modal-header">
+                    <span class="product-modal-brand"><i class="fa-solid fa-certificate"></i> VHORA OFFICIAL</span>
+                    <h2 class="product-modal-title" id="modal-product-title">Product Name</h2>
+                    <p class="product-modal-category" id="modal-product-category">Category</p>
+                    <div class="product-modal-rating">
+                        <div class="stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <span class="rating-text">4.8 (2,430+ Reviews)</span>
+                    </div>
+                    <div class="product-modal-pricing">
+                        <span class="product-modal-price" id="modal-product-price">₹ 1499</span>
+                        <span class="product-modal-mrp" id="modal-product-mrp">₹ 2299</span>
+                        <span class="product-modal-discount" id="modal-product-discount">35% OFF</span>
+                    </div>
+                    <p class="product-modal-taxes">Inclusive of all taxes • Free Shipping available</p>
+                </div>
+
+                <!-- SIZE SELECTION SECTION -->
+                <div class="product-modal-size-section" id="product-modal-size-section">
+                    <div class="size-section-header">
+                        <div class="size-section-title-wrap">
+                            <span class="size-section-label"><i class="fa-solid fa-shirt"></i> SELECT SIZE</span>
+                            <span class="size-selected-badge" id="modal-selected-size-text">None selected</span>
+                        </div>
+                        <button type="button" class="size-guide-toggle-btn" id="size-guide-toggle-btn" onclick="toggleSizeGuide()">
+                            <i class="fa-solid fa-ruler-horizontal"></i> Size Chart
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Size Buttons Grid -->
+                    <div class="size-pills-grid" id="modal-size-pills-grid"></div>
+
+                    <!-- Stock alert / Helper text -->
+                    <div class="size-stock-status" id="modal-size-stock-status">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span id="modal-size-stock-text">Please select a size to proceed</span>
+                    </div>
+
+                    <!-- Collapsible Size Guide Table -->
+                    <div class="size-guide-drawer" id="size-guide-drawer" style="display: none;">
+                        <h5 class="size-guide-title">Standard Sizing Guide (Inches)</h5>
+                        <table class="size-guide-table">
+                            <thead>
+                                <tr>
+                                    <th>Size</th>
+                                    <th>Chest / Waist</th>
+                                    <th>Length</th>
+                                    <th>Fit</th>
+                                </tr>
+                            </thead>
+                            <tbody id="modal-size-guide-body">
+                                <tr><td><strong>S</strong></td><td>38"</td><td>27.5"</td><td>Regular</td></tr>
+                                <tr><td><strong>M</strong></td><td>40"</td><td>28.5"</td><td>Regular</td></tr>
+                                <tr><td><strong>L</strong></td><td>42"</td><td>29.5"</td><td>Relaxed</td></tr>
+                                <tr><td><strong>XL</strong></td><td>44"</td><td>30.5"</td><td>Relaxed</td></tr>
+                                <tr><td><strong>XXL</strong></td><td>46"</td><td>31.5"</td><td>Oversized</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Quantity & Actions -->
+                <div class="product-modal-actions">
+                    <div class="quantity-selector">
+                        <button type="button" class="qty-btn" onclick="changeModalQty(-1)" aria-label="Decrease quantity">−</button>
+                        <span class="qty-display" id="modal-qty-display">1</span>
+                        <button type="button" class="qty-btn" onclick="changeModalQty(1)" aria-label="Increase quantity">+</button>
+                    </div>
+                    <button type="button" class="modal-buy-now-btn" id="modal-buy-now-btn" onclick="buyModalProduct()">
+                        <i class="fa-solid fa-bag-shopping"></i> ADD TO BAG
+                    </button>
+                    <button type="button" class="modal-wishlist-icon-btn" id="modal-wishlist-icon-btn" onclick="wishlistModalProduct()" aria-label="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </div>
+
+                <!-- Trust Perks -->
+                <div class="product-modal-perks">
+                    <div class="perk-item">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Fast 2-3 Day Delivery</span>
+                    </div>
+                    <div class="perk-item">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <span>15-Day Size Exchanges</span>
+                    </div>
+                    <div class="perk-item">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>100% Genuine Apparel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-notification" id="toast-notification" aria-live="polite"></div>
+
+    <!-- External JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
