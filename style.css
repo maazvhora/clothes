@@ -14,9 +14,12 @@
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+html,
 body {
     background-color: #fff;
     color: #111;
+    overflow-x: clip;
+    max-width: 100%;
 }
 
 img {
@@ -1598,6 +1601,8 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
     background: #eef6f6;
     padding: 20px 40px;
 }
@@ -6594,24 +6599,127 @@ header {
 /* ========================================================
    RESPONSIVE BREAKPOINTS
 ======================================================== */
+@media (max-width: 1240px) {
+    header {
+        padding: 14px 24px;
+    }
+    .nav-left {
+        gap: 18px;
+    }
+    .nav-links {
+        gap: 16px;
+        font-size: 12.5px;
+    }
+    .search-bar {
+        width: 220px;
+    }
+    .search-bar:focus-within,
+    .search-bar.active {
+        width: 260px;
+    }
+    .nav-right,
+    .nav-icons {
+        gap: 14px;
+    }
+}
+
 @media (max-width: 1024px) {
+    header {
+        padding: 12px 24px;
+        grid-template-columns: 1fr auto 1fr;
+    }
+    .nav-links {
+        display: none;
+    }
+    .nav-right {
+        position: static;
+        gap: 14px;
+    }
+    .mobile-search-btn {
+        display: flex;
+        font-size: 18px;
+    }
+    .search-bar {
+        display: none;
+    }
+    .search-bar.mobile-open {
+        display: flex;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 16px;
+        right: 16px;
+        width: auto !important;
+        max-width: none;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+        background: #ffffff;
+        border-color: #111111;
+        z-index: 1002;
+    }
+    .search-bar.mobile-open .search-dropdown {
+        width: 100%;
+        right: 0;
+        left: 0;
+        max-width: 100%;
+        max-height: 60vh;
+    }
+    .hero-container {
+        grid-template-columns: 1fr;
+    }
+    .hero-slider {
+        height: 420px;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .shirts-grid {
+        min-height: 280px;
+    }
+    .hotwheels-banner {
+        height: 380px;
+    }
+    .trust-bar {
+        padding: 18px 24px;
+        gap: 16px;
+    }
+    .arrivals-container {
+        padding: 0 36px;
+    }
+    .arrival-card {
+        width: 245px;
+    }
+    .arrival-img-box {
+        height: 320px;
+    }
+    .category-section-container,
+    .women-container,
+    .sneakers-container,
+    .search-results-container,
+    .trending-container {
+        padding: 0 28px;
+    }
     .topwear-grid,
     .bottomwear-grid,
     .accessories-grid {
         max-width: 100%;
-        padding: 0 30px;
-        gap: 18px;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0;
+        gap: 14px;
     }
-    .trending-container {
-        padding: 0 30px;
-    }
+    .cat-products-grid,
+    .women-products-grid,
+    .sneakers-products-grid,
+    .search-results-grid,
     .trending-products-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 16px;
-        row-gap: 26px;
+        row-gap: 24px;
+    }
+    .women-categories-grid,
+    .sneakers-categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
     }
     .footer-container {
-        padding: 0 25px;
+        padding: 0 28px;
         gap: 24px;
         grid-template-columns: 1.3fr 1fr 1fr 1fr;
     }
@@ -7560,14 +7668,84 @@ header {
     margin: 0;
 }
 
+@media (max-width: 1024px) {
+    .page-hero-banner {
+        padding: 48px 0;
+    }
+    .page-hero-container {
+        grid-template-columns: 1fr;
+        padding: 0 28px;
+        gap: 30px;
+    }
+    .page-hero-content {
+        align-items: center;
+        text-align: center;
+    }
+    .page-hero-subtitle {
+        max-width: 600px;
+    }
+    .page-hero-actions {
+        justify-content: center;
+    }
+    .page-hero-media {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .page-hero-title {
+        font-size: 36px;
+    }
+    .occasion-container,
+    .cross-nav-container,
+    .tech-features-container,
+    .perfumes-container,
+    .scent-pyramid-container {
+        padding: 0 28px;
+    }
+    .occasion-grid,
+    .tech-features-grid,
+    .perfumes-categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .cross-nav-container.cols-3,
+    .scent-pyramid-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+    }
+    .cross-nav-container.cols-3 .cross-nav-card:last-child:nth-child(odd),
+    .scent-pyramid-grid .scent-pyramid-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+    .perfumes-products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+}
+
 @media (max-width: 768px) {
+    .page-hero-banner {
+        padding: 36px 0;
+    }
     .page-hero-container {
         grid-template-columns: 1fr;
         padding: 0 20px;
-        gap: 30px;
+        gap: 24px;
+    }
+    .page-hero-kicker {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        padding: 5px 12px;
     }
     .page-hero-title {
-        font-size: 32px;
+        font-size: 30px;
+    }
+    .occasion-lookbook-section,
+    .tech-features-section,
+    .scent-pyramid-section,
+    .cross-nav-banner-section,
+    .perfumes-section {
+        padding: 45px 0 55px;
     }
     .occasion-container,
     .cross-nav-container,
@@ -7576,8 +7754,15 @@ header {
     .scent-pyramid-container {
         padding: 0 20px;
     }
+    .occasion-title,
+    .tech-features-title,
+    .scent-pyramid-title,
+    .perfumes-main-title {
+        font-size: 25px;
+    }
     .occasion-grid,
     .cross-nav-container,
+    .cross-nav-container.cols-3,
     .tech-features-grid,
     .perfumes-categories-grid,
     .scent-pyramid-grid {
@@ -7588,55 +7773,9 @@ header {
         grid-template-columns: repeat(2, 1fr);
         gap: 14px;
     }
-}
-
-@media (max-width: 480px) {
-    .page-hero-container {
-        padding: 0 14px;
-    }
-    .page-hero-title {
-        font-size: 26px;
-    }
-    .page-hero-subtitle {
-        font-size: 13.5px;
-    }
-    .occasion-container,
-    .cross-nav-container,
-    .tech-features-container,
-    .perfumes-container,
-    .scent-pyramid-container {
-        padding: 0 12px;
-    }
-    .occasion-grid,
-    .cross-nav-container,
-    .tech-features-grid,
-    .scent-pyramid-grid {
-        grid-template-columns: 1fr;
-    }
-    .perfumes-categories-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    .perfumes-products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    .perfumes-cat-card {
-        height: 170px;
-    }
-    .occasion-card {
-        height: 220px;
-    }
-    .cross-nav-card {
-        height: 160px;
-        padding: 18px;
-    }
-}
-
-@media (max-width: 768px) {
     header {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
         padding: 12px 18px;
     }
     .brand-crest-icon {
@@ -7650,31 +7789,9 @@ header {
         font-size: 7.5px;
         letter-spacing: 4px;
     }
-    .mobile-search-btn {
-        display: flex;
-        font-size: 18px;
-    }
-    .search-bar {
-        display: none;
-    }
     .search-bar.mobile-open {
-        display: flex;
-        position: absolute;
-        top: calc(100% + 8px);
         left: 12px;
         right: 12px;
-        width: calc(100vw - 24px) !important;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-        background: #ffffff;
-        border-color: #111111;
-        z-index: 1002;
-    }
-    .search-bar.mobile-open .search-dropdown {
-        width: 100%;
-        right: 0;
-        left: 0;
-        max-width: 100%;
-        max-height: 60vh;
     }
     .search-results-section {
         padding: 32px 0 40px;
@@ -7691,6 +7808,8 @@ header {
     .search-results-actions {
         width: 100%;
         justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
     }
     .search-results-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -7701,9 +7820,82 @@ header {
         grid-template-columns: 1fr;
     }
     .hero-slider {
-        height: 360px;
+        height: 320px;
         border-right: none;
         border-bottom: 1px solid #e0e0e0;
+    }
+    .explore-header {
+        padding: 14px 16px;
+        font-size: 17px;
+    }
+    .shirts-grid {
+        min-height: 220px;
+    }
+    .tagline-banner {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+    .hotwheels-banner {
+        height: 260px;
+    }
+    .banner-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+    .banner-prev {
+        left: 12px;
+    }
+    .banner-next {
+        right: 12px;
+    }
+    .section-title {
+        font-size: 19px;
+        padding: 18px 14px;
+    }
+    .trust-bar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px 16px;
+        padding: 16px 20px;
+    }
+    .trust-item {
+        justify-content: flex-start;
+        gap: 10px;
+    }
+    .trust-item:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+    .trust-item i {
+        font-size: 22px;
+    }
+    .trust-text h4 {
+        font-size: 13px;
+    }
+    .trust-text p {
+        font-size: 12px;
+    }
+    .new-arrivals-section {
+        padding: 24px 0 38px;
+    }
+    .arrivals-title {
+        font-size: 19px;
+        margin-bottom: 18px;
+    }
+    .arrivals-container {
+        padding: 0 18px;
+    }
+    .arrival-card {
+        width: 205px;
+    }
+    .arrival-img-box {
+        height: 265px;
+    }
+    .arrivals-nav-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
     }
     .category-section-container {
         padding: 0 20px;
@@ -7782,6 +7974,19 @@ header {
         gap: 14px;
         row-gap: 20px;
     }
+    .invoice-modal {
+        width: calc(100vw - 24px);
+    }
+    .invoice-modal-content {
+        padding: 20px 16px;
+    }
+    .invoice-meta-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .invoice-summary-box {
+        width: 100%;
+    }
     .footer-container {
         grid-template-columns: repeat(2, 1fr);
         padding: 0 20px;
@@ -7790,23 +7995,238 @@ header {
 }
 
 @media (max-width: 480px) {
+    .page-hero-banner {
+        padding: 26px 0;
+    }
+    .page-hero-container {
+        padding: 0 14px;
+        gap: 20px;
+    }
+    .page-hero-title {
+        font-size: 24px;
+    }
+    .page-hero-subtitle {
+        font-size: 13.5px;
+        margin-bottom: 20px;
+    }
+    .page-hero-actions {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .page-hero-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 18px;
+        font-size: 12.5px;
+    }
+    .occasion-lookbook-section,
+    .tech-features-section,
+    .scent-pyramid-section,
+    .cross-nav-banner-section,
+    .perfumes-section {
+        padding: 36px 0 44px;
+    }
+    .occasion-container,
+    .cross-nav-container,
+    .tech-features-container,
+    .perfumes-container,
+    .scent-pyramid-container {
+        padding: 0 12px;
+    }
+    .occasion-title,
+    .tech-features-title,
+    .scent-pyramid-title,
+    .perfumes-main-title {
+        font-size: 20px;
+    }
+    .occasion-grid,
+    .cross-nav-container,
+    .cross-nav-container.cols-3,
+    .tech-features-grid,
+    .scent-pyramid-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .perfumes-categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .perfumes-filter-bar {
+        gap: 6px;
+    }
+    .perfume-pill {
+        padding: 6px 12px;
+        font-size: 11.5px;
+    }
+    .perfumes-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .perfume-card-info {
+        padding: 10px 10px 12px;
+    }
+    .perfume-card-name {
+        font-size: 12.5px;
+        margin-bottom: 6px;
+    }
+    .perfume-card-price-row {
+        flex-wrap: wrap;
+        gap: 4px 6px;
+        margin-bottom: 10px;
+    }
+    .perfume-card-price {
+        font-size: 14px;
+    }
+    .perfume-card-buy-btn {
+        padding: 8px;
+        font-size: 11.5px;
+    }
+    .perfume-card-sizes {
+        bottom: 8px;
+        left: 8px;
+        right: 8px;
+        gap: 4px;
+    }
+    .perfume-card-size-pill {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+    .perfumes-cat-card {
+        height: 160px;
+    }
+    .occasion-card {
+        height: 210px;
+    }
+    .cross-nav-card {
+        height: 160px;
+        padding: 18px;
+    }
     header {
-        padding: 10px 14px;
+        padding: 10px 12px;
+    }
+    .brand-logo {
+        gap: 8px;
+        padding: 0;
     }
     .brand-crest-icon {
-        height: 30px;
+        height: 28px;
     }
     .brand-title {
-        font-size: 17px;
+        font-size: 16px;
         letter-spacing: 1.5px;
     }
     .brand-subtitle {
-        font-size: 6.5px;
-        letter-spacing: 3px;
+        font-size: 6px;
+        letter-spacing: 2.5px;
     }
     .nav-icons {
-        gap: 12px;
+        gap: 11px;
+        font-size: 15.5px;
+    }
+    .search-bar.mobile-open {
+        left: 10px;
+        right: 10px;
+        padding: 4px 6px 4px 10px;
+    }
+    .search-bar.mobile-open input {
         font-size: 16px;
+    }
+    .hero-slider {
+        height: 240px;
+    }
+    .slider-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+    .prev-btn {
+        left: 8px;
+    }
+    .next-btn {
+        right: 8px;
+    }
+    .explore-header {
+        padding: 12px;
+        font-size: 15px;
+    }
+    .shirts-grid {
+        min-height: 155px;
+    }
+    .shirt-card {
+        aspect-ratio: 3 / 4;
+        min-height: 150px;
+    }
+    .shirt-card .next-arrow,
+    .shirt-card .prev-arrow {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+    }
+    .shirt-card .next-arrow {
+        right: 4px;
+    }
+    .shirt-card .prev-arrow {
+        left: 4px;
+    }
+    .tagline-banner {
+        padding: 12px;
+        font-size: 13px;
+    }
+    .hotwheels-banner {
+        height: 190px;
+    }
+    .banner-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+    .banner-prev {
+        left: 8px;
+    }
+    .banner-next {
+        right: 8px;
+    }
+    .section-title {
+        font-size: 16px;
+        padding: 14px 10px;
+        letter-spacing: 1.2px;
+    }
+    .trust-bar {
+        padding: 14px 12px;
+        gap: 12px 10px;
+    }
+    .trust-item i {
+        font-size: 18px;
+    }
+    .trust-text h4 {
+        font-size: 12px;
+    }
+    .trust-text p {
+        font-size: 11px;
+    }
+    .arrivals-container {
+        padding: 0 12px;
+    }
+    .arrivals-track {
+        gap: 12px;
+    }
+    .arrival-card {
+        width: 170px;
+    }
+    .arrival-img-box {
+        height: 220px;
+    }
+    .arrivals-nav-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    .arrivals-prev-btn {
+        left: 4px;
+    }
+    .arrivals-next-btn {
+        right: 4px;
     }
     .search-results-container {
         padding: 0 12px;
@@ -7821,6 +8241,41 @@ header {
     }
     .search-card-sizes {
         display: none;
+    }
+    .search-card-info,
+    .cat-product-info,
+    .women-card-info,
+    .sneaker-card-info {
+        padding: 10px 10px 12px;
+    }
+    .search-card-name,
+    .cat-product-name,
+    .women-card-name,
+    .sneaker-card-name {
+        font-size: 12.5px;
+        height: 34px;
+        margin-bottom: 6px;
+    }
+    .search-card-price-row,
+    .cat-product-price-row,
+    .women-card-price-row,
+    .sneaker-card-price-row {
+        flex-wrap: wrap;
+        gap: 4px 6px;
+        margin-bottom: 8px;
+    }
+    .search-card-price,
+    .cat-product-price,
+    .women-card-price,
+    .sneaker-card-price {
+        font-size: 14px;
+    }
+    .search-card-buy-btn,
+    .cat-product-buy-btn,
+    .women-card-buy-btn,
+    .sneaker-card-buy-btn {
+        padding: 8px;
+        font-size: 11.5px;
     }
     .search-filter-tags {
         overflow-x: auto;
@@ -7841,12 +8296,32 @@ header {
     .accessories-title {
         font-size: 20px;
     }
+    .category-filter-bar,
+    .women-filter-bar,
+    .sneakers-filter-bar {
+        gap: 6px;
+    }
+    .category-filter-pill,
+    .women-pill,
+    .sneakers-pill {
+        padding: 6px 12px;
+        font-size: 11.5px;
+    }
     .topwear-grid,
     .bottomwear-grid,
     .accessories-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px;
         padding: 0;
+        margin-bottom: 26px;
+    }
+    .topwear-img-box,
+    .bottomwear-img-box,
+    .accessories-img-box {
+        aspect-ratio: 1 / 1;
+    }
+    .category-tile-overlay span {
+        font-size: 10.5px;
     }
     .cat-products-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -7922,10 +8397,96 @@ header {
         gap: 10px;
         row-gap: 18px;
     }
+    .card-size-label {
+        display: none;
+    }
+    .card-size-selector {
+        bottom: 32px;
+        padding: 4px;
+    }
+    .quick-buy-btn {
+        padding: 7px 8px;
+        font-size: 10.5px;
+    }
+    .sidebar-drawer {
+        width: 295px;
+        max-width: 88vw;
+    }
+    .sidebar-tab {
+        font-size: 10.5px;
+        padding: 11px 3px;
+        letter-spacing: 0.2px;
+    }
+    .wishlist-drawer,
+    .cart-drawer,
+    .orders-drawer {
+        width: 100vw;
+        max-width: 100vw;
+    }
+    .cart-drawer-header,
+    .cart-drawer-body,
+    .cart-drawer-footer,
+    .wishlist-drawer-header,
+    .orders-drawer-header,
+    .orders-drawer-body {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+    .product-modal {
+        width: 96%;
+        max-height: 92vh;
+        border-radius: 14px;
+    }
+    .product-modal-media {
+        padding: 14px;
+    }
+    .product-modal-img-container {
+        min-height: 200px;
+        max-height: 240px;
+    }
+    .product-modal-details {
+        padding: 16px 14px 20px;
+        gap: 12px;
+    }
+    .product-modal-title {
+        font-size: 18px;
+    }
+    .product-modal-price {
+        font-size: 20px;
+    }
+    .product-modal-actions {
+        flex-wrap: wrap;
+    }
+    .modal-buy-now-btn {
+        min-width: 160px;
+    }
+    .size-guide-table {
+        display: block;
+        overflow-x: auto;
+    }
+    .invoice-brand-header {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-right: 32px;
+    }
+    .invoice-items-table {
+        font-size: 11px;
+    }
+    .invoice-items-table th,
+    .invoice-items-table td {
+        padding: 7px 5px;
+    }
+    .invoice-footer-actions {
+        flex-direction: column;
+    }
     .footer-container {
         grid-template-columns: repeat(2, 1fr);
-        padding: 0 16px;
-        gap: 20px;
+        padding: 0 14px;
+        gap: 20px 14px;
+    }
+    .footer-bottom-branding {
+        padding: 22px 14px 0;
+        margin-top: 28px;
     }
     .footer-title {
         font-size: 13.5px;
@@ -7943,6 +8504,7 @@ header {
     }
     .auth-modal {
         width: 95%;
+        max-height: 92vh;
         border-radius: 14px;
     }
     .auth-modal-header {
@@ -7952,6 +8514,22 @@ header {
         padding: 18px 18px 22px;
     }
     .auth-social-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 360px) {
+    .nav-icons {
+        gap: 8px;
+        font-size: 15px;
+    }
+    .trust-bar {
+        grid-template-columns: 1fr;
+    }
+    .trust-item:last-child:nth-child(odd) {
+        justify-self: start;
+    }
+    .footer-container {
         grid-template-columns: 1fr;
     }
 }
@@ -9212,5 +9790,55 @@ header {
     }
     .voucher-cert-code-box {
         text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .gift-vouchers-section {
+        padding: 40px 12px 50px;
+    }
+    .voucher-title {
+        font-size: 22px;
+    }
+    .voucher-studio-box {
+        padding: 18px 14px;
+        border-radius: 18px;
+    }
+    .voucher-studio-title {
+        font-size: 20px;
+    }
+    .voucher-studio-actions {
+        flex-direction: column;
+    }
+    .voucher-meta-title-row {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .voucher-card-code-display {
+        font-size: 13px;
+        letter-spacing: 1.4px;
+    }
+    .voucher-value-amount {
+        font-size: 18px;
+    }
+    .voucher-cert-frame {
+        padding: 16px 12px;
+    }
+    .voucher-cert-title {
+        font-size: 19px;
+    }
+    .voucher-cert-recipient {
+        font-size: 20px;
+    }
+    .voucher-cert-code-value {
+        font-size: 15px;
+        letter-spacing: 1.5px;
+        word-break: break-all;
+    }
+}
+
+@media (max-width: 360px) {
+    .voucher-amount-pills {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
