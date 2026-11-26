@@ -93,6 +93,11 @@ header {
     border-bottom: 2px solid #e53935;
 }
 
+/* Responsive Category Filter Bar (hidden on desktop) */
+.mobile-category-bar {
+    display: none;
+}
+
 /* ========================================================
    BRAND LOGO IDENTITY & TYPOGRAPHY
 ======================================================== */
@@ -6631,6 +6636,50 @@ header {
     .nav-links {
         display: none;
     }
+    .mobile-category-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 20px;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+        position: sticky;
+        top: var(--header-height, 60px);
+        z-index: 997;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    .mobile-category-bar::-webkit-scrollbar {
+        display: none;
+    }
+    .mobile-cat-pill {
+        flex: 0 0 auto;
+        padding: 7px 18px;
+        border-radius: 999px;
+        border: 1.5px solid #e5e7eb;
+        background: #f8f9fa;
+        color: #1f2937;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-decoration: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+    }
+    .mobile-cat-pill:hover {
+        border-color: #14223d;
+        color: #14223d;
+    }
+    .mobile-cat-pill.active {
+        background: #e53935;
+        border-color: #e53935;
+        color: #ffffff;
+        box-shadow: 0 3px 10px rgba(229, 57, 53, 0.25);
+    }
     .nav-right {
         position: static;
         gap: 14px;
@@ -8516,9 +8565,26 @@ header {
     .auth-social-buttons {
         grid-template-columns: 1fr;
     }
+    .mobile-category-bar {
+        justify-content: space-between;
+        gap: 6px;
+        padding: 8px 12px;
+    }
+    .mobile-cat-pill {
+        flex: 1;
+        text-align: center;
+        padding: 7px 6px;
+        font-size: 11px;
+        letter-spacing: 0.4px;
+    }
 }
 
 @media (max-width: 360px) {
+    .mobile-cat-pill {
+        padding: 6px 4px;
+        font-size: 10px;
+        letter-spacing: 0.2px;
+    }
     .nav-icons {
         gap: 8px;
         font-size: 15px;

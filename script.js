@@ -3537,6 +3537,9 @@ function updateActiveNavTab() {
     const sidebarTabs = document.querySelectorAll('.sidebar-tab');
     sidebarTabs.forEach(tab => tab.classList.remove('active'));
 
+    const mobileCatPills = document.querySelectorAll('.mobile-cat-pill');
+    mobileCatPills.forEach(pill => pill.classList.remove('active'));
+
     let activeGender = 'men';
     if (path.includes('women.html')) {
         activeGender = 'women';
@@ -3554,6 +3557,12 @@ function updateActiveNavTab() {
     sidebarTabs.forEach(tab => {
         if (tab.getAttribute('data-gender') === activeGender) {
             tab.classList.add('active');
+        }
+    });
+
+    mobileCatPills.forEach(pill => {
+        if (pill.getAttribute('data-gender') === activeGender) {
+            pill.classList.add('active');
         }
     });
 }
@@ -4172,8 +4181,31 @@ window.applyVoucherDirectly = applyVoucherDirectly;
 window.handleGiftVouchersClick = handleGiftVouchersClick;
 window.getStoredCustomVouchers = getStoredCustomVouchers;
 
+// Keep sticky mobile category bar aligned directly beneath header height
+function initStickyCategoryBarOffset() {
+    const headerEl = document.querySelector('header');
+    if (!headerEl) return;
+
+    const syncOffset = () => {
+        const h = Math.round(headerEl.getBoundingClientRect().height);
+        if (h > 0) {
+            document.documentElement.style.setProperty('--header-height', `${h}px`);
+        }
+    };
+
+    syncOffset();
+    if (!window.__vhoraHeaderObserverInit) {
+        window.__vhoraHeaderObserverInit = true;
+        if (typeof ResizeObserver !== 'undefined') {
+            new ResizeObserver(syncOffset).observe(headerEl);
+        }
+        window.addEventListener('resize', syncOffset);
+    }
+}
+
 // Initialize on DOM ready
 function initStore() {
+    initStickyCategoryBarOffset();
     updateActiveNavTab();
     loadWishlist();
     loadCart();
