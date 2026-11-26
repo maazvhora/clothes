@@ -971,7 +971,7 @@ function applyPromoCode() {
 
     if (!code) {
         msgEl.className = 'promo-message error';
-        msgEl.textContent = 'Please enter a coupon code!';
+        msgEl.textContent = 'Please enter a coupon or voucher code!';
         msgEl.style.display = 'block';
         return;
     }
@@ -1008,10 +1008,50 @@ function applyPromoCode() {
         msgEl.style.display = 'block';
         showToast('Coupon <strong>WELCOME50</strong> applied! 🏷️', 'success');
         renderCartDrawer();
-    } else {
-        msgEl.className = 'promo-message error';
-        msgEl.textContent = 'Invalid coupon code. Try MSTORE10 or FLAT200';
+    } else if (code === 'VHORA500') {
+        appliedCoupon = { code: 'VHORA500', discountFlat: 500, label: '₹500 Voucher' };
+        msgEl.className = 'promo-message success';
+        msgEl.textContent = '💎 Luxury Voucher VHORA500 applied! Saved ₹500.';
         msgEl.style.display = 'block';
+        showToast('Luxury Voucher <strong>VHORA500</strong> applied! Saved ₹500 💎', 'success');
+        renderCartDrawer();
+    } else if (code === 'ROYAL1000') {
+        appliedCoupon = { code: 'ROYAL1000', discountFlat: 1000, label: '₹1,000 Voucher' };
+        msgEl.className = 'promo-message success';
+        msgEl.textContent = '💎 Royal Voucher ROYAL1000 applied! Saved ₹1,000.';
+        msgEl.style.display = 'block';
+        showToast('Royal Voucher <strong>ROYAL1000</strong> applied! Saved ₹1,000 💎', 'success');
+        renderCartDrawer();
+    } else if (code === 'SOVEREIGN2500') {
+        appliedCoupon = { code: 'SOVEREIGN2500', discountFlat: 2500, label: '₹2,500 Voucher' };
+        msgEl.className = 'promo-message success';
+        msgEl.textContent = '💎 Sovereign Privilege SOVEREIGN2500 applied! Saved ₹2,500.';
+        msgEl.style.display = 'block';
+        showToast('Sovereign Voucher <strong>SOVEREIGN2500</strong> applied! Saved ₹2,500 💎', 'success');
+        renderCartDrawer();
+    } else if (code === 'IMPERIAL5000') {
+        appliedCoupon = { code: 'IMPERIAL5000', discountFlat: 5000, label: '₹5,000 Voucher' };
+        msgEl.className = 'promo-message success';
+        msgEl.textContent = '👑 Imperial Bespoke IMPERIAL5000 applied! Saved ₹5,000.';
+        msgEl.style.display = 'block';
+        showToast('Imperial Voucher <strong>IMPERIAL5000</strong> applied! Saved ₹5,000 👑', 'success');
+        renderCartDrawer();
+    } else {
+        // Check stored custom vouchers
+        const customVouchers = typeof getStoredCustomVouchers === 'function' ? getStoredCustomVouchers() : [];
+        const customV = customVouchers.find(v => v.code && v.code.toUpperCase() === code);
+        if (customV) {
+            appliedCoupon = { code: customV.code, discountFlat: customV.amount, label: `₹${customV.amount} Bespoke Voucher` };
+            msgEl.className = 'promo-message success';
+            msgEl.textContent = `💎 Bespoke Voucher ${customV.code} applied! Saved ₹${customV.amount}.`;
+            msgEl.style.display = 'block';
+            showToast(`Bespoke Voucher <strong>${customV.code}</strong> applied! Saved ₹${customV.amount} 💎`, 'success');
+            renderCartDrawer();
+        } else {
+            msgEl.className = 'promo-message error';
+            msgEl.textContent = 'Invalid code. Try VHORA500, ROYAL1000, MSTORE10, or FLAT200';
+            msgEl.style.display = 'block';
+        }
     }
 }
 
@@ -3741,6 +3781,397 @@ window.filterTopwearSection = filterTopwearSection;
 window.filterBottomwearSection = filterBottomwearSection;
 window.filterAccessoriesSection = filterAccessoriesSection;
 
+/* ========================================================
+   LUXURY GIFT VOUCHERS MODULE
+======================================================== */
+const VHORA_PRESET_VOUCHERS = {
+    'VHORA500': {
+        code: 'VHORA500',
+        name: 'Vhora Gold Welcome Pass',
+        amount: 500,
+        tier: 'Gold Tier',
+        theme: 'gold',
+        perk: 'Classic Pass',
+        desc: 'Direct ₹500 store credit across all luxury collections. Never expires.'
+    },
+    'ROYAL1000': {
+        code: 'ROYAL1000',
+        name: 'Royal Obsidian Pass',
+        amount: 1000,
+        tier: 'Noir Tier',
+        theme: 'obsidian',
+        perk: 'Most Popular',
+        desc: '₹1,000 credit for premium shirts, handcrafted sneakers & signature wear.'
+    },
+    'SOVEREIGN2500': {
+        code: 'SOVEREIGN2500',
+        name: 'Sovereign Emerald Privilege',
+        amount: 2500,
+        tier: 'Emerald Suite',
+        theme: 'emerald',
+        perk: '+₹250 Bonus Credit',
+        desc: '₹2,500 credit with complimentary express white-glove packaging.'
+    },
+    'IMPERIAL5000': {
+        code: 'IMPERIAL5000',
+        name: 'Imperial Diamond Bespoke Pass',
+        amount: 5000,
+        tier: 'Imperial Bespoke',
+        theme: 'diamond',
+        perk: '+ Compl. 10ml Extrait',
+        desc: 'The pinnacle of gifting. Valid for runway ensembles & Haute Parfumerie.'
+    }
+};
+
+let currentStudioAmount = 1000;
+let currentStudioTheme = 'gold';
+
+function getStoredCustomVouchers() {
+    try {
+        const raw = localStorage.getItem('mstore_custom_vouchers');
+        return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveCustomVoucher(voucher) {
+    try {
+        const list = getStoredCustomVouchers();
+        list.push(voucher);
+        localStorage.setItem('mstore_custom_vouchers', JSON.stringify(list));
+    } catch (e) {
+        console.error('Error saving custom voucher:', e);
+    }
+}
+
+function buyGiftVoucher(code, name, amount, theme) {
+    const voucherInfo = VHORA_PRESET_VOUCHERS[code] || {
+        code: code,
+        name: name || 'Vhora Luxury Gift Voucher',
+        amount: amount || 500,
+        theme: theme || 'gold'
+    };
+
+    const voucherProduct = {
+        id: `voucher-${code.toLowerCase()}`,
+        name: voucherInfo.name,
+        price: `₹ ${voucherInfo.amount}`,
+        originalPrice: `₹ ${Math.round(voucherInfo.amount * 1.2)}`,
+        discount: 'GIFT CARD',
+        image: 'images/vhora_crest_gold.png',
+        size: 'E-Voucher',
+        quantity: 1,
+        isVoucher: true,
+        voucherCode: voucherInfo.code
+    };
+
+    addToCart(voucherProduct, true);
+    showToast(`Added <strong>${voucherInfo.name}</strong> (₹${voucherInfo.amount}) to your Bag! 🎁`, 'bag');
+}
+
+function copyVoucherCode(code) {
+    if (!code) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(() => {
+            showToast(`Voucher code <strong>${code}</strong> copied to clipboard! 📋`, 'tag');
+        }).catch(() => {
+            fallbackCopyText(code);
+        });
+    } else {
+        fallbackCopyText(code);
+    }
+}
+
+function fallbackCopyText(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+        document.execCommand('copy');
+        showToast(`Voucher code <strong>${text}</strong> copied! 📋`, 'tag');
+    } catch (err) {
+        prompt('Copy your voucher code:', text);
+    }
+    document.body.removeChild(ta);
+}
+
+function openVoucherCertificate(code, name, amount, recipient, message) {
+    const modal = document.getElementById('voucher-certificate-modal');
+    if (!modal) return;
+
+    const rName = recipient || 'Valued Connoisseur';
+    const numAmount = parseInt(amount, 10) || 1000;
+    const formattedAmount = `₹ ${numAmount.toLocaleString('en-IN')}`;
+    const vCode = code || 'VHORA1000';
+    const vMessage = message || 'Presented with the compliments of Vhora Haute Couture. May this grant you timeless elegance.';
+
+    const recEl = document.getElementById('cert-modal-recipient');
+    if (recEl) recEl.textContent = rName;
+
+    const amtEl = document.getElementById('cert-modal-amount');
+    if (amtEl) amtEl.textContent = formattedAmount;
+
+    const codeEl = document.getElementById('cert-modal-code');
+    if (codeEl) codeEl.textContent = vCode;
+
+    const msgEl = document.getElementById('cert-modal-message');
+    if (msgEl) msgEl.textContent = `“${vMessage}”`;
+
+    // Render SVG QR representation
+    const qrContainer = document.getElementById('cert-modal-qr');
+    if (qrContainer) {
+        qrContainer.innerHTML = generateLuxuryQRSvg(vCode);
+    }
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeVoucherCertificate() {
+    const modal = document.getElementById('voucher-certificate-modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+    document.body.style.overflow = '';
+}
+
+function printVoucherCertificate() {
+    window.print();
+}
+
+function generateLuxuryQRSvg(code) {
+    return `
+    <svg viewBox="0 0 100 100" class="voucher-cert-qr-svg" xmlns="http://www.w3.org/2000/svg">
+        <rect width="100" height="100" fill="#ffffff" rx="4"/>
+        <rect x="8" y="8" width="26" height="26" fill="#111" rx="3"/>
+        <rect x="12" y="12" width="18" height="18" fill="#fff" rx="2"/>
+        <rect x="16" y="16" width="10" height="10" fill="#111"/>
+
+        <rect x="66" y="8" width="26" height="26" fill="#111" rx="3"/>
+        <rect x="70" y="12" width="18" height="18" fill="#fff" rx="2"/>
+        <rect x="74" y="16" width="10" height="10" fill="#111"/>
+
+        <rect x="8" y="66" width="26" height="26" fill="#111" rx="3"/>
+        <rect x="12" y="70" width="18" height="18" fill="#fff" rx="2"/>
+        <rect x="16" y="74" width="10" height="10" fill="#111"/>
+
+        <rect x="40" y="12" width="6" height="6" fill="#111"/>
+        <rect x="50" y="12" width="8" height="6" fill="#111"/>
+        <rect x="42" y="22" width="12" height="6" fill="#111"/>
+        <rect x="12" y="42" width="6" height="6" fill="#111"/>
+        <rect x="22" y="42" width="10" height="6" fill="#111"/>
+        <rect x="36" y="36" width="8" height="8" fill="#b8860b"/>
+        <rect x="48" y="36" width="16" height="8" fill="#111"/>
+        <rect x="40" y="48" width="20" height="6" fill="#111"/>
+        <rect x="68" y="40" width="6" height="12" fill="#111"/>
+        <rect x="78" y="44" width="10" height="6" fill="#111"/>
+        <rect x="42" y="60" width="10" height="10" fill="#111"/>
+        <rect x="56" y="60" width="6" height="14" fill="#111"/>
+        <rect x="66" y="66" width="12" height="6" fill="#111"/>
+        <rect x="82" y="68" width="8" height="8" fill="#111"/>
+        <rect x="44" y="78" width="18" height="6" fill="#111"/>
+        <rect x="68" y="78" width="8" height="10" fill="#111"/>
+    </svg>`;
+}
+
+function selectStudioAmount(amount, el) {
+    currentStudioAmount = parseInt(amount, 10);
+    const pills = document.querySelectorAll('.voucher-amount-pill');
+    pills.forEach(p => p.classList.remove('active'));
+    if (el) el.classList.add('active');
+
+    const customInput = document.getElementById('voucher-custom-amount');
+    if (customInput) customInput.value = '';
+
+    updateLiveVoucherPreview();
+}
+
+function onCustomAmountInput(input) {
+    if (!input) return;
+    const val = parseInt(input.value.replace(/[^0-9]/g, ''), 10);
+    if (!isNaN(val) && val > 0) {
+        currentStudioAmount = val;
+        const pills = document.querySelectorAll('.voucher-amount-pill');
+        pills.forEach(p => p.classList.remove('active'));
+    }
+    updateLiveVoucherPreview();
+}
+
+function selectStudioTheme(theme, el) {
+    currentStudioTheme = theme;
+    const options = document.querySelectorAll('.voucher-theme-option');
+    options.forEach(opt => opt.classList.remove('active'));
+    if (el) el.classList.add('active');
+
+    updateLiveVoucherPreview();
+}
+
+function updateLiveVoucherPreview() {
+    const liveCard = document.getElementById('voucher-live-card');
+    if (!liveCard) return;
+
+    liveCard.className = `luxury-voucher-card voucher-theme-${currentStudioTheme}`;
+
+    const amtEl = document.getElementById('live-preview-amount');
+    if (amtEl) {
+        amtEl.textContent = `₹ ${currentStudioAmount.toLocaleString('en-IN')}`;
+    }
+
+    const nameInput = document.getElementById('voucher-recipient-name');
+    const recipientText = (nameInput && nameInput.value.trim()) ? nameInput.value.trim().toUpperCase() : 'YOUR RECIPIENT';
+    const nameEl = document.getElementById('live-preview-name');
+    if (nameEl) {
+        nameEl.textContent = recipientText;
+    }
+
+    const codeEl = document.getElementById('live-preview-code');
+    if (codeEl) {
+        codeEl.textContent = `VHORA-PASS-${currentStudioAmount}`;
+    }
+}
+
+function buyCustomVoucher() {
+    const nameInput = document.getElementById('voucher-recipient-name');
+    const recipient = nameInput && nameInput.value.trim() ? nameInput.value.trim() : 'Honored Guest';
+    const senderInput = document.getElementById('voucher-sender-name');
+    const sender = senderInput && senderInput.value.trim() ? senderInput.value.trim() : 'An Admirer';
+    const msgInput = document.getElementById('voucher-custom-msg');
+    const message = msgInput && msgInput.value.trim() ? msgInput.value.trim() : 'With warmest regards from Vhora Clothing.';
+
+    if (currentStudioAmount < 100) {
+        showToast('Please enter a voucher amount of at least ₹100', 'warning');
+        return;
+    }
+
+    const uniqueCode = 'VH' + Math.floor(1000 + Math.random() * 9000) + '-' + currentStudioAmount;
+    
+    const newVoucher = {
+        code: uniqueCode,
+        amount: currentStudioAmount,
+        recipient: recipient,
+        sender: sender,
+        message: message,
+        theme: currentStudioTheme,
+        issuedAt: new Date().toISOString()
+    };
+    saveCustomVoucher(newVoucher);
+
+    const cartItem = {
+        id: `voucher-custom-${Date.now()}`,
+        name: `Bespoke Voucher for ${recipient}`,
+        price: `₹ ${currentStudioAmount}`,
+        originalPrice: `₹ ${Math.round(currentStudioAmount * 1.15)}`,
+        discount: 'BESPOKE GIFT',
+        image: 'images/vhora_crest_gold.png',
+        size: 'E-Voucher',
+        quantity: 1,
+        isVoucher: true,
+        voucherCode: uniqueCode,
+        recipient: recipient,
+        message: message
+    };
+
+    addToCart(cartItem, true);
+    showToast(`Bespoke Voucher code <strong>${uniqueCode}</strong> added to bag! 🎁`, 'bag');
+}
+
+function previewCustomCertificate() {
+    const nameInput = document.getElementById('voucher-recipient-name');
+    const recipient = nameInput && nameInput.value.trim() ? nameInput.value.trim() : 'Honored Guest';
+    const msgInput = document.getElementById('voucher-custom-msg');
+    const message = msgInput && msgInput.value.trim() ? msgInput.value.trim() : 'With warmest regards from Vhora Clothing.';
+    const tempCode = `VHORA-BESPOKE-${currentStudioAmount}`;
+
+    openVoucherCertificate(tempCode, 'Bespoke Privilege Pass', currentStudioAmount, recipient, message);
+}
+
+function checkVoucherBalance() {
+    const input = document.getElementById('voucher-checker-input');
+    const resultBox = document.getElementById('voucher-balance-result');
+    if (!input || !resultBox) return;
+
+    const rawCode = input.value.trim().toUpperCase();
+    if (!rawCode) {
+        resultBox.className = 'voucher-balance-result error';
+        resultBox.innerHTML = '<span><i class="fa-solid fa-circle-exclamation"></i> Please enter a voucher code to check.</span>';
+        resultBox.style.display = 'flex';
+        return;
+    }
+
+    let foundAmount = null;
+    let label = '';
+    if (VHORA_PRESET_VOUCHERS[rawCode]) {
+        foundAmount = VHORA_PRESET_VOUCHERS[rawCode].amount;
+        label = VHORA_PRESET_VOUCHERS[rawCode].name;
+    } else {
+        const customList = getStoredCustomVouchers();
+        const customV = customList.find(v => v.code === rawCode);
+        if (customV) {
+            foundAmount = customV.amount;
+            label = `Bespoke Pass for ${customV.recipient || 'Guest'}`;
+        }
+    }
+
+    if (foundAmount) {
+        resultBox.className = 'voucher-balance-result success';
+        resultBox.innerHTML = `
+            <div>
+                <strong><i class="fa-solid fa-circle-check"></i> ACTIVE & VALID:</strong> ${label} • Balance: <strong>₹${foundAmount.toLocaleString('en-IN')}</strong> (No Expiry)
+            </div>
+            <button type="button" class="voucher-copy-btn" style="color:#ffd700;font-weight:800;" onclick="applyVoucherDirectly('${rawCode}')">
+                <i class="fa-solid fa-cart-shopping"></i> APPLY TO BAG
+            </button>
+        `;
+        resultBox.style.display = 'flex';
+    } else {
+        resultBox.className = 'voucher-balance-result error';
+        resultBox.innerHTML = `<span><i class="fa-solid fa-triangle-exclamation"></i> Voucher code "${rawCode}" was not found or is inactive.</span>`;
+        resultBox.style.display = 'flex';
+    }
+}
+
+function applyVoucherDirectly(code) {
+    openCartDrawer();
+    const input = document.getElementById('cart-promo-input');
+    if (input) {
+        input.value = code;
+        applyPromoCode();
+    }
+}
+
+function handleGiftVouchersClick(e) {
+    if (e) {
+        e.preventDefault();
+    }
+    const section = document.getElementById('gift-vouchers-section');
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        window.location.href = 'index.html#gift-vouchers-section';
+    }
+}
+
+// Window exports
+window.buyGiftVoucher = buyGiftVoucher;
+window.copyVoucherCode = copyVoucherCode;
+window.openVoucherCertificate = openVoucherCertificate;
+window.closeVoucherCertificate = closeVoucherCertificate;
+window.printVoucherCertificate = printVoucherCertificate;
+window.selectStudioAmount = selectStudioAmount;
+window.onCustomAmountInput = onCustomAmountInput;
+window.selectStudioTheme = selectStudioTheme;
+window.updateLiveVoucherPreview = updateLiveVoucherPreview;
+window.buyCustomVoucher = buyCustomVoucher;
+window.previewCustomCertificate = previewCustomCertificate;
+window.checkVoucherBalance = checkVoucherBalance;
+window.applyVoucherDirectly = applyVoucherDirectly;
+window.handleGiftVouchersClick = handleGiftVouchersClick;
+window.getStoredCustomVouchers = getStoredCustomVouchers;
+
 // Initialize on DOM ready
 function initStore() {
     updateActiveNavTab();
@@ -3750,6 +4181,16 @@ function initStore() {
     loadUserSession();
     initCardSizeSelectors();
     initSearch();
+
+    // Check if user came via #gift-vouchers-section anchor
+    if (window.location.hash === '#gift-vouchers-section') {
+        setTimeout(() => {
+            const el = document.getElementById('gift-vouchers-section');
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, 250);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initStore);

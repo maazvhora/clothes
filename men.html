@@ -90,7 +90,7 @@
                     <li><a href="#" onclick="closeSidebar(); openOrdersDrawer(); return false;"><i class="fa-solid fa-boxes-packing"></i> My Orders & Tracking</a></li>
                     <li><a href="#"><i class="fa-solid fa-headset"></i> Contact Us</a></li>
                     <li><a href="#"><i class="fa-solid fa-circle-question"></i> FAQs</a></li>
-                    <li><a href="#"><i class="fa-solid fa-gift" style="color: #e53935;"></i> Gift Vouchers</a></li>
+                    <li><a href="#gift-vouchers-section" onclick="closeSidebar(); handleGiftVouchersClick(event);"><i class="fa-solid fa-gift" style="color: #d4af37;"></i> Gift Vouchers</a></li>
                 </ul>
             </div>
         </div>
@@ -2549,6 +2549,372 @@
         </div>
     </section>
 
+    <!-- LUXURY GIFT VOUCHERS SECTION -->
+    <section class="gift-vouchers-section" id="gift-vouchers-section">
+        <div class="gift-vouchers-container">
+            <!-- Header -->
+            <div class="vouchers-header">
+                <div class="voucher-kicker">
+                    <i class="fa-solid fa-gem"></i> Bespoke Gifting & Privileges
+                </div>
+                <h2 class="voucher-title">VHORA HAUTE GIFT VOUCHERS</h2>
+                <p class="voucher-subtitle">
+                    Bestow the luxury of choice. Valid across all collections — Men, Women, Sneakers, and Haute Parfumerie. Redeemable in-store and online with no expiration.
+                </p>
+                <div class="voucher-perks-strip">
+                    <div class="voucher-perk-pill">
+                        <i class="fa-solid fa-bolt"></i> Instant Digital Delivery
+                    </div>
+                    <div class="voucher-perk-pill">
+                        <i class="fa-solid fa-infinity"></i> Never Expires
+                    </div>
+                    <div class="voucher-perk-pill">
+                        <i class="fa-solid fa-gift"></i> Personalized Card & Message
+                    </div>
+                    <div class="voucher-perk-pill">
+                        <i class="fa-solid fa-shield-halved"></i> 100% Guaranteed Balance
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preset Luxury Voucher Cards Grid -->
+            <div class="voucher-cards-grid">
+                <!-- Card 1: Vhora Gold Welcome Pass (₹500) -->
+                <div class="voucher-card-item">
+                    <div class="luxury-voucher-card voucher-theme-gold" onclick="openVoucherCertificate('VHORA500', 'Vhora Gold Welcome Pass', 500, 'Privileged Guest', 'Welcome to the world of Vhora Clothing.')">
+                        <div class="voucher-card-top">
+                            <div class="voucher-brand-brand">
+                                <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="voucher-card-crest">
+                                <span class="voucher-card-brandname">VHORA</span>
+                            </div>
+                            <span class="voucher-tier-badge voucher-card-foil">GOLD PASS</span>
+                        </div>
+                        <div class="voucher-chip-row">
+                            <div class="smart-card-chip"></div>
+                            <i class="fa-solid fa-wifi contactless-icon"></i>
+                        </div>
+                        <div class="voucher-card-code-display voucher-card-foil">VHORA 5000 •••• 500</div>
+                        <div class="voucher-card-bottom">
+                            <div class="voucher-holder-info">
+                                <span class="voucher-holder-label">PRIVILEGE MEMBER</span>
+                                <span class="voucher-holder-name">GOLD RECIPIENT</span>
+                            </div>
+                            <div class="voucher-card-value-display">
+                                <span class="voucher-value-label">VALUE</span>
+                                <div class="voucher-value-amount voucher-card-foil">₹ 500</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voucher-meta-wrap">
+                        <div class="voucher-meta-title-row">
+                            <h3 class="voucher-meta-title">Vhora Gold Pass</h3>
+                            <span class="voucher-meta-perk-badge">ENTRY PASS</span>
+                        </div>
+                        <p class="voucher-meta-desc">Direct ₹500 store credit across all luxury collections. Ideal for luxury tees, polos and designer accessories.</p>
+                        <div class="voucher-code-copy-strip">
+                            <span class="voucher-copy-code-text">CODE: VHORA500</span>
+                            <button type="button" class="voucher-copy-btn" onclick="copyVoucherCode('VHORA500')">
+                                <i class="fa-regular fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="voucher-action-buttons">
+                            <button type="button" class="voucher-buy-btn" onclick="buyGiftVoucher('VHORA500', 'Vhora Gold Welcome Pass', 500, 'gold')">
+                                <i class="fa-solid fa-bag-shopping"></i> Add to Bag • ₹500
+                            </button>
+                            <button type="button" class="voucher-cert-preview-btn" onclick="openVoucherCertificate('VHORA500', 'Vhora Gold Welcome Pass', 500, 'Privileged Guest', 'Welcome to the world of Vhora Clothing.')" title="View Certificate">
+                                <i class="fa-solid fa-certificate"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Royal Obsidian Pass (₹1,000) -->
+                <div class="voucher-card-item">
+                    <div class="luxury-voucher-card voucher-theme-obsidian" onclick="openVoucherCertificate('ROYAL1000', 'Royal Obsidian Pass', 1000, 'Royal Patron', 'Presented with sincere compliments from Vhora Clothing.')">
+                        <div class="voucher-card-top">
+                            <div class="voucher-brand-brand">
+                                <img src="images/vhora_crest.png" alt="Vhora Crest" class="voucher-card-crest">
+                                <span class="voucher-card-brandname">VHORA</span>
+                            </div>
+                            <span class="voucher-tier-badge voucher-card-foil">OBSIDIAN TIER</span>
+                        </div>
+                        <div class="voucher-chip-row">
+                            <div class="smart-card-chip"></div>
+                            <i class="fa-solid fa-wifi contactless-icon"></i>
+                        </div>
+                        <div class="voucher-card-code-display voucher-card-foil">ROYAL 1000 •••• 1000</div>
+                        <div class="voucher-card-bottom">
+                            <div class="voucher-holder-info">
+                                <span class="voucher-holder-label">PATRON OF HONOR</span>
+                                <span class="voucher-holder-name">ROYAL GUEST</span>
+                            </div>
+                            <div class="voucher-card-value-display">
+                                <span class="voucher-value-label">VALUE</span>
+                                <div class="voucher-value-amount voucher-card-foil">₹ 1,000</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voucher-meta-wrap">
+                        <div class="voucher-meta-title-row">
+                            <h3 class="voucher-meta-title">Royal Obsidian Pass</h3>
+                            <span class="voucher-meta-perk-badge">MOST POPULAR</span>
+                        </div>
+                        <p class="voucher-meta-desc">₹1,000 store credit. Perfect for tailored shirts, artisanal denim, sneakers, and signature evening attire.</p>
+                        <div class="voucher-code-copy-strip">
+                            <span class="voucher-copy-code-text">CODE: ROYAL1000</span>
+                            <button type="button" class="voucher-copy-btn" onclick="copyVoucherCode('ROYAL1000')">
+                                <i class="fa-regular fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="voucher-action-buttons">
+                            <button type="button" class="voucher-buy-btn" onclick="buyGiftVoucher('ROYAL1000', 'Royal Obsidian Pass', 1000, 'obsidian')">
+                                <i class="fa-solid fa-bag-shopping"></i> Add to Bag • ₹1,000
+                            </button>
+                            <button type="button" class="voucher-cert-preview-btn" onclick="openVoucherCertificate('ROYAL1000', 'Royal Obsidian Pass', 1000, 'Royal Patron', 'Presented with sincere compliments from Vhora Clothing.')" title="View Certificate">
+                                <i class="fa-solid fa-certificate"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Sovereign Emerald Privilege (₹2,500) -->
+                <div class="voucher-card-item">
+                    <div class="luxury-voucher-card voucher-theme-emerald" onclick="openVoucherCertificate('SOVEREIGN2500', 'Sovereign Emerald Privilege', 2500, 'Sovereign Patron', 'Exclusively bestowed upon a distinguished connoisseur of style.')">
+                        <div class="voucher-card-top">
+                            <div class="voucher-brand-brand">
+                                <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="voucher-card-crest">
+                                <span class="voucher-card-brandname">VHORA</span>
+                            </div>
+                            <span class="voucher-tier-badge voucher-card-foil">EMERALD SUITE</span>
+                        </div>
+                        <div class="voucher-chip-row">
+                            <div class="smart-card-chip"></div>
+                            <i class="fa-solid fa-wifi contactless-icon"></i>
+                        </div>
+                        <div class="voucher-card-code-display voucher-card-foil">SOVRN 2500 •••• 2500</div>
+                        <div class="voucher-card-bottom">
+                            <div class="voucher-holder-info">
+                                <span class="voucher-holder-label">PRIVILEGED CONNOISSEUR</span>
+                                <span class="voucher-holder-name">SOVEREIGN PATRON</span>
+                            </div>
+                            <div class="voucher-card-value-display">
+                                <span class="voucher-value-label">VALUE</span>
+                                <div class="voucher-value-amount voucher-card-foil">₹ 2,500</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voucher-meta-wrap">
+                        <div class="voucher-meta-title-row">
+                            <h3 class="voucher-meta-title">Sovereign Emerald</h3>
+                            <span class="voucher-meta-perk-badge">+₹250 BONUS</span>
+                        </div>
+                        <p class="voucher-meta-desc">₹2,500 privilege credit with complimentary white-glove velvet box packaging and concierge priority dispatch.</p>
+                        <div class="voucher-code-copy-strip">
+                            <span class="voucher-copy-code-text">CODE: SOVEREIGN2500</span>
+                            <button type="button" class="voucher-copy-btn" onclick="copyVoucherCode('SOVEREIGN2500')">
+                                <i class="fa-regular fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="voucher-action-buttons">
+                            <button type="button" class="voucher-buy-btn" onclick="buyGiftVoucher('SOVEREIGN2500', 'Sovereign Emerald Privilege', 2500, 'emerald')">
+                                <i class="fa-solid fa-bag-shopping"></i> Add to Bag • ₹2,500
+                            </button>
+                            <button type="button" class="voucher-cert-preview-btn" onclick="openVoucherCertificate('SOVEREIGN2500', 'Sovereign Emerald Privilege', 2500, 'Sovereign Patron', 'Exclusively bestowed upon a distinguished connoisseur of style.')" title="View Certificate">
+                                <i class="fa-solid fa-certificate"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Imperial Diamond Bespoke Pass (₹5,000) -->
+                <div class="voucher-card-item">
+                    <div class="luxury-voucher-card voucher-theme-diamond" onclick="openVoucherCertificate('IMPERIAL5000', 'Imperial Diamond Bespoke Pass', 5000, 'Imperial VIP', 'An imperial tribute to extraordinary grace and timeless refinement.')">
+                        <div class="voucher-card-top">
+                            <div class="voucher-brand-brand">
+                                <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="voucher-card-crest">
+                                <span class="voucher-card-brandname">VHORA</span>
+                            </div>
+                            <span class="voucher-tier-badge voucher-card-foil">IMPERIAL BESPOKE</span>
+                        </div>
+                        <div class="voucher-chip-row">
+                            <div class="smart-card-chip"></div>
+                            <i class="fa-solid fa-wifi contactless-icon"></i>
+                        </div>
+                        <div class="voucher-card-code-display voucher-card-foil">IMPRL 5000 •••• 5000</div>
+                        <div class="voucher-card-bottom">
+                            <div class="voucher-holder-info">
+                                <span class="voucher-holder-label">IMPERIAL AMBASSADOR</span>
+                                <span class="voucher-holder-name">BESPOKE VIP</span>
+                            </div>
+                            <div class="voucher-card-value-display">
+                                <span class="voucher-value-label">VALUE</span>
+                                <div class="voucher-value-amount voucher-card-foil">₹ 5,000</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="voucher-meta-wrap">
+                        <div class="voucher-meta-title-row">
+                            <h3 class="voucher-meta-title">Imperial Diamond Pass</h3>
+                            <span class="voucher-meta-perk-badge">+ 10ml EXTRAIT</span>
+                        </div>
+                        <p class="voucher-meta-desc">The ultimate couture gift. Includes complimentary 10ml Haute Parfumerie travel extrait & VIP early access.</p>
+                        <div class="voucher-code-copy-strip">
+                            <span class="voucher-copy-code-text">CODE: IMPERIAL5000</span>
+                            <button type="button" class="voucher-copy-btn" onclick="copyVoucherCode('IMPERIAL5000')">
+                                <i class="fa-regular fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <div class="voucher-action-buttons">
+                            <button type="button" class="voucher-buy-btn" onclick="buyGiftVoucher('IMPERIAL5000', 'Imperial Diamond Bespoke Pass', 5000, 'diamond')">
+                                <i class="fa-solid fa-bag-shopping"></i> Add to Bag • ₹5,000
+                            </button>
+                            <button type="button" class="voucher-cert-preview-btn" onclick="openVoucherCertificate('IMPERIAL5000', 'Imperial Diamond Bespoke Pass', 5000, 'Imperial VIP', 'An imperial tribute to extraordinary grace and timeless refinement.')" title="View Certificate">
+                                <i class="fa-solid fa-certificate"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BESPOKE VOUCHER STUDIO / CUSTOMIZER -->
+            <div class="voucher-studio-box">
+                <div class="voucher-studio-header">
+                    <span class="voucher-preview-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> Custom Personalization</span>
+                    <h3 class="voucher-studio-title">Bespoke Voucher Studio</h3>
+                    <p class="voucher-studio-subtitle">Personalize your luxury digital gift card with a custom amount, aesthetic foil theme, and heartfelt sentiment.</p>
+                </div>
+
+                <div class="voucher-studio-grid">
+                    <!-- Customizer Form -->
+                    <div class="voucher-studio-form">
+                        <!-- Denomination -->
+                        <div class="voucher-form-group">
+                            <label class="voucher-form-label">Select Denomination <span class="note">or type custom</span></label>
+                            <div class="voucher-amount-pills">
+                                <button type="button" class="voucher-amount-pill" onclick="selectStudioAmount(500, this)">₹500</button>
+                                <button type="button" class="voucher-amount-pill active" onclick="selectStudioAmount(1000, this)">₹1,000</button>
+                                <button type="button" class="voucher-amount-pill" onclick="selectStudioAmount(2500, this)">₹2,500</button>
+                                <button type="button" class="voucher-amount-pill" onclick="selectStudioAmount(5000, this)">₹5,000</button>
+                                <button type="button" class="voucher-amount-pill" onclick="selectStudioAmount(10000, this)">₹10,000</button>
+                            </div>
+                            <div class="voucher-custom-amount-wrap">
+                                <span>₹</span>
+                                <input type="number" id="voucher-custom-amount" class="voucher-custom-input" placeholder="Enter custom amount (e.g. 3500)" min="100" max="100000" oninput="onCustomAmountInput(this)">
+                            </div>
+                        </div>
+
+                        <!-- Theme Picker -->
+                        <div class="voucher-form-group">
+                            <label class="voucher-form-label">Card Aesthetic & Foil Tone</label>
+                            <div class="voucher-theme-picker">
+                                <div class="voucher-theme-option active" onclick="selectStudioTheme('gold', this)">
+                                    <div class="voucher-swatch gold"></div>
+                                    <span class="voucher-theme-name">Obsidian Gold</span>
+                                </div>
+                                <div class="voucher-theme-option" onclick="selectStudioTheme('obsidian', this)">
+                                    <div class="voucher-swatch obsidian"></div>
+                                    <span class="voucher-theme-name">Carbon Noir</span>
+                                </div>
+                                <div class="voucher-theme-option" onclick="selectStudioTheme('emerald', this)">
+                                    <div class="voucher-swatch emerald"></div>
+                                    <span class="voucher-theme-name">Emerald Crown</span>
+                                </div>
+                                <div class="voucher-theme-option" onclick="selectStudioTheme('diamond', this)">
+                                    <div class="voucher-swatch diamond"></div>
+                                    <span class="voucher-theme-name">Diamond Pearl</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recipient Name -->
+                        <div class="voucher-form-group">
+                            <label class="voucher-form-label" for="voucher-recipient-name">Recipient's Full Name</label>
+                            <input type="text" id="voucher-recipient-name" class="voucher-text-input" placeholder="e.g. Sophia Sterling" oninput="updateLiveVoucherPreview()">
+                        </div>
+
+                        <!-- Sender Name -->
+                        <div class="voucher-form-group">
+                            <label class="voucher-form-label" for="voucher-sender-name">Your Name (Sender)</label>
+                            <input type="text" id="voucher-sender-name" class="voucher-text-input" placeholder="e.g. Alexander Vance">
+                        </div>
+
+                        <!-- Personal Message -->
+                        <div class="voucher-form-group">
+                            <label class="voucher-form-label" for="voucher-custom-msg">Personal Gift Message</label>
+                            <textarea id="voucher-custom-msg" class="voucher-textarea" rows="2" placeholder="e.g. Wishing you timeless elegance and unforgettable style on your special celebration."></textarea>
+                        </div>
+
+                        <!-- Studio Actions -->
+                        <div class="voucher-studio-actions">
+                            <button type="button" class="voucher-studio-buy-btn" onclick="buyCustomVoucher()">
+                                <i class="fa-solid fa-gift"></i> Add Bespoke Voucher to Bag
+                            </button>
+                            <button type="button" class="voucher-studio-preview-btn" onclick="previewCustomCertificate()">
+                                <i class="fa-solid fa-eye"></i> Preview Certificate
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Live Preview Display -->
+                    <div class="voucher-live-preview-box">
+                        <span class="voucher-preview-badge"><i class="fa-solid fa-sparkles"></i> Live Card Simulation</span>
+                        <div class="voucher-live-card-container">
+                            <div class="luxury-voucher-card voucher-theme-gold" id="voucher-live-card">
+                                <div class="voucher-card-top">
+                                    <div class="voucher-brand-brand">
+                                        <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="voucher-card-crest">
+                                        <span class="voucher-card-brandname">VHORA</span>
+                                    </div>
+                                    <span class="voucher-tier-badge voucher-card-foil">BESPOKE PASS</span>
+                                </div>
+                                <div class="voucher-chip-row">
+                                    <div class="smart-card-chip"></div>
+                                    <i class="fa-solid fa-wifi contactless-icon"></i>
+                                </div>
+                                <div class="voucher-card-code-display voucher-card-foil" id="live-preview-code">VHORA-PASS-1000</div>
+                                <div class="voucher-card-bottom">
+                                    <div class="voucher-holder-info">
+                                        <span class="voucher-holder-label">GIFT FOR</span>
+                                        <span class="voucher-holder-name" id="live-preview-name">YOUR RECIPIENT</span>
+                                    </div>
+                                    <div class="voucher-card-value-display">
+                                        <span class="voucher-value-label">BALANCE</span>
+                                        <div class="voucher-value-amount voucher-card-foil" id="live-preview-amount">₹ 1,000</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size: 12px; color: #8e91a2; margin: 0; text-align: center;">
+                            <i class="fa-solid fa-lock"></i> Secured with 256-Bit Cryptographic Digital Voucher Token
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSTANT BALANCE CHECKER BAR -->
+            <div class="voucher-checker-box">
+                <div class="voucher-checker-info">
+                    <div class="voucher-checker-icon">
+                        <i class="fa-solid fa-wallet"></i>
+                    </div>
+                    <div>
+                        <h4 class="voucher-checker-heading">Check Voucher Balance or Status</h4>
+                        <p class="voucher-checker-sub">Enter any Vhora Gift Voucher or Promo Code to inspect remaining balance.</p>
+                    </div>
+                </div>
+
+                <div class="voucher-checker-form">
+                    <input type="text" id="voucher-checker-input" class="voucher-checker-input" placeholder="e.g. VHORA500 or ROYAL1000">
+                    <button type="button" class="voucher-checker-btn" onclick="checkVoucherBalance()">
+                        <i class="fa-solid fa-magnifying-glass"></i> Check Balance
+                    </button>
+                </div>
+
+                <div class="voucher-balance-result" id="voucher-balance-result"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- HOMEGROWN INDIAN BRAND Banner Section -->
     <section class="homegrown-banner-section">
         <div class="homegrown-banner-inner">
@@ -2593,7 +2959,7 @@
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Investor Relation</a></li>
                     <li><a href="#">Careers</a></li>
-                    <li><a href="#">Gift Vouchers</a></li>
+                    <li><a href="#gift-vouchers-section" onclick="handleGiftVouchersClick(event);">Gift Vouchers</a></li>
                     <li><a href="#">Community Initiatives</a></li>
                 </ul>
             </div>
@@ -2753,6 +3119,54 @@
                         <i class="fa-solid fa-shield-halved"></i>
                         <span>100% Genuine Apparel</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Luxury Voucher Certificate Modal -->
+    <div class="voucher-modal-overlay" id="voucher-certificate-modal" onclick="if(event.target === this) closeVoucherCertificate()" aria-modal="true" role="dialog">
+        <div class="voucher-cert-modal">
+            <button type="button" class="voucher-cert-modal-close" onclick="closeVoucherCertificate()" aria-label="Close Certificate">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="voucher-cert-frame">
+                <div class="voucher-cert-header">
+                    <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="voucher-cert-crest">
+                    <div class="voucher-cert-house">Maison de Luxe Vhora</div>
+                    <h3 class="voucher-cert-title">OFFICIAL GIFT CERTIFICATE</h3>
+                </div>
+
+                <div class="voucher-cert-body">
+                    <div class="voucher-cert-presented">THIS LUXURY CERTIFICATE IS BESTOWED UPON</div>
+                    <div class="voucher-cert-recipient" id="cert-modal-recipient">Valued Connoisseur</div>
+                    
+                    <div class="voucher-cert-amount-badge" id="cert-modal-amount">₹ 1,000</div>
+                    
+                    <div class="voucher-cert-message" id="cert-modal-message">
+                        “Presented with the sincere compliments of Vhora Haute Couture.”
+                    </div>
+
+                    <div class="voucher-cert-secure-strip">
+                        <div class="voucher-cert-code-box">
+                            <div class="voucher-cert-code-label">OFFICIAL REDEMPTION CODE</div>
+                            <div class="voucher-cert-code-value" id="cert-modal-code">VHORA1000</div>
+                            <div class="voucher-cert-validity"><i class="fa-solid fa-circle-check"></i> VALID IN PERPETUITY • ZERO EXPIRY</div>
+                        </div>
+                        <div id="cert-modal-qr"></div>
+                    </div>
+                </div>
+
+                <div class="voucher-cert-actions">
+                    <button type="button" class="voucher-cert-btn-primary" onclick="copyVoucherCode(document.getElementById('cert-modal-code').textContent)">
+                        <i class="fa-regular fa-copy"></i> Copy Code
+                    </button>
+                    <button type="button" class="voucher-cert-btn-secondary" onclick="printVoucherCertificate()">
+                        <i class="fa-solid fa-print"></i> Print / Save PDF
+                    </button>
+                    <button type="button" class="voucher-cert-btn-secondary" onclick="applyVoucherDirectly(document.getElementById('cert-modal-code').textContent); closeVoucherCertificate();">
+                        <i class="fa-solid fa-bag-shopping"></i> Redeem in Bag
+                    </button>
                 </div>
             </div>
         </div>

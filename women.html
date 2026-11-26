@@ -91,7 +91,7 @@
                     <li><a href="#" onclick="closeSidebar(); openOrdersDrawer(); return false;"><i class="fa-solid fa-boxes-packing"></i> My Orders & Tracking</a></li>
                     <li><a href="#"><i class="fa-solid fa-headset"></i> Contact Us</a></li>
                     <li><a href="#"><i class="fa-solid fa-circle-question"></i> FAQs</a></li>
-                    <li><a href="#"><i class="fa-solid fa-gift" style="color: #e53935;"></i> Gift Vouchers</a></li>
+                    <li><a href="index.html#gift-vouchers-section" onclick="closeSidebar(); handleGiftVouchersClick(event);"><i class="fa-solid fa-gift" style="color: #d4af37;"></i> Gift Vouchers</a></li>
                 </ul>
             </div>
         </div>
@@ -1102,7 +1102,7 @@
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Investor Relation</a></li>
                     <li><a href="#">Careers</a></li>
-                    <li><a href="#">Gift Vouchers</a></li>
+                    <li><a href="index.html#gift-vouchers-section" onclick="handleGiftVouchersClick(event);">Gift Vouchers</a></li>
                     <li><a href="#">Community Initiatives</a></li>
                 </ul>
             </div>
@@ -1262,6 +1262,54 @@
                         <i class="fa-solid fa-shield-halved"></i>
                         <span>100% Genuine Apparel</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Luxury Voucher Certificate Modal -->
+    <div class="voucher-modal-overlay" id="voucher-certificate-modal" onclick="if(event.target === this) closeVoucherCertificate()" aria-modal="true" role="dialog">
+        <div class="voucher-cert-modal">
+            <button type="button" class="voucher-cert-modal-close" onclick="closeVoucherCertificate()" aria-label="Close Certificate">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="voucher-cert-frame">
+                <div class="voucher-cert-header">
+                    <img src="images/vhora_crest_gold.png" alt="Vhora Crest" class="voucher-cert-crest">
+                    <div class="voucher-cert-house">Maison de Luxe Vhora</div>
+                    <h3 class="voucher-cert-title">OFFICIAL GIFT CERTIFICATE</h3>
+                </div>
+
+                <div class="voucher-cert-body">
+                    <div class="voucher-cert-presented">THIS LUXURY CERTIFICATE IS BESTOWED UPON</div>
+                    <div class="voucher-cert-recipient" id="cert-modal-recipient">Valued Connoisseur</div>
+                    
+                    <div class="voucher-cert-amount-badge" id="cert-modal-amount">₹ 1,000</div>
+                    
+                    <div class="voucher-cert-message" id="cert-modal-message">
+                        “Presented with the sincere compliments of Vhora Haute Couture.”
+                    </div>
+
+                    <div class="voucher-cert-secure-strip">
+                        <div class="voucher-cert-code-box">
+                            <div class="voucher-cert-code-label">OFFICIAL REDEMPTION CODE</div>
+                            <div class="voucher-cert-code-value" id="cert-modal-code">VHORA1000</div>
+                            <div class="voucher-cert-validity"><i class="fa-solid fa-circle-check"></i> VALID IN PERPETUITY • ZERO EXPIRY</div>
+                        </div>
+                        <div id="cert-modal-qr"></div>
+                    </div>
+                </div>
+
+                <div class="voucher-cert-actions">
+                    <button type="button" class="voucher-cert-btn-primary" onclick="copyVoucherCode(document.getElementById('cert-modal-code').textContent)">
+                        <i class="fa-regular fa-copy"></i> Copy Code
+                    </button>
+                    <button type="button" class="voucher-cert-btn-secondary" onclick="printVoucherCertificate()">
+                        <i class="fa-solid fa-print"></i> Print / Save PDF
+                    </button>
+                    <button type="button" class="voucher-cert-btn-secondary" onclick="applyVoucherDirectly(document.getElementById('cert-modal-code').textContent); closeVoucherCertificate();">
+                        <i class="fa-solid fa-bag-shopping"></i> Redeem in Bag
+                    </button>
                 </div>
             </div>
         </div>
